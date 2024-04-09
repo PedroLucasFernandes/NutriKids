@@ -16,8 +16,14 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static('src/public'));
 
-const firstPage = require('./public/view/firstPage');
+const firstPage = require('./public/view/users/firstPage');
 app.get('/', firstPage);
+
+const loginAdmin = require('./public/view/admins/loginAdmin');
+app.get('/admin', loginAdmin);
+
+const homePage = require('./public/view/users/homePage');
+app.get('/inicio', homePage);
 
 app.listen(port, () => {
     console.log(`Servidor está rodando em http://localhost:${port}`);
