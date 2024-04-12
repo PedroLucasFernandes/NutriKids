@@ -1,0 +1,633 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor0: #F8F7F7;
+    --cor1: #6692E5;
+    --cor2: #92B4F4;
+    --cor3: #F4F092;
+    --cor4: #5E5E5E;
+    --cor5: #FF5B66;
+    --cor6: #EAF4F1;
+    --cor7: #FF9FA6;
+    --font1: "Lilita One", sans-serif;
+    --font2: "Nunito", sans-serif;
+}
+
+body {
+    background-color: var(--cor1);
+}
+
+body::-webkit-scrollbar{
+    width: 7px;
+    overflow: hidden;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: var(--cor7);
+    border-radius: 30px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: var(--cor5);
+    border-radius: 30px;
+}
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--cor1);
+}
+
+header::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 250px;
+    background-color: white;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+#menu {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right: 45px;
+    cursor: pointer;
+}
+
+#logo {
+    display: none;
+}
+
+header h2 {
+    color: var(--cor3);
+    font-size: 50px;
+    font-family: var(--font1);
+    position: relative;
+    right: 15px;
+}
+
+header ul {
+    list-style: none;
+    display: none;
+    gap: 50px;
+    font-size: 30px;
+}
+
+header li {
+    font-family: var(--font1);
+    color: var(--cor3);
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+    font-family: var(--font1);
+    color: var(--cor3);
+    gap: 70px;
+}
+
+main div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+main img {
+    width: 300px;
+}
+
+main h3 {
+    font-size: 30px;
+}
+
+.destaques {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.quadrado {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor5);
+    width: 80px;
+    height: 80px;
+}
+
+main button {
+    width: 150px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: var(--cor6);
+    border: none;
+    font-family: var(--font1);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: var(--cor5);
+    margin-top: 40px;
+}
+
+footer img {
+    width: 150px;
+}
+
+#navegacao {
+    display: none;
+    cursor: pointer;
+}
+
+#linha {
+    background-color: white;
+    width: 5px;
+    height: 100px;
+}
+
+footer div {
+    display: flex;
+    align-items: center;
+    font-family: var(--font1);
+    font-size: 10px;
+    gap: 10px;
+    color: white;
+}
+
+footer h4 {
+    text-align: center;
+}
+
+@media (min-width: 760px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    header::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 600px;
+        background-color: white;
+    }
+    
+    header nav {
+        display: flex;
+        align-items: center;
+    }
+    
+    #menu {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        right: 200px;
+        cursor: pointer;
+    }
+    
+    #logo {
+        display: none;
+    }
+    
+    header h2 {
+        color: var(--cor3);
+        font-size: 70px;
+        font-family: var(--font1);
+        position: relative;
+        right: 15px;
+    }
+    
+    header ul {
+        list-style: none;
+        display: none;
+        gap: 50px;
+        font-size: 30px;
+    }
+    
+    header li {
+        font-family: var(--font1);
+        color: var(--cor3);
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 40px;
+        font-family: var(--font1);
+        color: var(--cor3);
+        gap: 150px;
+    }
+    
+    main div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    main img {
+        width: 400px;
+    }
+    
+    main h3 {
+        font-size: 50px;
+    }
+    
+    .destaques {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .quadrado {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--cor5);
+        width: 100px;
+        height: 100px;
+    }
+    
+    main button {
+        width: 200px;
+        height: 60px;
+        border-radius: 40px;
+        background-color: var(--cor6);
+        border: none;
+        font-family: var(--font1);
+        font-size: 20px;
+        margin-top: 30px;
+    }
+
+    footer {
+        background-color: var(--cor5);
+        margin-top: 40px;
+    }
+    
+    footer img {
+        width: 150px;
+    }
+    
+    #navegacao {
+        display: none;
+    }
+    
+    #linha {
+        background-color: white;
+        width: 5px;
+        height: 100px;
+    }
+    
+    footer div {
+        display: flex;
+        align-items: center;
+        font-family: var(--font1);
+        font-size: 20px;
+        gap: 10px;
+        color: white;
+    }
+}
+
+@media (min-width: 1280px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    header::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 1000px;
+        background-color: white;
+    }
+    
+    header nav {
+        display: flex;
+        align-items: center;
+    }
+    
+    #menu {
+        display: none;
+    }
+    
+    #logo {
+        display: flex;
+        width: 200px;
+    }
+    
+    header h2 {
+        color: var(--cor3);
+        font-size: 70px;
+        font-family: var(--font1);
+        position: relative;
+        right: 15px;
+        margin-right: 100px;
+    }
+    
+    header ul {
+        list-style: none;
+        display: flex;
+        gap: 50px;
+        font-size: 35px;
+    }
+    
+    header li {
+        font-family: var(--font1);
+        color: var(--cor3);
+    }
+
+    main {
+        display: flex;
+        flex-direction: ro;
+        justify-content: center;
+        margin-top: 40px;
+        font-family: var(--font1);
+        color: var(--cor3);
+        gap: 150px;
+    }
+    
+    main div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    main img {
+        width: 600px;
+    }
+    
+    main h3 {
+        font-size: 60px;
+    }
+    
+    .destaques {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        align-items: center;
+    }
+    
+    .quadrado {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--cor5);
+        width: 150px;
+        height: 150px;
+    }
+
+    .conjunto {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .secao1 {
+        flex-direction: row-reverse;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .secao2 {
+        flex-direction: row;
+        justify-content: center;
+        gap: 50px;
+    }
+    
+    main button {
+        width: 250px;
+        height: 70px;
+        border-radius: 40px;
+        background-color: var(--cor6);
+        border: none;
+        font-family: var(--font1);
+        font-size: 30px;
+        margin-top: 30px;
+    }
+
+    footer {
+        background-color: var(--cor5);
+        margin-top: 40px;
+    }
+    
+    footer img {
+        width: 200px;
+    }
+    
+    #navegacao {
+        display: flex;
+    }
+    
+    #linha {
+        background-color: white;
+        width: 1px;
+        height: 100px;
+    }
+    
+    footer div {
+        display: flex;
+        align-items: center;
+        font-family: var(--font1);
+        font-size: 25px;
+        gap: 80px;
+        color: white;
+        justify-content: center;
+    }
+
+    footer ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer h4 {
+        width: 500px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1800px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    header::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 1700px;
+        background-color: white;
+    }
+    
+    header nav {
+        display: flex;
+        align-items: center;
+    }
+    
+    #menu {
+        display: none;
+    }
+    
+    #logo {
+        display: flex;
+        width: 200px;
+    }
+    
+    header h2 {
+        color: var(--cor3);
+        font-size: 70px;
+        font-family: var(--font1);
+        position: relative;
+        right: 15px;
+        margin-right: 400px;
+    }
+    
+    header ul {
+        list-style: none;
+        display: flex;
+        gap: 50px;
+        font-size: 45px;
+    }
+    
+    header li {
+        font-family: var(--font1);
+        color: var(--cor3);
+    }
+
+    main {
+        display: flex;
+        flex-direction: ro;
+        justify-content: center;
+        margin-top: 40px;
+        font-family: var(--font1);
+        color: var(--cor3);
+        gap: 200px;
+    }
+    
+    main div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    
+    main img {
+        width: 600px;
+    }
+    
+    main h3 {
+        font-size: 60px;
+    }
+    
+    .destaques {
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+        align-items: center;
+    }
+    
+    .quadrado {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--cor5);
+        width: 170px;
+        height: 170px;
+    }
+
+    .conjunto {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .secao1 {
+        flex-direction: row-reverse;
+        justify-content: center;
+        gap: 100px;
+    }
+
+    .secao2 {
+        flex-direction: row;
+        justify-content: center;
+        gap: 100px;
+    }
+    
+    main button {
+        width: 270px;
+        height: 80px;
+        border-radius: 40px;
+        background-color: var(--cor6);
+        border: none;
+        font-family: var(--font1);
+        font-size: 30px;
+        margin-top: 30px;
+    }
+
+    footer {
+        background-color: var(--cor5);
+        margin-top: 40px;
+    }
+    
+    footer img {
+        width: 300px;
+    }
+    
+    #navegacao {
+        display: flex;
+    }
+    
+    #linha {
+        background-color: white;
+        width: 1px;
+        height: 100px;
+    }
+    
+    footer div {
+        display: flex;
+        align-items: center;
+        font-family: var(--font1);
+        font-size: 25px;
+        gap: 100px;
+        color: white;
+        justify-content: center;
+    }
+
+    footer ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer h4 {
+        width: 500px;
+        text-align: center;
+    }
+}
