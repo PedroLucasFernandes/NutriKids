@@ -8,7 +8,7 @@ export default function receita() {
     const direitaH3 = document.createElement('h3');
     const btnVerMais = document.createElement('button')
 
-    img.src = "../../image/cerejaReceita1.png";
+    img.src = "./images/cerejaReceita1.png";
 
     h3.innerHTML = "Receitas em destaques:";
 
@@ -36,6 +36,15 @@ export default function receita() {
 
     divMain.appendChild(img);
     divMain.appendChild(divDestaque);
+
+    btnVerMais.addEventListener("click", () => {
+        const event = new CustomEvent("pageChange", {detail: "/Receitas"})
+        const main = document.querySelector("main");
+
+        main.innerHTML = "";
+
+        window.dispatchEvent(event)
+    })
 
     return divMain;
 }

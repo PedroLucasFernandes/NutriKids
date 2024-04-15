@@ -8,7 +8,7 @@ export default function quizzes() {
     const direitaH3 = document.createElement('h3');
     const btnVerMais = document.createElement('button')
 
-    img.src = "../../image/couve1.png";
+    img.src = "./images/couve1.png";
 
     h3.innerHTML = "Quizzes em destaques:";
 
@@ -36,6 +36,15 @@ export default function quizzes() {
 
     divMain.appendChild(img);
     divMain.appendChild(divDestaque);
+
+    btnVerMais.addEventListener("click", () => {
+        const event = new CustomEvent("pageChange", {detail: "/Quizzes"})
+        const main = document.querySelector("main");
+
+        main.innerHTML = "";
+
+        window.dispatchEvent(event)
+    })
 
     return divMain;
 }

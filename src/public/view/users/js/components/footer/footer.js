@@ -7,7 +7,7 @@ export default function footer (){
     const h4 = document.createElement('h4');
     const ul = document.createElement('ul');
 
-    img.src = "../../image/logo.png";
+    img.src = "./images/logo.png";
     linha.id = "linha";
     nav.id = "navegacao"
     h4.innerHTML = "No NutriKids você vai se divertir ao mesmo tempo que aprende diversas curiosidades no mundo da culianária, estamos aqui para ensinar as crianças como é bom e saudavel comer e fazer seus proprios pratos!";
@@ -17,6 +17,12 @@ export default function footer (){
     for (const item of menu){
         const li = document.createElement('li');
         li.innerHTML = item
+
+        li.addEventListener("click", ()=> {
+            const event = new CustomEvent("pageChange", {detail: `/${item}`});
+
+            window.dispatchEvent(event)
+        })
 
         ul.appendChild(li);
     }

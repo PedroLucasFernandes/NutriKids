@@ -15,6 +15,7 @@
     --cor5: #FF5B66;
     --cor6: #EAF4F1;
     --cor7: #FF9FA6;
+    --cor8: #D9D9D9;
     --font1: "Lilita One", sans-serif;
     --font2: "Nunito", sans-serif;
 }
@@ -43,11 +44,59 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--cor1);
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container img {
+    width: 350px;
+}
+
+#container main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#container div {
+    width: 250px;
+    height: 150px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+#container header {
+    font-family: var(--font1);
+    font-size: 50px;
+    color: var(--cor3);
+}
+
+#container input {
+    height: 40px;
+    font-size: 15px;
+}
+
+#container button {
+    background-color: var(--cor5);
+}
+
+#container footer {
+    font-family: var(--font1);
+    color: white;
     background-color: var(--cor1);
+    cursor: pointer;
 }
 
 header::after {
@@ -69,6 +118,7 @@ header nav {
     position: relative;
     right: 45px;
     cursor: pointer;
+    display: flex;
 }
 
 #logo {
@@ -94,6 +144,38 @@ header li {
     font-family: var(--font1);
     color: var(--cor3);
     cursor: pointer;
+}
+
+#test  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor3);
+}
+
+#test header {
+    display: flex;
+    background-color: var(--cor3);
+}
+
+#head {
+    display: flex;
+    align-items: center;
+}
+
+#head img {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right: 50px;
+}
+
+#test h2 {
+    color: var(--cor1);
+}
+
+#test h3 {
+    color: var(--cor1);
 }
 
 main {
@@ -150,6 +232,7 @@ main button {
 footer {
     background-color: var(--cor5);
     margin-top: 40px;
+    display: flex;
 }
 
 footer img {
@@ -179,6 +262,155 @@ footer div {
 footer h4 {
     text-align: center;
 }
+
+#login {
+    background-color: white;
+}
+
+#login header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    gap: 200px;
+    margin: 70px;
+}
+
+#login header h2 {
+    margin: auto;
+    color: var(--cor5);
+}
+
+#login header img {
+    width: 200px;
+    display: none;
+}
+
+#login header h4 {
+    color: white;
+    font-size: 50px;
+    font-family: var(--font1);
+    display: none;
+
+}
+
+#login main {
+    background-color: white;
+    display: flex ;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--cor4);
+    margin: auto;
+    gap: 50px;
+    height: 100vh;
+    
+}
+
+#login main h3 {
+    font-family: var(--font2);
+}
+
+#login main img {
+    width: 800px;
+}
+
+#login main div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 70px;
+}
+
+#login input {
+    font-size: 50px;
+    height: 100px;
+    background-color: var(--cor8);
+    border-radius: 20px;
+    border: none;
+}
+
+#login button {
+    font-family: var(--font2);
+    background-color: var(--cor5);
+    width: 400px;
+    border-radius: 10px;
+}
+
+#admin {
+    background-color: white;
+}
+
+#admin header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    gap: 200px;
+}
+
+#admin header h2 {
+    margin: auto;
+    color: var(--cor5);
+}
+
+#admin img {
+    width: 200px;
+}
+
+#admin header h4 {
+    color: white;
+    font-size: 50px;
+    font-family: var(--font1);
+
+}
+
+#admin main {
+    background-color: white;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    color: var(--cor5);
+    margin: auto;
+    gap: 50px;
+    height: 100vh;
+    
+}
+
+#admin main img {
+    width: 100px;
+}
+
+#admin main div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 70px;
+}
+
+.secao {
+    background-color: var(--cor8);
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.secao img {
+    position: relative;
+    bottom: 150px;
+    right: 50px;
+}
+
+.next {
+    position: relative;
+    top: 100px;
+}
+
+
 
 @media (min-width: 760px) {
     header {
@@ -230,6 +462,48 @@ footer h4 {
     header li {
         font-family: var(--font1);
         color: var(--cor3);
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #container img {
+        width: 700px;
+    }
+    
+    #container main {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        justify-content: center;
+    }
+    
+    #container div {
+        width: 350px;
+        height: 250px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+    }
+    
+    #container header {
+        font-family: var(--font1);
+        font-size: 90px;
+        color: var(--cor3);
+    }
+
+    #container header::after {
+        width: 700px;
+    }
+    
+    #container input {
+        height: 40px;
+        font-size: 15px;
     }
 
     main {
@@ -360,6 +634,59 @@ footer h4 {
     header li {
         font-family: var(--font1);
         color: var(--cor3);
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 80px;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #container img {
+        width: 800px;
+    }
+    
+    #container main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+    }
+    
+    #container div {
+        width: 450px;
+        height: 300px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+    }
+    
+    #container header {
+        font-family: var(--font1);
+        font-size: 70px;
+        color: var(--cor3);
+    }
+    
+    #container input {
+        outline: var(--cor5);
+        height: 60px;
+        width: 300px;
+        font-size: 18px;
+    }
+
+    #container footer {
+        font-family: var(--font1);
+        font-size: 20px;
+        color: white;
+        background-color: var(--cor1);
+        display: flex;
+        text-align: left;
+        cursor: pointer;
     }
 
     main {
@@ -520,6 +847,63 @@ footer h4 {
     header li {
         font-family: var(--font1);
         color: var(--cor3);
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 80px;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #container img {
+        width: 900px;
+    }
+    
+    #container main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+    }
+    
+    #container div {
+        width: 450px;
+        height: 300px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+    }
+    
+    #container header {
+        font-family: var(--font1);
+        font-size: 100px;
+        color: var(--cor3);
+    }
+
+    #container header::after {
+        width: 1500px;
+    }
+    
+    #container input {
+        outline: var(--cor5);
+        height: 60px;
+        width: 300px;
+        font-size: 18px;
+    }
+
+    #container footer {
+        font-family: var(--font1);
+        font-size: 20px;
+        color: white;
+        background-color: var(--cor1);
+        display: flex;
+        text-align: left;
+        cursor: pointer;
     }
 
     main {

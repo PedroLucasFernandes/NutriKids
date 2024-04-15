@@ -8,7 +8,7 @@ export default function jogos() {
     const direitaH3 = document.createElement('h3');
     const btnVerMais = document.createElement('button')
 
-    img.src = "../../image/cereja1.png";
+    img.src = "./images/cereja1.png";
 
     h3.innerHTML = "Jogos em destaques:";
 
@@ -37,6 +37,15 @@ export default function jogos() {
 
     divMain.appendChild(img);
     divMain.appendChild(divDestaque);
+
+    btnVerMais.addEventListener("click", () => {
+        const event = new CustomEvent("pageChange", {detail: "/Jogos"})
+        const main = document.querySelector("main");
+
+        main.innerHTML = "";
+
+        window.dispatchEvent(event)
+    })
 
     return divMain;
 }

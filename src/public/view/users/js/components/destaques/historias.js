@@ -8,7 +8,7 @@ export default function historias() {
     const direitaH3 = document.createElement('h3');
     const btnVerMais = document.createElement('button')
 
-    img.src = "../../image/beterraba1.png";
+    img.src = "./images/beterraba1.png";
 
     h3.innerHTML = "Historias em destaques:";
 
@@ -36,6 +36,15 @@ export default function historias() {
 
     divMain.appendChild(img);
     divMain.appendChild(divDestaque);
+
+    btnVerMais.addEventListener("click", () => {
+        const event = new CustomEvent("pageChange", {detail: "/Historias"})
+        const main = document.querySelector("main");
+
+        main.innerHTML = "";
+
+        window.dispatchEvent(event)
+    })
 
     return divMain;
 }
