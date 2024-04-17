@@ -20,13 +20,13 @@ export default function Login() {
     root.innerHTML = ""
 
     button.addEventListener("click", () => {
-        // const event = new CustomEvent("pageChange", {detail: "/Admin"})
+        const event = new CustomEvent("pageChange", {detail: "/Admin"})
 
-        // window.dispatchEvent(event)
+        window.dispatchEvent(event)
         const username = inputUser.value;
         const password = inputPassword.value;
 
-        login(username,password)
+        // login(username,password)
     })
 
     div.appendChild(h3);

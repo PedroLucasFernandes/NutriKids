@@ -8,6 +8,7 @@ import Inital from "./admins/js/components/Pages/Initial.js";
 import Login from "./admins/js/components/Pages/Login.js";
 import HistoryAdmin from "./admins/js/components/Pages/HistoryAdmin.js";
 import AddHistory from "./admins/js/components/Pages/AddHistoryAdmin.js";
+import QuizzesAdmin from "./admins/js/components/Pages/QuizzesAdmin.js";
 
 const router = {
     "/Inicio": Home,
@@ -22,6 +23,7 @@ const router = {
     "/Sair": Login,
     "/HistoryAdmin": HistoryAdmin,
     "/AddHistory": AddHistory,
+    "/QuizzesAdmin": QuizzesAdmin
 };
 
 function render(page) {
