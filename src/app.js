@@ -1,6 +1,14 @@
+const dotenv = require('dotenv');
+//importando o módulo dotenv
+dotenv.config();
+//configurando o dotenv já de início para que as variáveis de ambiente sejam carregadas.
+
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const adminRoutes = require('./routes/adminRoutes.js');
+const historyRoutes = require('./routes/historyRoutes.js');
+
 const app = express();
-const port = 3000;
 
 const cors = require('cors');
 app.use(cors({
@@ -14,21 +22,20 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(express.static('src/public'));
 
-// const firstPage = require('./public/view/users/firstPage');
-// app.get('/', firstPage);
+app.use(cookieParser());
+//configurando o express para fazer o parse de cookies. o coloquei aqui para que o cookie seja parseado antes de ser usado nas rotas de admin.
+
+app.use('/api', adminRoutes);
+//configurando o express para usar as rotas de admin.
+app.use('/api', historyRoutes);
+
+app.use(express.static('src/public'));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/view/index.html');
 });
 
-// const loginAdmin = require('./public/view/admins/loginAdmin');
-// app.get('/admin', loginAdmin);
-
-// const homePage = require('./public/view/users/homePage');
-// app.get('/inicio', homePage);
-
-app.listen(port, () => {
-    console.log(`Servidor está rodando em http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`servidor está rodando em http://192.168.15.2:${process.env.PORT}`);
 });
