@@ -28,6 +28,12 @@ export default function HistoryAdmin() {
         window.dispatchEvent(event)
     })
 
+    h4.addEventListener("click", function(){
+        const event = new CustomEvent("pageChange", {detail: "/Admin"})
+
+        window.dispatchEvent(event)
+    })
+
     divContent.appendChild(Header());
     divContent.appendChild(main);
     root.appendChild(divContent)

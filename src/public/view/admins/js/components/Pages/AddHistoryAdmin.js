@@ -47,6 +47,12 @@ export default function AddHistory() {
     main.appendChild(buttonAdd);
     main.appendChild(h4Back)
 
+    h4Back.addEventListener("click", function(){
+        const event = new CustomEvent("pageChange", {detail: "/HistoryAdmin"})
+
+        window.dispatchEvent(event)
+    })
+
     divContent.appendChild(Header());
     divContent.appendChild(main);
     root.appendChild(divContent);

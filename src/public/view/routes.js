@@ -31,7 +31,14 @@ function render(page) {
 function startRouter() {
     window.addEventListener("pageChange", (e) => {
         console.log(e.detail)
+        window.history.pushState(undefined, undefined, e.detail)
         render(e.detail)
+    })
+
+    window.addEventListener("popstate", function(e){
+        const newPage = window.location.pathname;
+        
+        render(newPage)
     })
 }
 
