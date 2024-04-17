@@ -9,8 +9,11 @@ const adminRepository = {
     //criando o método findAdminByUsername que recebe username como parâmetro. ele executa o método getAdminByUsername do adminModel, passando username como argumento.
     try {
       return await adminModel.getAdminByUsername(username);
+      //retornando a execução do método getAdminByUsername do adminModel, passando username como argumento.
+      //caso essa operação não dê certo no adminModel, o erro lançado lá será capturado no catch abaixo.
+      //como, nesse caso, aqui no repository não há nenhuma lógica nova, só estamos chamando o método do model, não há necessidade de fazer um tratamento de erro específico, então, não há um throw new Error aqui.
     } catch (error) {
-      throw new Error(`erro ao encontrar administrador pelo username: ${error.message}`); 
+      throw error;
       //propaga o erro para ser tratado pela camada superior (que, nesse caso, é o service correspondente)
     }
   },
@@ -19,13 +22,13 @@ const adminRepository = {
     //criando o método addNewAdmin que recebe name, username, password, created_by, updated_by como parâmetros
     try {
       return await adminModel.createAdmin(name, username, password, created_by, updated_by);
-      //retornando a execução do método createAdmin do adminModel, passando name, username, password, created_by, updated_by como argumentos.
     } catch(error) {
-      throw new Error(`erro ao adicionar novo administrador: ${error.message}`);
+      throw error;
     }
   }
 };
 
-//criando o objeto adminRepository com os métodos addNewAdmin e findAdminByUsername. o método addNewAdmin executa o método createAdmin do adminModel, passando name, username e password como argumentos. o método findAdminByUsername executa o método getAdminByUsername do adminModel, passando username como argumento. é um intermediário entre o controller e o model.
+//criando o objeto adminRepository com os métodos findAdminByUsername e  addNewAdmin. o método findAdminByUsername executa o método getAdminByUsername do adminModel, passando username como argumento. o método addNewAdmin executa o método createAdmin do adminModel, passando name, username e password como argumentos. é um intermediário entre o controller e o model.
 
 module.exports = adminRepository;
+
