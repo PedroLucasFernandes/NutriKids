@@ -47,6 +47,15 @@ export default function AddHistory() {
     main.appendChild(buttonAdd);
     main.appendChild(h4Back)
 
+    buttonAdd.addEventListener("click", function() {
+        const title = inputTitle.value;
+        const history = inputHistory.value;
+
+        console.log(title, history);
+
+        addHistory(title, history)
+    })
+
     h4Back.addEventListener("click", function(){
         const event = new CustomEvent("pageChange", {detail: "/HistoryAdmin"})
 
@@ -58,4 +67,27 @@ export default function AddHistory() {
     root.appendChild(divContent);
 
     return root;
+}
+
+async function addHistory(title, story) {
+    console.log(title, story)
+    try {
+        const response = await fetch('http://localhost:3000/api/history', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, story, created_by: 1, updated_by: 1 })
+        });
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+
+        const data = await response.json();
+        console.log(data)
+    }
+    catch(error) {
+        console.error(`Erro na requisição: ${error}`)
+    }
 }
