@@ -5,10 +5,12 @@ dotenv.config();
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
+
 const adminRoutes = require('./routes/adminRoutes.js');
 const historyRoutes = require('./routes/historyRoutes.js');
 
 const app = express();
+//criando uma instância do express, ou seja, um servidor.
 
 const cors = require('cors');
 app.use(cors({
