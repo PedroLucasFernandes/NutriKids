@@ -330,6 +330,7 @@ footer h4 {
     background-color: var(--cor8);
     border-radius: 20px;
     border: none;
+    padding: 20px;
 }
 
 #login button {
