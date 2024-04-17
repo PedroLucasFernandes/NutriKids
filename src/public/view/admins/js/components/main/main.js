@@ -7,7 +7,7 @@ export default function Main() {
 
     const menu = [
         {
-            name: "Histórias",
+            name: "History",
             img: "./images/iconHistory.png"
         },
         {
@@ -39,6 +39,12 @@ export default function Main() {
         h3.innerHTML = item.name;
         next.src = "./images/next.png";
         next.classList.add('next')
+
+        div.addEventListener("click", () => {
+            const event = new CustomEvent("pageChange", {detail: `/${item.name}Admin`})
+    
+            window.dispatchEvent(event)
+        })
         
         div.appendChild(icon);
         div.appendChild(h3);

@@ -6,6 +6,8 @@ import Recipes from "./users/js/components/Pages/Recipes.js";
 import menuHamburguer from "./users/js/components/header/menuHamburguer.js";
 import Inital from "./admins/js/components/Pages/Initial.js";
 import Login from "./admins/js/components/Pages/Login.js";
+import HistoryAdmin from "./admins/js/components/Pages/HistoryAdmin.js";
+import AddHistory from "./admins/js/components/Pages/AddHistoryAdmin.js";
 
 const router = {
     "/Inicio": Home,
@@ -18,6 +20,8 @@ const router = {
     "/Login": Login,
     "/Admin": Inital,
     "/Sair": Login,
+    "/HistoryAdmin": HistoryAdmin,
+    "/AddHistory": AddHistory,
 };
 
 function render(page) {

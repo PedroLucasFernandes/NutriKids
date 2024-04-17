@@ -10,6 +10,8 @@ const historyRoutes = require('./routes/historyRoutes.js');
 
 const app = express();
 
+const port = 3000
+
 const cors = require('cors');
 app.use(cors({
     origin: function (origin, callback) {
@@ -37,5 +39,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`servidor está rodando em http://192.168.15.2:${process.env.PORT}`);
+    console.log(`servidor está rodando em http://localhost:${process.env.PORT}`);
 });

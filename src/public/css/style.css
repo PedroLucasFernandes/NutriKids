@@ -411,7 +411,11 @@ footer h4 {
     top: 100px;
 }
 
-
+.divItens {
+    background-color: var(--cor1);
+    width: 2000px;
+    height: 800px;
+}
 
 @media (min-width: 760px) {
     header {
