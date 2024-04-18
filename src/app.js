@@ -5,17 +5,20 @@ dotenv.config();
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
+
 const adminRoutes = require('./routes/adminRoutes.js');
 const historyRoutes = require('./routes/historyRoutes.js');
 
 const app = express();
+//criando uma instância do express, ou seja, um servidor.
 
 const port = 3000
 
 const cors = require('cors');
+
 app.use(cors({
     origin: function (origin, callback) {
-        if (!origin || origin === `http://localhost:${port}`) {
+        if (!origin || origin === `http://localhost:${process.env.PORT}`) {
             callback(null, true);
         } else {
             callback(new Error('Acesso bloqueado por política CORS'));
