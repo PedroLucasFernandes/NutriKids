@@ -1,10 +1,10 @@
 const pool = require('../config/database.js');
 
 const historyModel = {
-    async createHistory(title, story, created_by, updated_by, file) {
+    async createHistory(title, story, created_by, updated_by, banner) {
         const query = `INSERT INTO history (title, story, created_by, updated_by, image_path) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
         //esse RETURNING * é para retornar o objeto criado, sem ele o return rows[0] não funcionaria, afinal o comando INSERT por si só não retorna as linhas inseridas a menos que você peça explicitamente por elas
-        const values = [title, story, created_by, updated_by, file];
+        const values = [title, story, created_by, updated_by, banner];
 
         try {
             const { rows } = await pool.query(query, values);
@@ -94,9 +94,9 @@ const historyModel = {
 }
 
 const comicModel = {
-    async createComic(id_history, comic_order, image_path) {
+    async createComic(id_history, comic_order, filename) {
         const query = `INSERT INTO comic (id_history, comic_order, image_path) VALUES ($1, $2, $3) RETURNING *`;
-        const values = [id_history, comic_order, image_path];
+        const values = [id_history, comic_order, filename];
 
         try {
             const { rows } = await pool.query(query, values);
