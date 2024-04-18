@@ -5,6 +5,7 @@ const historyController = {
         const { title, story, created_by, updated_by } = req.body;
         //na hora de integrar a API com o front-end, o front-end deve enviar um objeto com as propriedades title, story, created_by e updated_by no corpo da requisição ao realizar o fetch para a rota /api/history. assim: { title: 'história1', story: 'o texto da história...', created_by: 'admin1', updated_by: 'admin1' }.
 
+        console.log(title, story, created_by, updated_by)
         try {
             const newHistory = await historyService.addNewHistory(title, story, created_by, updated_by);
             res.status(201).json(newHistory);

@@ -77,7 +77,7 @@ async function addHistory(title, story) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, story, created_by: 1, updated_by: 1 })
+            body: JSON.stringify({ title: title, story: story, created_by: "admin1", updated_by: "admin1" })
         });
 
         if (!response.status) {

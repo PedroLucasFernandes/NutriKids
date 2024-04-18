@@ -20,13 +20,13 @@ export default function Login() {
     root.innerHTML = ""
 
     button.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Admin"})
+        // const event = new CustomEvent("pageChange", {detail: "/Admin"})
 
-        window.dispatchEvent(event)
+        // window.dispatchEvent(event)
         const username = inputUser.value;
         const password = inputPassword.value;
 
-        // login(username,password)
+        login(username,password)
     })
 
     div.appendChild(h3);
@@ -47,7 +47,7 @@ export default function Login() {
 
 async function login(username, password) {
     try {
-        const response = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/admin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,10 +60,12 @@ async function login(username, password) {
             document.cookie = "";
         }
         else {
-            window.dispatchEvent("/Admin");
+            const event = new CustomEvent("pageChange", {detail: "/Admin"})
+
+            window.dispatchEvent(event);
         }
     }
-    catch {
+    catch(error) {
         console.error(`Erro na requisição: ${error}`)
     }
 }
