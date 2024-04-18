@@ -1,4 +1,5 @@
 import Header from "../header/header.js";
+import ModalHistory from "../modal/ModalHistory.js";
 
 export default function AddHistory() {
     const root = document.getElementById('root');
@@ -19,19 +20,25 @@ export default function AddHistory() {
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
     const divContent = document.createElement('div');
+    const divAddImage = document.createElement('div');
 
     h3.innerHTML = "Crie/Edite umma História";
-    h4Image.innerHTML =  "Capa:";
+    h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Comics.innerHTML = "Quadrinhos atuais:";
     h4History.innerHTML = "Historia:"
     inputFile.type = "file";
-    buttonNewComics.innerHTML = "Novo quadrinho";
+    buttonNewComics.innerHTML = "novo quadrinho"
+    divAddImage.id = "image"
+    buttonNewComics.accept = "image/*"
+    buttonNewComics.multiple = true
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
     divContent.id = "admin";
     divHistory.classList.add("divItens")
+    divAddImage.id = "div-image"
 
+    divHistory.appendChild(divAddImage);
     divHistory.appendChild(buttonNewComics);
 
     main.appendChild(h3);
@@ -47,7 +54,44 @@ export default function AddHistory() {
     main.appendChild(buttonAdd);
     main.appendChild(h4Back)
 
-    buttonAdd.addEventListener("click", function() {
+    buttonNewComics.addEventListener("click", function(){
+        divContent.style.backgroundColor = "#00000079";
+
+        root.appendChild(ModalHistory());
+    })
+
+    // buttonNewComics.addEventListener("change", function (e) {
+    //     const inputTarget = e.target;
+    //     const files = inputTarget.files;
+
+    //     files.forEach(element => {
+    //         const img = document.createElement('img');
+    //         img.src = readerTarget.result;
+    //         img.classList.add('comic-img')
+    //     });
+
+    //     if (file) {
+    //         const reader = new FileReader();
+
+    //         reader.addEventListener('load', function (e) {
+    //             const readerTarget = e.target;
+
+    //             const img = document.createElement('img');
+    //             img.src = readerTarget.result;
+    //             img.id = "img"
+
+
+    //             const box = document.getElementById('box');
+    //             box.appendChild(img)
+    //         })
+    //         reader.readAsDataURL(file)
+    //         console.log(file)
+    //     }
+
+    //     console.log(file)
+    // })
+
+    buttonAdd.addEventListener("click", function () {
         const title = inputTitle.value;
         const history = inputHistory.value;
 
@@ -56,8 +100,8 @@ export default function AddHistory() {
         addHistory(title, history)
     })
 
-    h4Back.addEventListener("click", function(){
-        const event = new CustomEvent("pageChange", {detail: "/HistoryAdmin"})
+    h4Back.addEventListener("click", function () {
+        const event = new CustomEvent("pageChange", { detail: "/HistoryAdmin" })
 
         window.dispatchEvent(event)
     })
@@ -73,7 +117,7 @@ async function addHistory(title, story) {
     console.log(title, story)
     try {
         const response = await fetch('http://localhost:3000/api/history', {
-            method: 'POST', 
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -87,7 +131,7 @@ async function addHistory(title, story) {
         const data = await response.json();
         console.log(data)
     }
-    catch(error) {
+    catch (error) {
         console.error(`Erro na requisição: ${error}`)
     }
 }

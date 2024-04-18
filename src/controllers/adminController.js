@@ -11,13 +11,10 @@ const adminController = {
     try {
       const foundAdmin = await adminService.toLocateAdminByUsername(username);
 
-<<<<<<< HEAD
       console.log(`AQUI1: ${foundAdmin.login}`);
 
       console.log(password)
 
-=======
->>>>>>> main
       if (!foundAdmin | !foundAdmin.password) {
         //CORRIGINDO: para garantir que o admin foi encontrado e que a senha está disponível antes de chamar o bcrypt.compare.
         return res.status(401).json({ error: 'admin não encontrado ou senha não disponível' });
