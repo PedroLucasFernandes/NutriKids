@@ -94,9 +94,9 @@ const historyModel = {
 }
 
 const comicModel = {
-    async createComic(id_history, comic_order, image_path) {
+    async createComic(id_history, comic_order, filename) {
         const query = `INSERT INTO comic (id_history, comic_order, image_path) VALUES ($1, $2, $3) RETURNING *`;
-        const values = [id_history, comic_order, image_path];
+        const values = [id_history, comic_order, filename];
 
         try {
             const { rows } = await pool.query(query, values);

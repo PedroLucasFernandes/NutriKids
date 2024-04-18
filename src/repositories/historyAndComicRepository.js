@@ -55,9 +55,9 @@ const historyRepository = {
 };
 
 const comicRepository = {
-    async createComic(id_history, comic_order, image_path) {
+    async createComic(id_history, comic_order, filename) {
         try {
-            const newComic = await comicModel.createComic(id_history, comic_order, image_path);
+            const newComic = await comicModel.createComic(id_history, comic_order, filename);
             return newComic;
         } catch(error) {
             throw error;

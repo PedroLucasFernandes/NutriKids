@@ -16,13 +16,13 @@ const historyAndComicService = {
 
             const id_history = newHistory.id;
             //aqui, eu pego o id da nova história para poder associar os quadrinhos a ela.
-            console.log(comics);
+            let comic_order = 0;
             const comicsPromises = comics.map(async comic => {
                 //aqui optei por usar o método map, pois ele retorna um novo array com o resultado de uma função aplicada a cada elemento do array original. nesse caso, a função é uma função assíncrona que cria um quadrinho no banco de dados. o resultado é um array de promises. e cada quadrinho é associado à nova história criada. [TENTAR ENTENDER MELHOR]
                 //comics.map é um método que percorre o array comics e retorna um novo array com o resultado de uma função aplicada a cada elemento do array original. nesse caso, a função é uma função assíncrona que cria um quadrinho no banco de dados. o resultado é um array de promises. [TENTAR ENTENDER MELHOR]
-                const { comic_order, file } = comic;
-                //aqui, eu pego as propriedades comic_order e file de cada objeto do array comics, ou seja, de cada comic.
-                return await comicRepository.createComic(id_history, comic_order, file);
+                const filename = comic.filename;
+                comic_order ++;
+                return await comicRepository.createComic(id_history, comic_order, filename);
                 //aqui, eu crio um quadrinho no banco de dados associado à nova história criada. eu passo o id da nova história, o comic_order e o file, que são as propriedades de cada objeto do array comics, e percorro todo o array comics.
             });
 
