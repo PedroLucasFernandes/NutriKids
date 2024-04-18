@@ -3,15 +3,15 @@
 const { historyRepository, comicRepository } = require('../repositories/historyAndComicRepository.js');
 
 const historyAndComicService = {
-    async addNewHistoryWithComics(title, story, created_by, updated_by, image_path, comics) {
-        //o parâmetro comics é um array de objetos, onde cada objeto representa um quadrinho. cada objeto tem as propriedades comic_order e image_path.
+    async addNewHistoryWithComics(title, story, created_by, updated_by, file, comics) {
+        //o parâmetro comics é um array de objetos, onde cada objeto representa um quadrinho. cada objeto tem as propriedades comic_order e file.
         try {
             const existingHistoryTitle = await historyRepository.findHistoryByTitle(title);
             if(existingHistoryTitle) {
                 throw new Error(`camada service: história com o título ${title} já existe`);
             }
 
-            const newHistory = await historyRepository.addNewHistory(title, story, created_by, updated_by, image_path);
+            const newHistory = await historyRepository.addNewHistory(title, story, created_by, updated_by, file, comics);
             //aqui, a nova história é criada no banco de dados, porém ainda não tem quadrinhos associados a ela.
 
             const id_history = newHistory.id;
@@ -19,10 +19,10 @@ const historyAndComicService = {
             const comicsPromises = comics.map(async comic => {
                 //aqui optei por usar o método map, pois ele retorna um novo array com o resultado de uma função aplicada a cada elemento do array original. nesse caso, a função é uma função assíncrona que cria um quadrinho no banco de dados. o resultado é um array de promises. e cada quadrinho é associado à nova história criada. [TENTAR ENTENDER MELHOR]
                 //comics.map é um método que percorre o array comics e retorna um novo array com o resultado de uma função aplicada a cada elemento do array original. nesse caso, a função é uma função assíncrona que cria um quadrinho no banco de dados. o resultado é um array de promises. [TENTAR ENTENDER MELHOR]
-                const { comic_order, image_path } = comic;
-                //aqui, eu pego as propriedades comic_order e image_path de cada objeto do array comics, ou seja, de cada comic.
-                return await comicRepository.createComic(id_history, comic_order, image_path);
-                //aqui, eu crio um quadrinho no banco de dados associado à nova história criada. eu passo o id da nova história, o comic_order e o image_path, que são as propriedades de cada objeto do array comics, e percorro todo o array comics.
+                const { comic_order, file } = comic;
+                //aqui, eu pego as propriedades comic_order e file de cada objeto do array comics, ou seja, de cada comic.
+                return await comicRepository.createComic(id_history, comic_order, file);
+                //aqui, eu crio um quadrinho no banco de dados associado à nova história criada. eu passo o id da nova história, o comic_order e o file, que são as propriedades de cada objeto do array comics, e percorro todo o array comics.
             });
 
             await Promise.all(comicsPromises);
@@ -68,7 +68,7 @@ const historyAndComicService = {
         }
     },
 
-    async updateHistoryWithComics(id, title, story, updated_by, image_path, comics) {
+    async updateHistoryWithComics(id, title, story, updated_by, file, comics) {
         //esse id é o id da história que será atualizada.
         try {
             const existingHistory = await historyRepository.findHistoryById(id);
@@ -76,15 +76,15 @@ const historyAndComicService = {
                 throw new Error(`camada service: nenhuma história encontrada com o id ${id}`);
             }
 
-            const updatedHistory = await historyRepository.updateHistory(id, title, story, updated_by, image_path);
+            const updatedHistory = await historyRepository.updateHistory(id, title, story, updated_by, file);
             
             const comicsPromises = comics.map(async comic => {
                 //aqui, optei por usar o método map, pois ele retorna um novo array com o resultado de uma função aplicada a cada elemento do array original. nesse caso, a função é uma função assíncrona que atualiza um quadrinho no banco de dados. o resultado é um array de promises.
-                const { id, comic_order, image_path } = comic;
-                //aqui, eu pego as propriedades id, comic_order e image_path de cada objeto do array comics, ou seja, de cada comic em si.
+                const { id, comic_order, file } = comic;
+                //aqui, eu pego as propriedades id, comic_order e file de cada objeto do array comics, ou seja, de cada comic em si.
                 const id_comic = id;
                 //já esse id_comic é o id do comic, ou seja, do quadrinho que será atualizado.
-                return await comicRepository.updateComic(id_comic, comic_order, image_path);
+                return await comicRepository.updateComic(id_comic, comic_order, file);
             });
 
             await Promise.all(comicsPromises);

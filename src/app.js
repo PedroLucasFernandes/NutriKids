@@ -13,9 +13,10 @@ const app = express();
 //criando uma instância do express, ou seja, um servidor.
 
 const cors = require('cors');
+
 app.use(cors({
     origin: function (origin, callback) {
-        if (!origin || origin === `http://localhost:${port}`) {
+        if (!origin || origin === `http://localhost:${process.env.PORT}`) {
             callback(null, true);
         } else {
             callback(new Error('Acesso bloqueado por política CORS'));
@@ -39,5 +40,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`servidor está rodando em http://192.168.15.2:${process.env.PORT}`);
+    console.log(`servidor está rodando em http://localhost:${process.env.PORT}`);
 });
