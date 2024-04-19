@@ -5,11 +5,10 @@ const historyController = {
     async addNewHistory(req, res) {
         //INTEGRAÇÃO API COM FRONT-END: o front-end deve enviar um objeto com as propriedades title, story, created_by, updated_by, file e comics (que será um array de objetos, onde cada objeto terá as propriedades comic_order e file) no corpo da requisição HTTP POST ao realizar o fetch para a rota /api/history. lembrando que será necessário, também, enviar o token de sessão pelo cabeçalho da requisição. o objeto ficará assim: { "title": "história teste", "story": "o texto da história...", "created_by": 1, "updated_by": 1, "file": "https://drive.google.com/file/d/1goo6MbNf78LXVzCdy9XHLq3TMbL3lI18/view?usp=drive_link", "comics": [ { "comic_order": 1, "file": "https://drive.google.com/file/d/1veUcJ5zTZ_n4duMVt_gnWrMJIcHKkVLv/view?usp=drive_link" }, { "comic_order": 2, "file": "https://drive.google.com/file/d/1yET21LrAriiHm_ep6ZJNezydrXF52hGh/view?usp=drive_link" } ] };
 
-        const { title, created_by, updated_by} = req.body;
+        const { title, story, created_by, updated_by} = req.body;
         const file = req.files;
         const banner = file[0].filename;
         const comics = file.slice(1);
-        const story = comics;
 
         try {
             const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by, updated_by, banner, comics);
