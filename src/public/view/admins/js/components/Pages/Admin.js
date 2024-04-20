@@ -1,4 +1,5 @@
 import Header from "../header/header.js";
+import ModalAdmin from "../modal/ModalAdmin.js";
 
 export default function Admins() {
     const root = document.getElementById('root');
@@ -25,9 +26,7 @@ export default function Admins() {
     main.appendChild(h4);
 
     buttonAddHistory.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/AddAdmin"})
-
-        window.dispatchEvent(event)
+        root.appendChild(ModalAdmin());
     })
 
     h4.addEventListener("click", function(){

@@ -1,4 +1,5 @@
 import Header from "../header/header.js";
+import ModalRecipes from "../modal/ModalRecipes.js";
 
 export default function RecipesAdmin() {
     const root = document.getElementById('root');
@@ -25,9 +26,7 @@ export default function RecipesAdmin() {
     main.appendChild(h4);
 
     buttonAddHistory.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/AddRecipe"})
-
-        window.dispatchEvent(event)
+        root.appendChild(ModalRecipes());
     })
 
     h4.addEventListener("click", function(){

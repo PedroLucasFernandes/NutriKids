@@ -3,7 +3,7 @@ import ModalHistory from "../modal/ModalHistory.js";
 
 export default function AddHistory() {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/test.css"
+    test.href = "../../../../../css/Admin/Add.css"
     const root = document.getElementById('root');
     root.innerHTML = "";
 
@@ -55,8 +55,6 @@ export default function AddHistory() {
     main.appendChild(h4Back)
 
     buttonNewComics.addEventListener("click", function(){
-        divContent.style.backgroundColor = "#00000079";
-
         root.appendChild(ModalHistory());
     })
 

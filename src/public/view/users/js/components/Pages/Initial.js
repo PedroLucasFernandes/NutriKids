@@ -9,6 +9,7 @@ export default function Initial() {
     const div = document.createElement('div');
     const input = document.createElement('input');
     const button = document.createElement('button');
+    const form = document.createElement('form');
     const footer = document.createElement('footer');
 
     header.innerHTML = "NutriKids"
@@ -18,28 +19,41 @@ export default function Initial() {
     button.innerHTML = "Entrar";
     footer.innerHTML = "Administrativo"
 
-    div.appendChild(input);
-    div.appendChild(button);
+    form.appendChild(input);
+    form.appendChild(button);
+
+    div.appendChild(form);
     main.appendChild(img);
     main.appendChild(div);
     root.appendChild(header);
     root.appendChild(main);
     root.appendChild(footer);
 
-    button.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Main"})
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        const event = new CustomEvent("pageChange", { detail: "/Main" })
 
         container.innerHTML = "";
 
-        
+
         window.dispatchEvent(event)
     })
 
     footer.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Login"});
+        const event = new CustomEvent("pageChange", { detail: "/Login" });
 
         window.dispatchEvent(event);
     })
 
     return root
+}
+
+function Logar() {
+    const event = new CustomEvent("pageChange", { detail: "/Main" })
+
+    container.innerHTML = "";
+
+
+    window.dispatchEvent(event)
 }

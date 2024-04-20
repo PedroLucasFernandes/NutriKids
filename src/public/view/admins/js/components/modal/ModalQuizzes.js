@@ -54,16 +54,6 @@ export default function ModalQuizzes() {
     })
 
     button.addEventListener('click', function() {
-        const img = document.getElementById('img');
-        const boxImage = document.createElement('img');
-        const divAddImage = document.createElement('div');
-        const div = document.getElementById('div-image');
-
-        boxImage.src = img.src;
-        divAddImage.appendChild(boxImage);
-        div.appendChild(divAddImage);
-
-        
         modal.innerHTML = "";
         modal.style.display = "none"
     })

@@ -13,6 +13,7 @@ export default function Login() {
     const div = document.createElement('div');
     const inputUser = document.createElement('input');
     const inputPassword = document.createElement('input');
+    const form = document.createElement('form');
     const button = document.createElement('button');
 
     divContent.id = "login"
@@ -22,12 +23,17 @@ export default function Login() {
     inputPassword.placeholder = "Senha";
     inputPassword.type = "password"
     button.innerHTML = "Entrar";
+
+    form.appendChild(inputUser);
+    form.appendChild(inputPassword);
+    form.appendChild(button);
     
 
-    button.addEventListener("click", () => {
+    form.addEventListener("submit", (e) => {
         // const event = new CustomEvent("pageChange", {detail: "/Admin"})
 
         // window.dispatchEvent(event)
+        e.preventDefault()
         const username = inputUser.value;
         const password = inputPassword.value;
 
@@ -35,9 +41,9 @@ export default function Login() {
     })
 
     div.appendChild(h3);
-    div.appendChild(inputUser);
-    div.appendChild(inputPassword);
-    div.appendChild(button);
+    div.appendChild(form);
+    // div.appendChild(inputPassword);
+    // div.appendChild(button);
 
     main.appendChild(image);
     main.appendChild(div);
