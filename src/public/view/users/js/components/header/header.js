@@ -26,10 +26,10 @@ export default function header(menu) {
         ul.appendChild(li);
     }
 
-    nav.appendChild(menuImg)
-    nav.appendChild(img);
-    nav.appendChild(h2);
     nav.appendChild(ul);
+    header.appendChild(menuImg);
+    header.appendChild(img);
+    header.appendChild(h2);
     header.appendChild(nav);
 
     menuImg.addEventListener("click", () => {

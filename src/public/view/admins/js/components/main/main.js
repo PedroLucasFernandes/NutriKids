@@ -11,19 +11,15 @@ export default function Main() {
             img: "./images/iconHistory.png"
         },
         {
-            name: "Jogos",
-            img: "./images/iconGame.png"
-        },
-        {
             name: "Quizzes",
             img: "./images/iconQuizzes.png"
         },
         {
-            name: "Receitas",
+            name: "Reicpes",
             img: "./images/iconRecipe.png"
         },
         {
-            name: "Admins",
+            name: "Register",
             img: "./images/iconAdmin.png"
         }
     ];

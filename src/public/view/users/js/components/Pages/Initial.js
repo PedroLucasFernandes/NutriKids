@@ -1,4 +1,7 @@
 export default function Initial() {
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/User/Initial.css"
+    const root = document.getElementById('root');
     const header = document.createElement('header');
     const main = document.createElement('main')
     const container = document.createElement('div');
@@ -19,9 +22,9 @@ export default function Initial() {
     div.appendChild(button);
     main.appendChild(img);
     main.appendChild(div);
-    container.appendChild(header);
-    container.appendChild(main);
-    container.appendChild(footer);
+    root.appendChild(header);
+    root.appendChild(main);
+    root.appendChild(footer);
 
     button.addEventListener("click", () => {
         const event = new CustomEvent("pageChange", {detail: "/Main"})
@@ -38,5 +41,5 @@ export default function Initial() {
         window.dispatchEvent(event);
     })
 
-    return container
+    return root
 }

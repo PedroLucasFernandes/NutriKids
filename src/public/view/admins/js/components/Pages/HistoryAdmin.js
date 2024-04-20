@@ -3,6 +3,8 @@ import Header from "../header/header.js";
 export default function HistoryAdmin() {
     const root = document.getElementById('root');
     root.innerHTML = ""
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/Admin/Secao.css"
 
     const main = document.createElement('main');
     const h3 = document.createElement('h3');

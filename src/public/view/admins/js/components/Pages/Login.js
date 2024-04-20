@@ -2,6 +2,10 @@ import Header from "../header/header.js"
 
 export default function Login() {
     const root = document.getElementById('root');
+    root.innerHTML = ""
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/Admin/Login.css"
+
     const divContent = document.createElement('div');
     const main = document.createElement('main');
     const image = document.createElement('img');
@@ -16,8 +20,9 @@ export default function Login() {
     h3.innerHTML = "Setor Administrativo";
     inputUser.placeholder = "Usuário";
     inputPassword.placeholder = "Senha";
+    inputPassword.type = "password"
     button.innerHTML = "Entrar";
-    root.innerHTML = ""
+    
 
     button.addEventListener("click", () => {
         // const event = new CustomEvent("pageChange", {detail: "/Admin"})

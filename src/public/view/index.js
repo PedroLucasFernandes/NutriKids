@@ -6,6 +6,8 @@ window.history.replaceState(undefined, undefined, "/")
 
 const root = document.getElementById('root');
 
-root.appendChild(Initial());
+// root.appendChild(Initial());
+
+Initial()
 
 startRouter()

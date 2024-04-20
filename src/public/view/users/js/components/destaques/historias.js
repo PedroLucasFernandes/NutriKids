@@ -12,6 +12,7 @@ export default function historias() {
 
     h3.innerHTML = "Historias em destaques:";
 
+    divDestaque.classList.add("conjunto");
     div.classList.add("destaques");
 
     esquerdaH3.innerHTML = "<";

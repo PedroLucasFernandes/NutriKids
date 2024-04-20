@@ -2,6 +2,8 @@ import Header from "../header/header.js";
 import ModalHistory from "../modal/ModalHistory.js";
 
 export default function AddHistory() {
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/test.css"
     const root = document.getElementById('root');
     root.innerHTML = "";
 
@@ -14,8 +16,7 @@ export default function AddHistory() {
     const h4History = document.createElement('h4');
     const inputFile = document.createElement('input');
     const inputTitle = document.createElement('input');
-    const inputComics = document.createElement('input');
-    const inputHistory = document.createElement('input')
+    const inputHistory = document.createElement('textarea')
     const buttonNewComics = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
@@ -47,7 +48,6 @@ export default function AddHistory() {
     main.appendChild(h4Title);
     main.appendChild(inputTitle);
     main.appendChild(h4Comics);
-    main.appendChild(inputComics);
     main.appendChild(h4History);
     main.appendChild(inputHistory);
     main.appendChild(divHistory);
@@ -59,37 +59,6 @@ export default function AddHistory() {
 
         root.appendChild(ModalHistory());
     })
-
-    // buttonNewComics.addEventListener("change", function (e) {
-    //     const inputTarget = e.target;
-    //     const files = inputTarget.files;
-
-    //     files.forEach(element => {
-    //         const img = document.createElement('img');
-    //         img.src = readerTarget.result;
-    //         img.classList.add('comic-img')
-    //     });
-
-    //     if (file) {
-    //         const reader = new FileReader();
-
-    //         reader.addEventListener('load', function (e) {
-    //             const readerTarget = e.target;
-
-    //             const img = document.createElement('img');
-    //             img.src = readerTarget.result;
-    //             img.id = "img"
-
-
-    //             const box = document.getElementById('box');
-    //             box.appendChild(img)
-    //         })
-    //         reader.readAsDataURL(file)
-    //         console.log(file)
-    //     }
-
-    //     console.log(file)
-    // })
 
     buttonAdd.addEventListener("click", function () {
         const title = inputTitle.value;

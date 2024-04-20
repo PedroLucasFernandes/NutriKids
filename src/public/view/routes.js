@@ -9,6 +9,9 @@ import Login from "./admins/js/components/Pages/Login.js";
 import HistoryAdmin from "./admins/js/components/Pages/HistoryAdmin.js";
 import AddHistory from "./admins/js/components/Pages/AddHistoryAdmin.js";
 import QuizzesAdmin from "./admins/js/components/Pages/QuizzesAdmin.js";
+import RecipesAdmin from "./admins/js/components/Pages/RecipesAdmin.js";
+import Admins from "./admins/js/components/Pages/Admin.js";
+import AddQuizzes from "./admins/js/components/Pages/AddQuizAdmin.js";
 
 const router = {
     "/Inicio": Home,
@@ -23,7 +26,10 @@ const router = {
     "/Sair": Login,
     "/HistoryAdmin": HistoryAdmin,
     "/AddHistory": AddHistory,
-    "/QuizzesAdmin": QuizzesAdmin
+    "/QuizzesAdmin": QuizzesAdmin,
+    "/ReicpesAdmin": RecipesAdmin,
+    "/RegisterAdmin": Admins,
+    "/AddQuizzes": AddQuizzes
 };
 
 function render(page) {
