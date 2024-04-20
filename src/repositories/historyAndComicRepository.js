@@ -1,9 +1,9 @@
 const { historyModel, comicModel } = require('../models/historyAndComicModel.js');
 
 const historyRepository = {
-    async addNewHistory(title, story, created_by, updated_by, file) {
+    async addNewHistory(title, story, created_by, updated_by, banner) {
         try {
-            const newHistory = await historyModel.createHistory(title, story, created_by, updated_by, file);
+            const newHistory = await historyModel.createHistory(title, story, created_by, updated_by, banner);
             return newHistory;
             //aqui tem que ter o return newHistory; para que o historyService.js possa retornar a nova história criada ao executar a API. se fosse direto 'await historyModel.createHistory(title, story, created_by, updated_by, image_path);' não seria possível retornar a nova história criada.
         } catch(error) {
@@ -55,9 +55,9 @@ const historyRepository = {
 };
 
 const comicRepository = {
-    async createComic(id_history, comic_order, image_path) {
+    async createComic(id_history, comic_order, filename) {
         try {
-            const newComic = await comicModel.createComic(id_history, comic_order, image_path);
+            const newComic = await comicModel.createComic(id_history, comic_order, filename);
             return newComic;
         } catch(error) {
             throw error;

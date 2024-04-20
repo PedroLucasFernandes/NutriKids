@@ -6,20 +6,32 @@ const historyController = {
         const { title, story, created_by, updated_by, file, comics } = req.body;
         //na hora de integrar a API com o front-end, o front-end deve enviar um objeto com as propriedades title, story, created_by e updated_by no corpo da requisição ao realizar o fetch para a rota /api/history. assim: { title: 'história1', story: 'o texto da história...', created_by: 'admin1', updated_by: 'admin1' }.
 
+<<<<<<< HEAD
+=======
+        const { title, story, created_by, updated_by} = req.body;
+        const file = req.files;
+        const banner = file[0].filename;
+        const comics = file.slice(1);
+
+>>>>>>> main
         try {
-            const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by, updated_by, file, comics);
+            const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by, updated_by, banner, comics);
             res.status(201).json(newHistory);
             //status 201 significa que um novo recurso foi criado. o novo recurso é retornado no corpo da resposta.
         } catch(error) {
             console.error(`${error.message}`);
-            if (fs.existsSync(`src/public/uploads/${file}`)) {
-                // Tenta excluir o arquivo
+            if (fs.existsSync(`src/public/uploads/${banner}`)) {
                 try {
-                  fs.unlinkSync(`src/public/uploads/${file}`);
+                  fs.unlinkSync(`src/public/uploads/${banner}`);
+                  comics.forEach(comic => {
+                    if(fs.existsSync(`src/public/uploads/${comic.filename}`)){
+                        fs.unlinkSync(`src/public/uploads/${comic.filename}`);
+                    }
+                  });
                 } catch (err) {
                   console.error('Erro ao excluir o arquivo:', err);
                 }
-              }
+            }
             res.status(500).json({ error: 'erro ao tentar adicionar nova história' });
         }
     },
