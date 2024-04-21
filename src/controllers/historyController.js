@@ -3,17 +3,14 @@ const fs = require("fs");
 
 const historyController = {
     async addNewHistory(req, res) {
-        const { title, story, created_by, updated_by, file, comics } = req.body;
+        // const { title, story, created_by, updated_by, file, comics } = req.body;
         //na hora de integrar a API com o front-end, o front-end deve enviar um objeto com as propriedades title, story, created_by e updated_by no corpo da requisição ao realizar o fetch para a rota /api/history. assim: { title: 'história1', story: 'o texto da história...', created_by: 'admin1', updated_by: 'admin1' }.
 
-<<<<<<< HEAD
-=======
         const { title, story, created_by, updated_by} = req.body;
         const file = req.files;
         const banner = file[0].filename;
         const comics = file.slice(1);
 
->>>>>>> main
         try {
             const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by, updated_by, banner, comics);
             res.status(201).json(newHistory);

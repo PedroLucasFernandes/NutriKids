@@ -1,4 +1,4 @@
-export default function ModalHistory() {
+export default function ModalHistory(arrayImg) {
     const modal = document.createElement('div');
     const modalContent= document.createElement('div');
     const h3 = document.createElement('h3'); 
@@ -48,6 +48,8 @@ export default function ModalHistory() {
             })
             reader.readAsDataURL(file)
             console.log(file)
+            arrayImg.push(file)
+            console.log(arrayImg)
         }
 
         console.log(file)
@@ -71,6 +73,7 @@ export default function ModalHistory() {
         
         modal.innerHTML = "";
         modal.style.display = "none"
+        console.log(arrayImg)
     })
 
     return modal

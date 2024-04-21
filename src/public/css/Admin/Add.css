@@ -104,6 +104,21 @@ h4 {
     width: 900px;
     height: 300px;
     background-color: var(--cor4);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: first baseline;
+}
+
+#div-image div {
+    width: 100px;
+    height: 70px;
+}
+
+#div-image img {
+    width: 100px;
+    height: 70px;
 }
 
 .divItens button {
@@ -136,4 +151,15 @@ h4 {
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+#modal-content div {
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+#modal-content img {
+    width: 800px;
+    height: 500px;
 }
