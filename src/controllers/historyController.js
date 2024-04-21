@@ -1,3 +1,4 @@
+const { Console } = require('console');
 const historyAndComicService = require('../services/historyAndComicService.js');
 const fs = require("fs");
 
@@ -8,6 +9,7 @@ const historyController = {
 
         const { title, story, created_by, updated_by} = req.body;
         const file = req.files;
+        console.log(file)
         const banner = file[0].filename;
         const comics = file.slice(1);
 

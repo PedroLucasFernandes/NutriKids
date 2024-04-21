@@ -75,7 +75,7 @@ export default function AddHistory() {
         root.appendChild(ModalHistory(arrayImg));
     })
 
-    buttonAdd.addEventListener("click", function (e) {
+    buttonAdd.addEventListener("click", async function (e) {
         e.preventDefault()
         const title = inputTitle.value;
         const history = inputHistory.value;
@@ -83,13 +83,18 @@ export default function AddHistory() {
         const formData = new FormData();
         formData.append("title", inputTitle.value)
         formData.append("story", inputHistory.value)
-        formData.append("created_by", "Admin1")
-        formData.append("updated_by", "Admin1")
-        formData.append("file", arrayImg)
+        formData.append("created_by", 1)
+        formData.append("updated_by", 1)
+        // formData.append("file", arrayImg)
+        arrayImg.forEach(img => formData.append("file", img))
         
         console.log(formData.entries());
 
-        addHistory(formData)
+        try {
+            await addHistory(formData);
+        } catch (error) {
+            console.error(`Erro na requisição: ${error}`);
+        }
     })
 
     h4Back.addEventListener("click", function () {
@@ -107,35 +112,16 @@ export default function AddHistory() {
 
 async function addHistory(formData) {
     console.log(formData)
-    // try {
-    //     const response = await fetch('http://localhost:3000/api/history', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ title: title, story: story, created_by: "admin1", updated_by: "admin1" })
-    //     });
-
-    //     if (!response.status) {
-    //         throw new Error('Erro na requisição');
-    //     }
-
-    //     const data = await response.json();
-    //     console.log(data)
-    // }
-    // catch (error) {
-    //     console.error(`Erro na requisição: ${error}`)
-    // }
 
     try {
-        const contentType = 'multipart/form-data; boundary=' + formData.boundary;
+        // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
         const response = await fetch('http://localhost:3000/api/history', {
             method: 'POST',
             body: formData,
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
+            // headers: {
+            //     "Content-Type": contentType
+            // }
         })
 
         if (!response.status) {
