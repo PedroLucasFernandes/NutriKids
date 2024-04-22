@@ -9,7 +9,6 @@ const router = express.Router();
 const path = require("path");
 const multer = require("multer");
 const { v4: uuidv4 } = require('uuid');
-const { route } = require('./historyRoutes');
 const upload = multer({
     storage: multer.diskStorage({
         destination: "src/public/uploads",
