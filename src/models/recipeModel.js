@@ -49,10 +49,7 @@ const recipeModel = {
 
         try {
             const { rows } = await pool.query(query, values);
-            if(rows.length === 0) {
-                throw new Error(`nenhuma receita encontrada com o título ${title} no banco de dados`);
-            }
-            return rows[0];
+            return rows.length === 0 ? null : rows[0];
         } catch (error) {
             console.error(`${error.message}`);
             throw error;
