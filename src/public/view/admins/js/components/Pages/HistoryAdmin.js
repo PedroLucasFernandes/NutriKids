@@ -18,6 +18,9 @@ export default function HistoryAdmin() {
     h4.innerHTML = "Voltar";
     divContent.id = "admin";
     divHistory.classList.add("divItens")
+    divHistory.id = "funciona"
+
+    getHistory()
 
     main.appendChild(h3);
     main.appendChild(divHistory);
@@ -25,13 +28,13 @@ export default function HistoryAdmin() {
     main.appendChild(h4);
 
     buttonAddHistory.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/AddHistory"})
+        const event = new CustomEvent("pageChange", { detail: "/AddHistory" })
 
         window.dispatchEvent(event)
     })
 
-    h4.addEventListener("click", function(){
-        const event = new CustomEvent("pageChange", {detail: "/Admin"})
+    h4.addEventListener("click", function () {
+        const event = new CustomEvent("pageChange", { detail: "/Admin" })
 
         window.dispatchEvent(event)
     })
@@ -41,4 +44,55 @@ export default function HistoryAdmin() {
     root.appendChild(divContent)
 
     return root
+}
+
+async function getHistory() {
+    try {
+        const response = await fetch("http://localhost:3000/api/history");
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+
+        const data = await response.json()
+        console.log(data)
+
+        return render(data)
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
+    }
+}
+
+function render(data) {
+    const sla = document.getElementById('funciona')
+
+    for (const item of data) {
+        const div = document.createElement("div")
+        div.classList.add("box")
+
+        const title = document.createElement("h3");
+        const img = document.createElement("img");
+        const divbtn = document.createElement("div");
+        const btnEdit = document.createElement("button");
+        const btnDelete = document.createElement("button");
+
+        btnEdit.innerHTML = "✏️"
+        btnDelete.innerHTML = "🗑️"
+        divbtn.id = "btn"
+
+        console.log(data)
+        console.log(item.title)
+        title.innerHTML = item.title;
+        img.src = `./uploads/${item.image_path}`;
+
+        divbtn.appendChild(btnEdit);
+        divbtn.appendChild(btnDelete);
+
+        div.appendChild(title);
+        div.appendChild(img);
+        div.appendChild(divbtn);
+
+        sla.appendChild(div)
+    }
 }
