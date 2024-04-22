@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 
 const adminRoutes = require('./routes/adminRoutes.js');
 const historyRoutes = require('./routes/historyRoutes.js');
+const recipeRoutes = require('./routes/recipeRoutes.js');
+const quizRoutes = require('./routes/quizRoutes.js');
 
 const app = express();
 //criando uma instância do express, ou seja, um servidor.
@@ -30,8 +32,9 @@ app.use(cookieParser());
 //configurando o express para fazer o parse de cookies. o coloquei aqui para que o cookie seja parseado antes de ser usado nas rotas de admin.
 
 app.use('/api', adminRoutes);
-//configurando o express para usar as rotas de admin.
 app.use('/api', historyRoutes);
+app.use('/api', recipeRoutes);
+app.use('/api', quizRoutes);
 
 app.use(express.static('src/public'));
 
