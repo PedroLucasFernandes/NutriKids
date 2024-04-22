@@ -81,5 +81,5 @@ module.exports = adminController;
 
 //rotas que requerem cookie de sessão (adquirido por meio da autenticação (login)):
 //testar confirmLogin:
-//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzM4NjU5NCwiZXhwIjoxNzEzMzkwMTk0fQ.SobIcu7AU3Xeibqae5NdHIqCo1qma5wBeh0f_9gUejk" http://localhost:3000/api/admin
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzgxODY1NCwiZXhwIjoxNzEzODIyMjU0fQ.QuCeznFy4xA3Pn_ClfoeKGPSVEIf3NwD-7s4h0lE3E4" http://localhost:3000/api/admin
 //curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsImlhdCI6MTcxMzM4ODcwOCwiZXhwIjoxNzEzMzkyMzA4fQ.oQBJ3MFLU9Xn2nl1sef08u7ATUT4cUIxUU4YwQ2OCKY" http://localhost:3000/api/admin

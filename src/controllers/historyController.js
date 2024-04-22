@@ -80,8 +80,6 @@ const historyController = {
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
         }
 
         try {
@@ -103,9 +101,7 @@ const historyController = {
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
-        }
+        } 
 
         //validação para title (varchar(255) e not null):
         if (!title) {
@@ -160,8 +156,6 @@ const historyController = {
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
         }
 
         try {
@@ -193,7 +187,7 @@ module.exports = historyController;
 //curl -X GET http://localhost:3000/api/history
 
 //testar FindHistoryById:
-//curl -X GET http://localhost:3000/api/history/22
+//curl -X GET http://localhost:3000/api/history/80
 
 
 

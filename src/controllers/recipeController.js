@@ -6,9 +6,6 @@ const recipeController = {
         const { title, yield, ingredients, instructions, created_by, updated_by } = req.body;
         const file = req.files;
 
-        const created_by_number = parseInt(created_by);
-        const updated_by_number = parseInt(updated_by);
-
         if (!title) {
             return res.status(400).json({ error: 'título da receita é obrigatório' });
         } else if (title.length > 100) {
@@ -31,15 +28,11 @@ const recipeController = {
 
         if (!created_by) {
             return res.status(400).json({ error: 'id do criador da receita é obrigatório' });
-        } else if (typeof created_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do criador da receita deve ser um número' });
-        }
+        } 
 
         if (!updated_by) {
             return res.status(400).json({ error: 'id do atualizador da receita é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador da receita deve ser um número' });
-        }
+        } 
 
         //file não pode ser null (?):
         if (!file) {
@@ -80,8 +73,6 @@ const recipeController = {
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
         }
 
         try {
@@ -102,9 +93,7 @@ const recipeController = {
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
-        }
+        } 
 
         if (!title) {
             return res.status(400).json({ error: 'título da receita é obrigatório' });
@@ -165,8 +154,6 @@ const recipeController = {
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
         }
 
         try {
