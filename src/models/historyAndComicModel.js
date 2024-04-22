@@ -61,9 +61,9 @@ const historyModel = {
         }
     },
 
-    async updateHistory(id, title, story, updated_by, file) {
-        const query = `UPDATE history SET title = $1, story = $2, updated_by = $3, image_path = $4 WHERE id = $5 RETURNING *`;
-        const values = [title, story, updated_by, file, id];
+    async updateHistory(id, title, story, updated_by, banner, comics) {
+        const query = `UPDATE history SET title = $1, story = $2, updated_at = CURRENT_TIMESTAMP, updated_by = $3, image_path = $4 WHERE id = $5 RETURNING *`;
+        const values = [title, story, updated_by, banner,  id];
 
         try {
             const { rows } = await pool.query(query, values);
@@ -82,7 +82,7 @@ const historyModel = {
         try {
             const { rows } = await pool.query(query, values);
             if(rows.length === 0) {
-                throw new Error(`camada model: nenhuma história encontrada com o id ${id} no banco de dados`);
+                throw new Error(`nenhuma história encontrada com o id ${id} no banco de dados`);
             }
             return rows[0];
             //return rows[0] retorna o objeto deletado.
@@ -141,6 +141,18 @@ const comicModel = {
         try {
             const { rows } = await pool.query(query, values);
             return rows[0];
+        } catch (error) {
+            console.error(`${error.message}`);
+            throw error;
+        }
+    },
+
+    async deleteComicsByHistoryId(id_history) {
+        const query = 'DELETE FROM comic WHERE id_history = $1';
+        const values = [id_history];
+    
+        try {
+            await pool.query(query, values);
         } catch (error) {
             console.error(`${error.message}`);
             throw error;

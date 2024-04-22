@@ -25,7 +25,7 @@ router.use(authMiddleware.verifyToken);
 //aqui, o middleware de autenticação é aplicado a todas as rotas abaixo dele.
 
 router.post('/history', upload.array("file"), historyController.addNewHistory);
-router.put('/history/:id', historyController.updateHistory);
+router.put('/history/:id', upload.array("file"), historyController.updateHistory);
 router.delete('/history/:id', historyController.deleteHistory);
 
 module.exports = router;

@@ -35,9 +35,9 @@ const historyRepository = {
         }
     },
 
-    async updateHistory(id, title, story, updated_by, image_path) {
+    async updateHistory(id, title, story, updated_by, banner, comics) {
         try {
-            const updatedHistory = await historyModel.updateHistory(id, title, story, updated_by, image_path);
+            const updatedHistory = await historyModel.updateHistory(id, title, story, updated_by, banner, comics);
             return updatedHistory;
         } catch(error) {
             throw error;
@@ -85,6 +85,14 @@ const comicRepository = {
     async deleteComic(id) {
         try {
             return await comicModel.deleteComic(id);
+        } catch(error) {
+            throw error;
+        }
+    },
+
+    async deleteComicsByHistoryId(id_history) {
+        try {
+            return await comicModel.deleteComicsByHistoryId(id_history);
         } catch(error) {
             throw error;
         }
