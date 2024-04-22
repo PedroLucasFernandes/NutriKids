@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 
 const adminRoutes = require('./routes/adminRoutes.js');
 const historyRoutes = require('./routes/historyRoutes.js');
+const recipeRoutes = require('./routes/recipeRoutes.js');
 const quizRoutes = require('./routes/quizRoutes.js');
 
 const app = express();
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 app.use('/api', adminRoutes);
 app.use('/api', historyRoutes);
+app.use('/api', recipeRoutes);
 app.use('/api', quizRoutes);
 
 app.use(express.static('src/public'));
