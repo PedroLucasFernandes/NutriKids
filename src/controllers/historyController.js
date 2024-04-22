@@ -62,10 +62,25 @@ const historyController = {
         //INTEGRAÇÃO DA API COM FRONT-END: o objeto enviado no corpo da requisição HTTP PUT ao realizar o fetch para a rota /api/history/:id deve conter as propriedades title, story, updated_by, file e comics (que será um array de objetos, onde cada objeto terá as propriedades id, comic_order e file). lembrando que será necessário, também, enviar o token de sessão pelo cabeçalho da requisição. o objeto ficará assim: { "title": "história teste 2", "story": "o texto da história mudou...", "updated_by": 1, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg", "comics": [ { "id": 7, "comic_order": 1, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg" }, { "id": 8, "comic_order": 2, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg" } ] };
 
         const { id } = req.params;
-        const { title, story, updated_by, file, comics } = req.body;
+        const { title, story, updated_by } = req.body;
+        const file = req.files;
+        const banner = file[0].filename;
+        const comics = file.slice(1);
 
-        try {
-            const updatedHistory = await historyAndComicService.updateHistoryWithComics(id, title, story, updated_by, file, comics);
+        try { 
+            const oldHistory = await historyAndComicService.findHistoryWithComicsById(id);
+            const updatedHistory = await historyAndComicService.updateHistoryWithComics(id, title, story, updated_by, banner, comics);
+            
+            if (fs.existsSync(`src/public/uploads/${oldHistory.image_path}`)) {
+                fs.unlinkSync(`src/public/uploads/${oldHistory.image_path}`);
+            }
+            
+            oldHistory.comics.forEach(comic => {
+                if (fs.existsSync(`src/public/uploads/${comic.image_path}`)) {
+                    fs.unlinkSync(`src/public/uploads/${comic.image_path}`);
+                }
+            });
+            
             res.status(200).json(updatedHistory);
         } catch(error) {
             console.error(`${error.message}`);
@@ -79,7 +94,18 @@ const historyController = {
         const { id } = req.params;
 
         try {
+            const history = await historyAndComicService.findHistoryWithComicsById(id);
             const deletedHistory = await historyAndComicService.deleteHistoryWithComics(id);
+            
+            if (fs.existsSync(`src/public/uploads/${history.image_path}`)) {
+                fs.unlinkSync(`src/public/uploads/${history.image_path}`);
+            }
+            history.comics.forEach(comic => {
+                if (fs.existsSync(`src/public/uploads/${comic.image_path}`)) {
+                    fs.unlinkSync(`src/public/uploads/${comic.image_path}`);
+                }
+            });
+            
             res.status(200).json(deletedHistory);
         } catch (error) {
             console.error(`${error.message}`);
