@@ -67,8 +67,20 @@ const historyController = {
         const banner = file[0].filename;
         const comics = file.slice(1);
 
-        try {
+        try { 
+            const oldHistory = await historyAndComicService.findHistoryWithComicsById(id);
             const updatedHistory = await historyAndComicService.updateHistoryWithComics(id, title, story, updated_by, banner, comics);
+            
+            if (fs.existsSync(`src/public/uploads/${oldHistory.image_path}`)) {
+                fs.unlinkSync(`src/public/uploads/${oldHistory.image_path}`);
+            }
+            
+            oldHistory.comics.forEach(comic => {
+                if (fs.existsSync(`src/public/uploads/${comic.image_path}`)) {
+                    fs.unlinkSync(`src/public/uploads/${comic.image_path}`);
+                }
+            });
+            
             res.status(200).json(updatedHistory);
         } catch(error) {
             console.error(`${error.message}`);
@@ -82,7 +94,18 @@ const historyController = {
         const { id } = req.params;
 
         try {
+            const history = await historyAndComicService.findHistoryWithComicsById(id);
             const deletedHistory = await historyAndComicService.deleteHistoryWithComics(id);
+            
+            if (fs.existsSync(`src/public/uploads/${history.image_path}`)) {
+                fs.unlinkSync(`src/public/uploads/${history.image_path}`);
+            }
+            history.comics.forEach(comic => {
+                if (fs.existsSync(`src/public/uploads/${comic.image_path}`)) {
+                    fs.unlinkSync(`src/public/uploads/${comic.image_path}`);
+                }
+            });
+            
             res.status(200).json(deletedHistory);
         } catch (error) {
             console.error(`${error.message}`);
