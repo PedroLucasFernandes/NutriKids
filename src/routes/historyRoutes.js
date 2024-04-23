@@ -19,14 +19,14 @@ const upload = multer({
     })
 });
 
-router.get('/history', historyController.findHistory);
-router.get('/history/:id', historyController.findHistoryById);
+router.get('/', historyController.findHistory);
+router.get('/:id', historyController.findHistoryById);
 
 router.use(authMiddleware.verifyToken);
 //aqui, o middleware de autenticação é aplicado a todas as rotas abaixo dele.
 
-router.post('/history', upload.array("file"), historyController.addNewHistory);
-router.put('/history/:id', upload.array("file"), historyController.updateHistory);
-router.delete('/history/:id', historyController.deleteHistory);
+router.post('/', upload.array("file"), historyController.addNewHistory);
+router.put('/:id', upload.array("file"), historyController.updateHistory);
+router.delete('/:id', historyController.deleteHistory);
 
 module.exports = router;

@@ -19,13 +19,13 @@ const upload = multer({
     })
 });
 
-router.get('/quiz', quizController.findQuiz);
-router.get('/quiz/:id', quizController.findQuizById);
+router.get('/', quizController.findQuiz);
+router.get('/:id', quizController.findQuizById);
 
 router.use(authMiddleware.verifyToken);
 
-router.post('/quiz', upload.single("file"), quizController.addNewQuiz);
-router.put('/quiz/:id', upload.single("file"), quizController.updateQuiz);
-router.delete('/quiz/:id', quizController.deleteQuiz);
+router.post('/', upload.single("file"), quizController.addNewQuiz);
+router.put('/:id', upload.single("file"), quizController.updateQuiz);
+router.delete('/:id', quizController.deleteQuiz);
 
 module.exports = router;
