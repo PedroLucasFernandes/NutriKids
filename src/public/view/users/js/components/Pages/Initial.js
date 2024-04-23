@@ -1,4 +1,4 @@
-export default function Initial() {
+export default function InitialUser() {
     const test = document.getElementById('css');
     test.href = "../../../../../css/User/Initial.css"
     const root = document.getElementById('root');

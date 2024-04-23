@@ -12,6 +12,7 @@ export default function Home() {
     root.innerHTML = "";
 
     const main = document.createElement('main');
+    main.id = "main"
 
     const menu = ["Jogos", "Quizzes", "Historias", "Receitas"];
 

@@ -120,3 +120,4 @@ async function deleteHistory(id) {
         console.error(`Erro na requisição: ${error}`);
     }
 }
+

@@ -94,6 +94,32 @@ main img {
 
 }
 
+#test {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#test h3 {
+    font-size: 15px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 150;
+    height: 200px;
+    background-color: var(--cor7);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.box img {
+    width: 100px;
+}
+
 .destaques {
     display: flex;
     flex-direction: row;

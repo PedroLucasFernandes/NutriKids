@@ -1,3 +1,4 @@
+import InitialUser from "./users/js/components/Pages/Initial.js";
 import Home from "./users/js/components/Pages/Home.js";
 import Games from "./users/js/components/Pages/Game.js";
 import Quizzes from "./users/js/components/Pages/Quizzes.js";
@@ -14,6 +15,7 @@ import Admins from "./admins/js/components/Pages/Admin.js";
 import AddQuizzes from "./admins/js/components/Pages/AddQuizAdmin.js";
 
 const router = {
+    "/": InitialUser,
     "/Inicio": Home,
     "/Main": Home,
     "/menuHamburguer": menuHamburguer,

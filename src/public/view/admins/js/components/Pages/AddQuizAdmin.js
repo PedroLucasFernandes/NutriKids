@@ -21,7 +21,7 @@ export default function AddQuizzes() {
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
 
-    h3.innerHTML = "Crie/Edite uma Quiz";
+    h3.innerHTML = "Crie/Edite um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Quizzes.innerHTML = "Quadrinhos atuais:";

@@ -1,3 +1,4 @@
+import footer from "../../../../users/js/components/footer/footer.js";
 import Header from "../header/header.js"
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
     const inputPassword = document.createElement('input');
     const form = document.createElement('form');
     const button = document.createElement('button');
+    const footer = document.createElement('footer');
 
     divContent.id = "login"
     image.src = "./images/logo.png";
@@ -23,6 +25,7 @@ export default function Login() {
     inputPassword.placeholder = "Senha";
     inputPassword.type = "password"
     button.innerHTML = "Entrar";
+    footer.innerHTML = "Usuário"
 
     form.appendChild(inputUser);
     form.appendChild(inputPassword);
@@ -40,16 +43,21 @@ export default function Login() {
         login(username,password)
     })
 
+    footer.addEventListener("click", function() {
+        root.innerHTML = ""
+        const event = new CustomEvent("pageChange", {detail: "/"})
+
+            window.dispatchEvent(event);
+    })
+
     div.appendChild(h3);
     div.appendChild(form);
-    // div.appendChild(inputPassword);
-    // div.appendChild(button);
 
     main.appendChild(image);
     main.appendChild(div);
-    divContent.appendChild(Header());
-    divContent.appendChild(main);
-    root.appendChild(divContent)
+    root.appendChild(Header());
+    root.appendChild(main);
+    root.appendChild(footer)
 
 
 
