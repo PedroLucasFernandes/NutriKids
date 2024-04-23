@@ -193,13 +193,13 @@ module.exports = historyController;
 //curl -X GET http://localhost:3000/api/history
 
 //testar FindHistoryById:
-//curl -X GET http://localhost:3000/api/history/88
+//curl -X GET http://localhost:3000/api/history/82
 
 //rotas que requerem cookie de sessão:
 //testar addNewHistory:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzgyMjA2MSwiZXhwIjoxNzEzODI1NjYxfQ.X8x5U6oP9NP7zjxaMXjUs2tg4iaFGfyy7Xc-XuVGX3o" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=história teste UUUUU" \
+// -F "title=história teste CCCCC" \
 // -F "story=o texto da história..." \
 // -F "created_by=1" \
 // -F "updated_by=1" \
@@ -208,15 +208,15 @@ module.exports = historyController;
 // http://localhost:3000/api/history
 
 //testar updateHistory:
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzgyMjA2MSwiZXhwIjoxNzEzODI1NjYxfQ.X8x5U6oP9NP7zjxaMXjUs2tg4iaFGfyy7Xc-XuVGX3o" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=história teste YYYYY" \
+// -F "title=história teste WWWWWC" \
 // -F "story=o texto da história..." \
 // -F "updated_by=1" \
 // -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
 // -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
-// http://localhost:3000/api/history/88
+// http://localhost:3000/api/history/90
 
 
 //testar deleteHistory:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzgyMjA2MSwiZXhwIjoxNzEzODI1NjYxfQ.X8x5U6oP9NP7zjxaMXjUs2tg4iaFGfyy7Xc-XuVGX3o" http://localhost:3000/api/history/88
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/history/90

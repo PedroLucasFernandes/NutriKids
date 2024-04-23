@@ -191,10 +191,13 @@ module.exports = recipeController;
 //getRecipe:
 // curl -X GET http://localhost:3000/api/recipe
 
+//getRecipeById:
+// curl -X GET http://localhost:3000/api/recipe/2
+
 //createRecipe:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzgyMDA1NywiZXhwIjoxNzEzODIzNjU3fQ.DTj8X7UnXkizOFTvMq461WFXyWRZYu-6xZyP0jwo2GQ" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=receita teste2" \
+// -F "title=receita teste" \
 // -F "yield=4 porções" \
 // -F "ingredients=ingredientes da receita..." \
 // -F "instructions=modo de preparo da receita..." \
@@ -202,3 +205,17 @@ module.exports = recipeController;
 // -F "updated_by=1" \
 // -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
 // http://localhost:3000/api/recipe
+
+//updateRecipe: 
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// -H "Content-Type: multipart/form-data" \
+// -F "title=receita teste3" \
+// -F "yield=4 porções" \
+// -F "ingredients=ingredientes da receita mudaram..." \
+// -F "instructions=modo de preparo da receita..." \
+// -F "updated_by=1" \
+// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// http://localhost:3000/api/recipe/2
+
+//deleteRecipe:
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/recipe/2
