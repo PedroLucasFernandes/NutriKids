@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 
 const authMiddleware = {
   async verifyToken(req, res, next) {
+    console.log("Token verification triggered for:", req.originalUrl, "where:" , req.method);
+
     const token = req.cookies.session_id;
 
     if (!token) {

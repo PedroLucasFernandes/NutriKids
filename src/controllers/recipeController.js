@@ -1,14 +1,12 @@
-const e = require('express');
-const { createRecipe, updateRecipe } = require('../models/recipeModel.js');
 const recipeService = require('../services/recipeService.js');
 const fs = require("fs");
-const { get } = require('http');
-const { updateHistory } = require('./historyController');
 
 const recipeController = {
     async createRecipe(req, res) {
         const { title, yield, ingredients, instructions, created_by, updated_by } = req.body;
         const file = req.files;
+        const created_by_number = parseInt(created_by);
+        const updated_by_number = parseInt(updated_by);
 
         if (!title) {
             return res.status(400).json({ error: 'título da receita é obrigatório' });
@@ -32,21 +30,25 @@ const recipeController = {
 
         if (!created_by) {
             return res.status(400).json({ error: 'id do criador da receita é obrigatório' });
-        } else if (typeof created_by !== 'number') {
+        } else if (typeof created_by_number !== 'number') {
             return res.status(400).json({ error: 'id do criador da receita deve ser um número' });
         }
 
         if (!updated_by) {
             return res.status(400).json({ error: 'id do atualizador da receita é obrigatório' });
-        } else if (typeof updated_by !== 'number') {
+        } else if (typeof updated_by_number !== 'number') {
             return res.status(400).json({ error: 'id do atualizador da receita deve ser um número' });
         }
 
-        //???:
+        //file não pode ser null (?):
+        if (!file) {
+            return res.status(400).json({ error: 'imagem da receita é obrigatória' });
+        }
+
         const banner = file[0].filename;
 
         try {
-            const newRecipe = await recipeService.createRecipe(title, banner, yield, ingredients, instructions, created_by, updated_by);
+            const newRecipe = await recipeService.createRecipe(title, banner, yield, ingredients, instructions, created_by_number, updated_by_number);
             res.status(201).json(newRecipe);
         } catch (error) {
             console.error(`${error.message}`);
@@ -74,15 +76,14 @@ const recipeController = {
 
     async getRecipeById(req, res) {
         const { id } = req.params;
+        const id_number = parseInt(id);
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
         }
 
         try {
-            const recipe = await recipeService.getRecipeById(id);
+            const recipe = await recipeService.getRecipeById(id_number);
             res.status(200).json(recipe);
         } catch (error) {
             console.error(`${error.message}`);
@@ -94,12 +95,12 @@ const recipeController = {
         const id = req.params.id;
         const { title, yield, ingredients, instructions, updated_by } = req.body;
         const file = req.files;
+        const id_number = parseInt(id);
+        const updated_by_number = parseInt(updated_by);
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
-        }
+        } 
 
         if (!title) {
             return res.status(400).json({ error: 'título da receita é obrigatório' });
@@ -123,7 +124,7 @@ const recipeController = {
 
         if (!updated_by) {
             return res.status(400).json({ error: 'id do atualizador da receita é obrigatório' });
-        } else if (typeof updated_by !== 'number') {
+        } else if (typeof updated_by_number !== 'number') {
             return res.status(400).json({ error: 'id do atualizador da receita deve ser um número' });
         }
 
@@ -135,8 +136,8 @@ const recipeController = {
         const banner = file[0].filename;
 
         try {
-            const oldRecipe = await recipeService.getRecipeById(id);
-            const updatedHistory = await recipeService.updateRecipe(id, title, banner, yield, ingredients, instructions, updated_by);
+            const oldRecipe = await recipeService.getRecipeById(id_number);
+            const updatedHistory = await recipeService.updateRecipe(id_number, title, banner, yield, ingredients, instructions, updated_by_number);
 
             if (fs.existsSync(`src/public/uploads/${oldRecipe.image_path}`)) {
                 //se o processo de atualizar receita falhar, o arquivo de imagem da receita é excluído
@@ -157,16 +158,15 @@ const recipeController = {
 
     async deleteRecipe(req, res) {
         const { id } = req.params;
+        const id_number = parseInt(id);
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
         }
 
         try {
-            const recipe = await recipeService.getRecipeById(id);
-            const deletedRecipe = await recipeService.deleteRecipe(id);
+            const recipe = await recipeService.getRecipeById(id_number);
+            const deletedRecipe = await recipeService.deleteRecipe(id_number);
 
             if (fs.existsSync(`src/public/uploads/${recipe.image_path}`)) {
                 try {
@@ -185,3 +185,20 @@ const recipeController = {
 };
 
 module.exports = recipeController;
+
+
+
+//getRecipe:
+// curl -X GET http://localhost:3000/api/recipe
+
+//createRecipe:
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzgyMDA1NywiZXhwIjoxNzEzODIzNjU3fQ.DTj8X7UnXkizOFTvMq461WFXyWRZYu-6xZyP0jwo2GQ" \
+// -H "Content-Type: multipart/form-data" \
+// -F "title=receita teste2" \
+// -F "yield=4 porções" \
+// -F "ingredients=ingredientes da receita..." \
+// -F "instructions=modo de preparo da receita..." \
+// -F "created_by=1" \
+// -F "updated_by=1" \
+// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// http://localhost:3000/api/recipe
