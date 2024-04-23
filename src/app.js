@@ -31,10 +31,10 @@ app.use(express.json());
 app.use(cookieParser());
 //configurando o express para fazer o parse de cookies. o coloquei aqui para que o cookie seja parseado antes de ser usado nas rotas de admin.
 
-app.use('/api', adminRoutes);
-app.use('/api', historyRoutes);
-app.use('/api', recipeRoutes);
-app.use('/api', quizRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/history', historyRoutes);
+app.use('/api/recipe', recipeRoutes);
+app.use('/api/quiz', quizRoutes);
 
 app.use(express.static('src/public'));
 
