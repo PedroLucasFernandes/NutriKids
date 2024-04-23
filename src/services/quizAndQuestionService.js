@@ -19,7 +19,8 @@ const quizAndQuestionService = {
                 const option_3 = question.option_3;
                 const option_4 = question.option_4;
                 const answer = question.answer;
-                return await questionRepository.createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer);
+                const explanation = question.explanation;
+                return await questionRepository.createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation);
             });
 
             await Promise.all(questionsPromises);
@@ -82,7 +83,8 @@ const quizAndQuestionService = {
                 const option_3 = question.option_3;
                 const option_4 = question.option_4;
                 const answer = question.answer;
-                return await questionRepository.createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer);
+                const explanation = question.explanation;
+                return await questionRepository.createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation);
             });
 
             await Promise.all(questionsPromises);

@@ -54,9 +54,9 @@ const quizRepository = {
 };
 
 const questionRepository = {
-    async createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer) {
+    async createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation) {
         try {
-            const newQuestion = await questionModel.createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer);
+            const newQuestion = await questionModel.createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation);
             return newQuestion;
         } catch(error) {
             throw error;
