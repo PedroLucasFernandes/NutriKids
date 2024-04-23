@@ -87,5 +87,5 @@ module.exports = adminController;
 
 //rotas que requerem cookie de sessão (adquirido por meio da autenticação (login)):
 //testar confirmLogin:
-//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzM4NjU5NCwiZXhwIjoxNzEzMzkwMTk0fQ.SobIcu7AU3Xeibqae5NdHIqCo1qma5wBeh0f_9gUejk" http://localhost:3000/api/admin
-//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsImlhdCI6MTcxMzM4ODcwOCwiZXhwIjoxNzEzMzkyMzA4fQ.oQBJ3MFLU9Xn2nl1sef08u7ATUT4cUIxUU4YwQ2OCKY" http://localhost:3000/api/admin
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/admin
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsImlhdCI6MTcxMzgxOTU5NiwiZXhwIjoxNzEzODIzMTk2fQ.UdfPlCIjhb8gFgMGBTKKwERQ-8iRNrx1O_5IkyGqtJI" http://localhost:3000/api/admin

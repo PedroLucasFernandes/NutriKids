@@ -8,6 +8,8 @@ const historyController = {
 
         const { title, story, created_by, updated_by} = req.body;
         const file = req.files;
+        const created_by_number = parseInt(created_by);
+        const updated_by_number = parseInt(updated_by);
 
         //validação para title (varchar(255) e not null):
         if (!title) {
@@ -24,14 +26,14 @@ const historyController = {
         //validação para created_by (int e not null):
         if (!created_by) {
             return res.status(400).json({ error: 'id do criador da história é obrigatório' });
-        } else if (typeof created_by !== 'number') {
+        } else if (typeof created_by_number !== 'number') {
             return res.status(400).json({ error: 'id do criador da história deve ser um número' });
         }
 
         //validação para updated_by (int e not null):
         if (!updated_by) {
             return res.status(400).json({ error: 'id do atualizador da história é obrigatório' });
-        } else if (typeof updated_by !== 'number') {
+        } else if (typeof updated_by_number !== 'number') {
             return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
         }
 
@@ -41,7 +43,7 @@ const historyController = {
         const comics = file.slice(1);
 
         try {
-            const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by, updated_by, banner, comics);
+            const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by_number, updated_by_number, banner, comics);
             res.status(201).json(newHistory);
         } catch(error) {
             console.error(`${error.message}`);
@@ -77,6 +79,7 @@ const historyController = {
         //INTERRAÇÃO API COM FRONT-END: não precisa enviar nenhum objeto no corpo da requisição HTTP GET ao realizar o fetch para a rota /api/history/:id. só lembre-se de colocar o id da história na url.
 
         const { id } = req.params;
+        const id_number = parseInt(id);
 
         console.log(id)
         const test = parseInt(id)
@@ -84,12 +87,10 @@ const historyController = {
         //validação para id (int e not null):
         if (!test) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof test !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
         }
 
         try {
-            const foundHistory = await historyAndComicService.findHistoryWithComicsById(id);
+            const foundHistory = await historyAndComicService.findHistoryWithComicsById(id_number);
             res.status(200).json(foundHistory);
         } catch(error) {
             console.error(`${error.message}`);
@@ -103,13 +104,13 @@ const historyController = {
         const { id } = req.params;
         const { title, story, updated_by } = req.body;
         const file = req.files;
+        const id_number = parseInt(id);
+        const updated_by_number = parseInt(updated_by);
 
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
-        }
+        } 
 
         //validação para title (varchar(255) e not null):
         if (!title) {
@@ -126,7 +127,7 @@ const historyController = {
         //validação para updated_by (int e not null):
         if (!updated_by) {
             return res.status(400).json({ error: 'id do atualizador da história é obrigatório' });
-        } else if (typeof updated_by !== 'number') {
+        } else if (typeof updated_by_number !== 'number') {
             return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
         }
 
@@ -136,8 +137,8 @@ const historyController = {
         const comics = file.slice(1);
 
         try { 
-            const oldHistory = await historyAndComicService.findHistoryWithComicsById(id);
-            const updatedHistory = await historyAndComicService.updateHistoryWithComics(id, title, story, updated_by, banner, comics);
+            const oldHistory = await historyAndComicService.findHistoryWithComicsById(id_number);
+            const updatedHistory = await historyAndComicService.updateHistoryWithComics(id_number, title, story, updated_by_number, banner, comics);
             
             if (fs.existsSync(`src/public/uploads/${oldHistory.image_path}`)) {
                 fs.unlinkSync(`src/public/uploads/${oldHistory.image_path}`);
@@ -160,17 +161,16 @@ const historyController = {
         //INTEGRAÇÃO API COM FRONT-END: não precisa enviar nenhum objeto no corpo da requisição HTTP DELETE ao realizar o fetch para a rota /api/history/:id. só lembre-se de colocar o id da história na url. e, também, lembre-se de enviar o token de sessão pelo cabeçalho da requisição.
 
         const { id } = req.params;
+        const id_number = parseInt(id);
 
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
         }
 
         try {
-            const history = await historyAndComicService.findHistoryWithComicsById(id);
-            const deletedHistory = await historyAndComicService.deleteHistoryWithComics(id);
+            const history = await historyAndComicService.findHistoryWithComicsById(id_number);
+            const deletedHistory = await historyAndComicService.deleteHistoryWithComics(id_number);
             
             if (fs.existsSync(`src/public/uploads/${history.image_path}`)) {
                 fs.unlinkSync(`src/public/uploads/${history.image_path}`);
@@ -197,16 +197,30 @@ module.exports = historyController;
 //curl -X GET http://localhost:3000/api/history
 
 //testar FindHistoryById:
-//curl -X GET http://localhost:3000/api/history/22
-
-
+//curl -X GET http://localhost:3000/api/history/82
 
 //rotas que requerem cookie de sessão:
 //testar addNewHistory:
-//curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzM4NjU5NCwiZXhwIjoxNzEzMzkwMTk0fQ.SobIcu7AU3Xeibqae5NdHIqCo1qma5wBeh0f_9gUejk" -H "Content-Type: application/json" -d '{ "title": "história teste 3", "story": "o texto da história...", "created_by": 1, "updated_by": 1, "file": "https://drive.google.com/file/d/1goo6MbNf78LXVzCdy9XHLq3TMbL3lI18/view?usp=drive_link", "comics": [ { "comic_order": 1, "file": "https://drive.google.com/file/d/1veUcJ5zTZ_n4duMVt_gnWrMJIcHKkVLv/view?usp=drive_link" }, { "comic_order": 2, "file": "https://drive.google.com/file/d/1yET21LrAriiHm_ep6ZJNezydrXF52hGh/view?usp=drive_link" } ] }' http://localhost:3000/api/history
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// -H "Content-Type: multipart/form-data" \
+// -F "title=história teste CCCCC" \
+// -F "story=o texto da história..." \
+// -F "created_by=1" \
+// -F "updated_by=1" \
+// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// http://localhost:3000/api/history
 
 //testar updateHistory:
-//curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzM4NjU5NCwiZXhwIjoxNzEzMzkwMTk0fQ.SobIcu7AU3Xeibqae5NdHIqCo1qma5wBeh0f_9gUejk" -H "Content-Type: application/json" -d '{ "title": "história teste 3b", "story": "o texto da história mudou...", "updated_by": 1, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg", "comics": [ { "id": 9, "comic_order": 1, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg" }, { "id": 10, "comic_order": 2, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg" } ] }' http://localhost:3000/api/history/25
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// -H "Content-Type: multipart/form-data" \
+// -F "title=história teste WWWWWC" \
+// -F "story=o texto da história..." \
+// -F "updated_by=1" \
+// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// http://localhost:3000/api/history/90
+
 
 //testar deleteHistory:
-//curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzM4NjU5NCwiZXhwIjoxNzEzMzkwMTk0fQ.SobIcu7AU3Xeibqae5NdHIqCo1qma5wBeh0f_9gUejk" http://localhost:3000/api/history/25
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/history/90

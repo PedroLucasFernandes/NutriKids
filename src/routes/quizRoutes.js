@@ -1,6 +1,6 @@
 const express = require('express');
 
-const historyController = require('../controllers/historyController');
+const quizController = require('../controllers/quizController');
 
 const authMiddleware = require('../middlewares/authMiddleware.js');
 const router = express.Router();
@@ -19,14 +19,13 @@ const upload = multer({
     })
 });
 
-router.get('/', historyController.findHistory);
-router.get('/:id', historyController.findHistoryById);
+router.get('/', quizController.findQuiz);
+router.get('/:id', quizController.findQuizById);
 
 router.use(authMiddleware.verifyToken);
-//aqui, o middleware de autenticação é aplicado a todas as rotas abaixo dele.
 
-router.post('/', upload.array("file"), historyController.addNewHistory);
-router.put('/:id', upload.array("file"), historyController.updateHistory);
-router.delete('/:id', historyController.deleteHistory);
+router.post('/', upload.single("file"), quizController.addNewQuiz);
+router.put('/:id', upload.single("file"), quizController.updateQuiz);
+router.delete('/:id', quizController.deleteQuiz);
 
 module.exports = router;
