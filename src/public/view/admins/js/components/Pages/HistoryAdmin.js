@@ -1,4 +1,5 @@
 import Header from "../header/header.js";
+import EditHistory from "./EditHistory.js";
 
 export default function HistoryAdmin() {
     const root = document.getElementById('root');
@@ -85,6 +86,10 @@ function render(data) {
         console.log(item.title)
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
+
+        btnEdit.addEventListener('click', function () {
+            EditHistory(item.id)
+        })
 
         divbtn.appendChild(btnEdit);
         divbtn.appendChild(btnDelete);

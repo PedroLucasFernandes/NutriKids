@@ -106,6 +106,7 @@ h4 {
     display: flex;
     flex-wrap: wrap;
     height: 600px;
+    overflow:auto; 
 }
 
 #modal {
@@ -153,7 +154,7 @@ h4 {
 }
 
 .box h3 {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .box button {

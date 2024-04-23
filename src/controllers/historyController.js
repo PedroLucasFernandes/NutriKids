@@ -4,19 +4,45 @@ const fs = require("fs");
 
 const historyController = {
     async addNewHistory(req, res) {
-        // const { title, story, created_by, updated_by, file, comics } = req.body;
-        //na hora de integrar a API com o front-end, o front-end deve enviar um objeto com as propriedades title, story, created_by e updated_by no corpo da requisição ao realizar o fetch para a rota /api/history. assim: { title: 'história1', story: 'o texto da história...', created_by: 'admin1', updated_by: 'admin1' }.
+        //INTEGRAÇÃO API COM FRONT-END: []
 
         const { title, story, created_by, updated_by} = req.body;
         const file = req.files;
-        console.log(file)
+
+        //validação para title (varchar(255) e not null):
+        if (!title) {
+            return res.status(400).json({ error: 'título da história é obrigatório' });
+        } else if (title.length > 255) {
+            return res.status(400).json({ error: 'título da história deve ter no máximo 255 caracteres' });
+        }
+
+        //validação para story (text e not null):
+        if (!story) {
+            return res.status(400).json({ error: 'texto da história é obrigatório' });
+        }
+
+        //validação para created_by (int e not null):
+        if (!created_by) {
+            return res.status(400).json({ error: 'id do criador da história é obrigatório' });
+        } else if (typeof created_by !== 'number') {
+            return res.status(400).json({ error: 'id do criador da história deve ser um número' });
+        }
+
+        //validação para updated_by (int e not null):
+        if (!updated_by) {
+            return res.status(400).json({ error: 'id do atualizador da história é obrigatório' });
+        } else if (typeof updated_by !== 'number') {
+            return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
+        }
+
+        //validação para file: [PERGUNTAR PARA PEDRO]
+        
         const banner = file[0].filename;
         const comics = file.slice(1);
 
         try {
             const newHistory = await historyAndComicService.addNewHistoryWithComics(title, story, created_by, updated_by, banner, comics);
             res.status(201).json(newHistory);
-            //status 201 significa que um novo recurso foi criado. o novo recurso é retornado no corpo da resposta.
         } catch(error) {
             console.error(`${error.message}`);
             if (fs.existsSync(`src/public/uploads/${banner}`)) {
@@ -36,7 +62,7 @@ const historyController = {
     },
 
     async findHistory(req, res) {
-        //INTEGRAÇÃO API COM FRONT-END: não precisa enviar nenhum obheto no corpo da requisição HTTP GET ao realizar o fetch para a rota /api/history.
+        //INTEGRAÇÃO API COM FRONT-END: não precisa enviar nenhum objeto no corpo da requisição HTTP GET ao realizar o fetch para a rota /api/history.
 
         try {
             const allHistory = await historyAndComicService.findAllHistoryWithComics();
@@ -52,6 +78,16 @@ const historyController = {
 
         const { id } = req.params;
 
+        console.log(id)
+        const test = parseInt(id)
+
+        //validação para id (int e not null):
+        if (!test) {
+            return res.status(400).json({ error: 'id da história é obrigatório' });
+        } else if (typeof test !== 'number') {
+            return res.status(400).json({ error: 'id da história deve ser um número' });
+        }
+
         try {
             const foundHistory = await historyAndComicService.findHistoryWithComicsById(id);
             res.status(200).json(foundHistory);
@@ -62,13 +98,57 @@ const historyController = {
     },
 
     async updateHistory(req, res) {
-        //INTEGRAÇÃO DA API COM FRONT-END: o objeto enviado no corpo da requisição HTTP PUT ao realizar o fetch para a rota /api/history/:id deve conter as propriedades title, story, updated_by, file e comics (que será um array de objetos, onde cada objeto terá as propriedades id, comic_order e file). lembrando que será necessário, também, enviar o token de sessão pelo cabeçalho da requisição. o objeto ficará assim: { "title": "história teste 2", "story": "o texto da história mudou...", "updated_by": 1, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg", "comics": [ { "id": 7, "comic_order": 1, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg" }, { "id": 8, "comic_order": 2, "file": "https://ichef.bbci.co.uk/news/976/cpsprodpb/16332/production/_95403909_beyonce1_getty.jpg" } ] };
+        //INTEGRAÇÃO DA API COM FRONT-END: []
 
         const { id } = req.params;
-        const { title, story, updated_by, file, comics } = req.body;
+        const { title, story, updated_by } = req.body;
+        const file = req.files;
 
-        try {
-            const updatedHistory = await historyAndComicService.updateHistoryWithComics(id, title, story, updated_by, file, comics);
+        //validação para id (int e not null):
+        if (!id) {
+            return res.status(400).json({ error: 'id da história é obrigatório' });
+        } else if (typeof id !== 'number') {
+            return res.status(400).json({ error: 'id da história deve ser um número' });
+        }
+
+        //validação para title (varchar(255) e not null):
+        if (!title) {
+            return res.status(400).json({ error: 'título da história é obrigatório' });
+        } else if (title.length > 255) {
+            return res.status(400).json({ error: 'título da história deve ter no máximo 255 caracteres' });
+        }
+
+        //validação para story (text e not null):
+        if (!story) {
+            return res.status(400).json({ error: 'texto da história é obrigatório' });
+        }
+
+        //validação para updated_by (int e not null):
+        if (!updated_by) {
+            return res.status(400).json({ error: 'id do atualizador da história é obrigatório' });
+        } else if (typeof updated_by !== 'number') {
+            return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
+        }
+
+        //validação para file: [PERGUNTAR PARA PEDRO]
+
+        const banner = file[0].filename;
+        const comics = file.slice(1);
+
+        try { 
+            const oldHistory = await historyAndComicService.findHistoryWithComicsById(id);
+            const updatedHistory = await historyAndComicService.updateHistoryWithComics(id, title, story, updated_by, banner, comics);
+            
+            if (fs.existsSync(`src/public/uploads/${oldHistory.image_path}`)) {
+                fs.unlinkSync(`src/public/uploads/${oldHistory.image_path}`);
+            }
+            
+            oldHistory.comics.forEach(comic => {
+                if (fs.existsSync(`src/public/uploads/${comic.image_path}`)) {
+                    fs.unlinkSync(`src/public/uploads/${comic.image_path}`);
+                }
+            });
+            
             res.status(200).json(updatedHistory);
         } catch(error) {
             console.error(`${error.message}`);
@@ -81,8 +161,26 @@ const historyController = {
 
         const { id } = req.params;
 
+        //validação para id (int e not null):
+        if (!id) {
+            return res.status(400).json({ error: 'id da história é obrigatório' });
+        } else if (typeof id !== 'number') {
+            return res.status(400).json({ error: 'id da história deve ser um número' });
+        }
+
         try {
+            const history = await historyAndComicService.findHistoryWithComicsById(id);
             const deletedHistory = await historyAndComicService.deleteHistoryWithComics(id);
+            
+            if (fs.existsSync(`src/public/uploads/${history.image_path}`)) {
+                fs.unlinkSync(`src/public/uploads/${history.image_path}`);
+            }
+            history.comics.forEach(comic => {
+                if (fs.existsSync(`src/public/uploads/${comic.image_path}`)) {
+                    fs.unlinkSync(`src/public/uploads/${comic.image_path}`);
+                }
+            });
+            
             res.status(200).json(deletedHistory);
         } catch (error) {
             console.error(`${error.message}`);
