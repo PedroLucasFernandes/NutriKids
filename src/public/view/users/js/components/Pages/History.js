@@ -1,5 +1,6 @@
 import header from "../header/header.js";
 import footer from "../footer/footer.js";
+import comicsMain from "./Comics.js";
 
 export default function History() {
     const root = document.getElementById('root');
@@ -16,6 +17,7 @@ export default function History() {
     img.src = "./images/beterraba2.png";
     h3.innerHTML = "Historias:";
     divBox.id = "box"
+    main.id = "main"
 
     const menu = ["Inicio", "Jogos", "Quizzes", "Receitas"]
 
@@ -65,6 +67,11 @@ function render(data) {
         console.log(item.title)
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
+
+        div.addEventListener('click', function () {
+            console.log(item)
+            comicsMain(item)
+        })
 
         div.appendChild(title);
         div.appendChild(img);

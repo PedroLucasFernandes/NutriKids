@@ -63,10 +63,7 @@ main {
     flex-direction: column;
     align-items: center;
     font-family: var(--font1);
-}
-main div {
-    width: 800px;
-    height: 600px;
+    gap: 50px;
 }
 
 main img {
@@ -81,7 +78,6 @@ h3 {
     display: flex;
     align-items: center;
     gap: 20px;
-    
 }
 
 .quadrado {
@@ -266,17 +262,22 @@ footer h4 {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: row-reverse;
+        flex-direction: column;
         justify-content: center;
         gap: 50px;
+        margin: 50px;
     }
 
     main div {
         display: flex;
-        flex-direction: column;
+        width: 400px;
+        height: 300px;
         align-items: center;
-        font-size: 30px;
-        gap: 50px;
+        justify-content: center;
+    }
+
+    main div h4 {
+        font-size: 40px;
     }
 
     #box {

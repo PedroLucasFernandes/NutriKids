@@ -91,6 +91,10 @@ function render(data) {
             EditHistory(item.id)
         })
 
+        btnDelete.addEventListener('click', function() {
+            deleteHistory(item.id)
+        })
+
         divbtn.appendChild(btnEdit);
         divbtn.appendChild(btnDelete);
 
@@ -99,5 +103,20 @@ function render(data) {
         div.appendChild(divbtn);
 
         sla.appendChild(div)
+    }
+}
+
+async function deleteHistory(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/history/${id}`, {
+            method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
     }
 }
