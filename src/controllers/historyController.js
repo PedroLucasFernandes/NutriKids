@@ -36,7 +36,10 @@ const historyController = {
             return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
         }
 
-        //validação para file: [PERGUNTAR PARA PEDRO]
+       //file não pode ser null (?):
+        if(!file) {
+            return res.status(400).json({ error: 'imagens para a história são obrigatórias' });
+        }
         
         const banner = file[0].filename;
         const comics = file.slice(1);
@@ -83,6 +86,8 @@ const historyController = {
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id da história deve ser um número' });
         }
 
         try {
@@ -106,7 +111,9 @@ const historyController = {
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
-        } 
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id da história deve ser um número' });
+        }
 
         //validação para title (varchar(255) e not null):
         if (!title) {
@@ -127,7 +134,10 @@ const historyController = {
             return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
         }
 
-        //validação para file: [PERGUNTAR PARA PEDRO]
+        //file não pode ser null (?):
+        if(!file) {
+            return res.status(400).json({ error: 'imagens para a história são obrigatórias' });
+        }
 
         const banner = file[0].filename;
         const comics = file.slice(1);
@@ -162,6 +172,8 @@ const historyController = {
         //validação para id (int e not null):
         if (!id) {
             return res.status(400).json({ error: 'id da história é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id da história deve ser um número' });
         }
 
         try {
