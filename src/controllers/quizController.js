@@ -15,6 +15,34 @@ const quizController = {
 
         const { title, created_by, updated_by, questions} = req.body;
         const banner = req.file.filename;
+        const created_by_number = parseInt(created_by);
+        const updated_by_number = parseInt(updated_by);
+
+        if (!title) {
+            return res.status(400).json({ error: 'título do quiz é obrigatório' });
+        } else if (title.length > 100) {
+            return res.status(400).json({ error: 'título do quiz deve ter no máximo 100 caracteres' });
+        }
+
+        if (!created_by) {
+            return res.status(400).json({ error: 'id do criador do quiz é obrigatório' });
+        } else if (typeof created_by_number !== 'number') {
+            return res.status(400).json({ error: 'id do criador do quiz deve ser um número' });
+        }
+
+        if (!updated_by) {
+            return res.status(400).json({ error: 'id do atualizador do quiz é obrigatório' });
+        } else if (typeof updated_by_number !== 'number') {
+            return res.status(400).json({ error: 'id do atualizador do quiz deve ser um número' });
+        }
+
+        if (!questions) {
+            return res.status(400).json({ error: 'perguntas do quiz são obrigatórias' });
+        }
+
+        if (!banner) {
+            return res.status(400).json({ error: 'imagem para capa do quiz é obrigatória' });
+        }
 
         try {
             const newQuiz = await quizAndQuestionService.addNewQuiz(title, created_by, updated_by, banner, questions);
@@ -40,6 +68,13 @@ const quizController = {
 
     async findQuizById(req, res) {
         const { id } = req.params;
+        const id_number = parseInt(id);
+
+        if (!id) {
+            return res.status(400).json({ error: 'id do quiz é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id do quiz deve ser um número' });
+        }
 
         try {
             const foundQuiz = await quizAndQuestionService.findQuizWithQuestionsById(id);
@@ -63,6 +98,34 @@ const quizController = {
         const { id } = req.params;
         const { title, updated_by, questions } = req.body;
         const banner = req.file.filename;
+        const id_number = parseInt(id);
+        const updated_by_number = parseInt(updated_by);
+
+        if (!id) {
+            return res.status(400).json({ error: 'id do quiz é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id do quiz deve ser um número' });
+        }
+
+        if (!title) {
+            return res.status(400).json({ error: 'título do quiz é obrigatório' });
+        } else if (title.length > 100) {
+            return res.status(400).json({ error: 'título do quiz deve ter no máximo 100 caracteres' });
+        }
+
+        if (!updated_by) {
+            return res.status(400).json({ error: 'id do atualizador do quiz é obrigatório' });
+        } else if (typeof updated_by_number !== 'number') {
+            return res.status(400).json({ error: 'id do atualizador do quiz deve ser um número' });
+        }
+
+        if (!questions) {
+            return res.status(400).json({ error: 'perguntas do quiz são obrigatórias' });
+        }
+
+        if (!banner) {
+            return res.status(400).json({ error: 'imagem para capa do quiz é obrigatória' });
+        }
 
         try { 
             const oldQuiz = await quizAndQuestionService.findQuizWithQuestionsById(id);
@@ -81,6 +144,13 @@ const quizController = {
 
     async deleteQuiz(req, res) {
         const { id } = req.params;
+        const id_number = parseInt(id);
+
+        if (!id) {
+            return res.status(400).json({ error: 'id do quiz é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id do quiz deve ser um número' });
+        }
 
         try {
             const quiz = await quizAndQuestionService.findQuizWithQuestionsById(id);

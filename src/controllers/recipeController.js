@@ -42,7 +42,7 @@ const recipeController = {
 
         //file não pode ser null (?):
         if (!file) {
-            return res.status(400).json({ error: 'imagem da receita é obrigatória' });
+            return res.status(400).json({ error: 'imagem para capa da receita é obrigatória' });
         }
 
         const banner = file[0].filename;
@@ -80,6 +80,8 @@ const recipeController = {
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id da receita deve ser um número' });
         }
 
         try {
@@ -100,7 +102,9 @@ const recipeController = {
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } 
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id da receita deve ser um número' });
+        }
 
         if (!title) {
             return res.status(400).json({ error: 'título da receita é obrigatório' });
@@ -130,7 +134,7 @@ const recipeController = {
 
         //file não pode ser null (?):
         if (!file) {
-            return res.status(400).json({ error: 'imagem da receita é obrigatória' });
+            return res.status(400).json({ error: 'imagem para capa da receita é obrigatória' });
         }
 
         const banner = file[0].filename;
@@ -162,6 +166,8 @@ const recipeController = {
 
         if (!id) {
             return res.status(400).json({ error: 'id da receita é obrigatório' });
+        } else if (typeof id_number !== 'number') {
+            return res.status(400).json({ error: 'id da receita deve ser um número' });
         }
 
         try {
