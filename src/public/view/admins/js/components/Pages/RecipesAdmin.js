@@ -138,8 +138,9 @@ function editRecipe(data) {
     const inputExplication = document.createElement('textarea')
     const close = document.createElement('h2');
     const button = document.createElement('button');
+    
 
-    console.log(data)
+    console.log(data.image_path)
 
     h3.innerHTML = "Editar Receita";
     close.innerHTML = "X";
@@ -153,7 +154,6 @@ function editRecipe(data) {
     inputImg.type = "file"
     h4Title.innerHTML = "Titulo:"
 
-    inputImg.value = `./uploads/${data.image_path}`
     inputTitle.value = data.title;
     inputIngredients.value = data.ingredients;
     textModoDePreparo.value = data.instructions;
@@ -186,6 +186,11 @@ function editRecipe(data) {
         // const title = inputTitle.value;
         // const history = inputHistory.value;
 
+        if (imgFile.length === 0) {
+            imgFile.push(data.image_path)
+            console.log(imgFile)
+        }
+
         const formData = new FormData();
         formData.append("title", inputTitle.value)
         formData.append("ingredients", inputIngredients.value)
@@ -196,7 +201,7 @@ function editRecipe(data) {
         // formData.append("file", inputImg)
         imgFile.forEach(img => formData.append("file", img))
 
-        console.log(formData.entries());
+        console.log(formData);
 
         try {
             modal.innerHTML = "";
@@ -217,6 +222,7 @@ function editRecipe(data) {
 }
 
 async function updatedRecipe(formdata, id) {
+    console.log(`http://localhost:3000/api/recipe/${id}`)
     try {
         const response = await fetch(`http://localhost:3000/api/recipe/${id}`, {
             method: 'PUT',
