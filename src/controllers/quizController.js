@@ -36,9 +36,26 @@ const quizController = {
             return res.status(400).json({ error: 'id do atualizador do quiz deve ser um número' });
         }
 
-        if (!questions) {
-            return res.status(400).json({ error: 'perguntas do quiz são obrigatórias' });
+        
+        //validação do array de perguntas:
+        if(!Array.isArray(questions)) {
+            return res.status(400).json({ error: 'perguntas do quiz devem ser um array' });
         }
+
+        questions.forEach((question, index) => {
+            const requiredFields = ['question_text', 'option_1', 'option_2', 'option_3', 'option_4', 'answer', 'explanation'];
+
+            requiredFields.forEach(field => {
+                if (!question[field] || question[field] === '') {
+                    return res.status(400).json({ error: `campo ${field} da pergunta ${index + 1} é obrigatório` });
+                }
+            });
+
+            if (typeof question.answer !== 'number') {
+                return res.status(400).json({ error: `campo answer da pergunta ${index + 1} deve ser um número` });
+            }
+        })
+
 
         if (!banner) {
             return res.status(400).json({ error: 'imagem para capa do quiz é obrigatória' });
@@ -119,9 +136,26 @@ const quizController = {
             return res.status(400).json({ error: 'id do atualizador do quiz deve ser um número' });
         }
 
-        if (!questions) {
-            return res.status(400).json({ error: 'perguntas do quiz são obrigatórias' });
+
+        //validação do array de perguntas:
+        if(!Array.isArray(questions)) {
+            return res.status(400).json({ error: 'perguntas do quiz devem ser um array' });
         }
+
+        questions.forEach((question, index) => {
+            const requiredFields = ['question_text', 'option_1', 'option_2', 'option_3', 'option_4', 'answer', 'explanation'];
+
+            requiredFields.forEach(field => {
+                if (!question[field] || question[field] === '') {
+                    return res.status(400).json({ error: `campo ${field} da pergunta ${index + 1} é obrigatório` });
+                }
+            });
+
+            if (typeof question.answer !== 'number') {
+                return res.status(400).json({ error: `campo answer da pergunta ${index + 1} deve ser um número` });
+            }
+        })
+
 
         if (!banner) {
             return res.status(400).json({ error: 'imagem para capa do quiz é obrigatória' });
@@ -177,13 +211,13 @@ module.exports = quizController;
 //curl -X GET http://localhost:3000/api/quiz/5
 
 //testar addNewQuiz:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzk2NzE3OSwiZXhwIjoxNzEzOTcwNzc5fQ.ib1FaXtC3jes8_hDb0k-x9vPPLLxMyXMmP2RXfqZvm0" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=história teste IIIII" \
+// -F "title=quiz IIIII" \
 // -F "created_by=1" \
 // -F "updated_by=1" \
 // -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
-// -F "questions=[{\"question_text\":\"pergunta 1\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":1}, {\"question_text\":\"pergunta 2\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":2}]" \
+// -F "questions=[{\"question_text\":\"pergunta manga\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":1, \"explanation\": \"a manga blabla\"}, {\"question_text\":\"pergunta melancia\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":2, \"explanation\": \"a melancia blabla\"}]" \
 // http://localhost:3000/api/quiz
 
 //testar updateQuiz:
