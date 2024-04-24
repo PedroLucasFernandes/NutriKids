@@ -6,6 +6,12 @@ import Recipes from "./users/js/components/Pages/Recipes.js";
 import menuHamburguer from "./users/js/components/header/menuHamburguer.js";
 import Inital from "./admins/js/components/Pages/Initial.js";
 import Login from "./admins/js/components/Pages/Login.js";
+import HistoryAdmin from "./admins/js/components/Pages/HistoryAdmin.js";
+import AddHistory from "./admins/js/components/Pages/AddHistoryAdmin.js";
+import QuizzesAdmin from "./admins/js/components/Pages/QuizzesAdmin.js";
+import RecipesAdmin from "./admins/js/components/Pages/RecipesAdmin.js";
+import Admins from "./admins/js/components/Pages/Admin.js";
+import AddQuizzes from "./admins/js/components/Pages/AddQuizAdmin.js";
 
 const router = {
     "/Inicio": Home,
@@ -18,6 +24,12 @@ const router = {
     "/Login": Login,
     "/Admin": Inital,
     "/Sair": Login,
+    "/HistoryAdmin": HistoryAdmin,
+    "/AddHistory": AddHistory,
+    "/QuizzesAdmin": QuizzesAdmin,
+    "/ReicpesAdmin": RecipesAdmin,
+    "/RegisterAdmin": Admins,
+    "/AddQuizzes": AddQuizzes
 };
 
 function render(page) {
@@ -27,7 +39,14 @@ function render(page) {
 function startRouter() {
     window.addEventListener("pageChange", (e) => {
         console.log(e.detail)
+        window.history.pushState(undefined, undefined, e.detail)
         render(e.detail)
+    })
+
+    window.addEventListener("popstate", function(e){
+        const newPage = window.location.pathname;
+        
+        render(newPage)
     })
 }
 

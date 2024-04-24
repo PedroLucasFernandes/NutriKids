@@ -7,23 +7,19 @@ export default function Main() {
 
     const menu = [
         {
-            name: "Histórias",
+            name: "History",
             img: "./images/iconHistory.png"
-        },
-        {
-            name: "Jogos",
-            img: "./images/iconGame.png"
         },
         {
             name: "Quizzes",
             img: "./images/iconQuizzes.png"
         },
         {
-            name: "Receitas",
+            name: "Reicpes",
             img: "./images/iconRecipe.png"
         },
         {
-            name: "Admins",
+            name: "Register",
             img: "./images/iconAdmin.png"
         }
     ];
@@ -39,6 +35,12 @@ export default function Main() {
         h3.innerHTML = item.name;
         next.src = "./images/next.png";
         next.classList.add('next')
+
+        div.addEventListener("click", () => {
+            const event = new CustomEvent("pageChange", {detail: `/${item.name}Admin`})
+    
+            window.dispatchEvent(event)
+        })
         
         div.appendChild(icon);
         div.appendChild(h3);

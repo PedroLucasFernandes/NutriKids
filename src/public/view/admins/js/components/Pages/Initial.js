@@ -4,14 +4,11 @@ import Main from "../main/main.js"
 export default function Inital() {
     const root = document.getElementById('root');
     root.innerHTML = ""
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/Admin/Admin.css"
 
-    const divContent = document.createElement('div');
-    divContent.id = "admin"
-
-    divContent.appendChild(Header());
-    divContent.appendChild(Main());
-
-    root.appendChild(divContent);
+    root.appendChild(Header());
+    root.appendChild(Main());
 
     return root;
 }

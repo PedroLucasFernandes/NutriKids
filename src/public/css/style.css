@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 * {
     padding: 0;
@@ -330,6 +330,7 @@ footer h4 {
     background-color: var(--cor8);
     border-radius: 20px;
     border: none;
+    padding: 20px;
 }
 
 #login button {
@@ -410,7 +411,60 @@ footer h4 {
     top: 100px;
 }
 
+.divItens {
+    background-color: var(--cor1);
+    width: 2000px;
+    height: 800px;
+}
 
+#modal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+}
+
+#modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px 20px;
+    width: 1000px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#modal-content h2 {
+    position: relative;
+    left: 400px;
+}
+
+#modal-content div {
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+#img {
+    width: 800px;
+    height: 500px;
+}
+
+#div-image {
+    width: 800px;
+    height: 400px;
+    background-color: var(--cor4);
+}
 
 @media (min-width: 760px) {
     header {
@@ -1014,4 +1068,4 @@ footer h4 {
         width: 500px;
         text-align: center;
     }
-}
+} */

@@ -1,3 +1,4 @@
+const { Console } = require('console');
 const historyAndComicService = require('../services/historyAndComicService.js');
 const fs = require("fs");
 

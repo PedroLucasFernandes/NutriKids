@@ -11,7 +11,11 @@ const adminController = {
     try {
       const foundAdmin = await adminService.toLocateAdminByUsername(username);
 
-      if (!foundAdmin | !foundAdmin.password) {
+      console.log(`AQUI1: ${foundAdmin.login}`);
+
+      console.log(password)
+
+      if (!foundAdmin || !foundAdmin.password) {
         //CORRIGINDO: para garantir que o admin foi encontrado e que a senha está disponível antes de chamar o bcrypt.compare.
         return res.status(401).json({ error: 'admin não encontrado ou senha não disponível' });
         //status 401 significa que a requisição não foi autorizada.
@@ -30,6 +34,8 @@ const adminController = {
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
       );
+
+      console.log('1')
 
       res.cookie('session_id', token, { httpOnly: true, maxAge: 3600000 });
 

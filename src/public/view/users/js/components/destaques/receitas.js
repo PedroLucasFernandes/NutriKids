@@ -12,6 +12,7 @@ export default function receita() {
 
     h3.innerHTML = "Receitas em destaques:";
 
+    divDestaque.classList.add("conjunto");
     div.classList.add("destaques");
 
     esquerdaH3.innerHTML = "<";

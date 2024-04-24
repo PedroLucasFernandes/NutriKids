@@ -6,6 +6,8 @@ import receita from "../destaques/receitas.js";
 import footer from "../footer/footer.js";
 
 export default function Home() {
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/User/Home.css"
     const root = document.getElementById("root");
     root.innerHTML = "";
 

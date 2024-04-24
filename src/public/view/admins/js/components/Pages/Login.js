@@ -2,6 +2,10 @@ import Header from "../header/header.js"
 
 export default function Login() {
     const root = document.getElementById('root');
+    root.innerHTML = ""
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/Admin/Login.css"
+
     const divContent = document.createElement('div');
     const main = document.createElement('main');
     const image = document.createElement('img');
@@ -9,6 +13,7 @@ export default function Login() {
     const div = document.createElement('div');
     const inputUser = document.createElement('input');
     const inputPassword = document.createElement('input');
+    const form = document.createElement('form');
     const button = document.createElement('button');
 
     divContent.id = "login"
@@ -16,19 +21,29 @@ export default function Login() {
     h3.innerHTML = "Setor Administrativo";
     inputUser.placeholder = "Usuário";
     inputPassword.placeholder = "Senha";
+    inputPassword.type = "password"
     button.innerHTML = "Entrar";
-    root.innerHTML = ""
 
-    button.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Admin"})
+    form.appendChild(inputUser);
+    form.appendChild(inputPassword);
+    form.appendChild(button);
+    
 
-        window.dispatchEvent(event)
+    form.addEventListener("submit", (e) => {
+        // const event = new CustomEvent("pageChange", {detail: "/Admin"})
+
+        // window.dispatchEvent(event)
+        e.preventDefault()
+        const username = inputUser.value;
+        const password = inputPassword.value;
+
+        login(username,password)
     })
 
     div.appendChild(h3);
-    div.appendChild(inputUser);
-    div.appendChild(inputPassword);
-    div.appendChild(button);
+    div.appendChild(form);
+    // div.appendChild(inputPassword);
+    // div.appendChild(button);
 
     main.appendChild(image);
     main.appendChild(div);
@@ -36,5 +51,32 @@ export default function Login() {
     divContent.appendChild(main);
     root.appendChild(divContent)
 
+
+
     return root
+}
+
+async function login(username, password) {
+    try {
+        const response = await fetch('http://localhost:3000/api/admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (data.error) {
+            alert(data.error);
+            document.cookie = "";
+        }
+        else {
+            const event = new CustomEvent("pageChange", {detail: "/Admin"})
+
+            window.dispatchEvent(event);
+        }
+    }
+    catch(error) {
+        console.error(`Erro na requisição: ${error}`)
+    }
 }
