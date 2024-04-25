@@ -8,6 +8,7 @@ export default function makeRecipe(recipe) {
     const div = document.createElement('div');
     const img = document.createElement('img');
     const h4Back = document.createElement('h4');
+    h4Back.id = "backButton";
     const divImage = document.createElement('div');
     const h4rendimento = document.createElement('h4');
     const h3Ingredientes = document.createElement('h3');

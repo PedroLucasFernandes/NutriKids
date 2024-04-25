@@ -3,7 +3,7 @@ export default function Main() {
     const h3 = document.createElement('h3');
     const container = document.createElement('div');
 
-    h3.innerHTML = "Olá admin, bem vindo!";
+    h3.innerHTML = "Olá admin, bem vindo(a)!";
 
     const menu = [
         {

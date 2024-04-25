@@ -42,6 +42,15 @@ header {
     padding: 20px;
 }
 
+header li{
+    cursor: pointer;
+}
+
+header li:hover{
+    color: var(--cor5);
+    transition-duration: 0.2s;
+}
+
 #menu {
     width: 50px;
 }
@@ -148,6 +157,11 @@ footer h4 {
     color: white;
 }
 
+footer li:hover{
+    color: var(--cor3);
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
 
 #modal {
     position: fixed;

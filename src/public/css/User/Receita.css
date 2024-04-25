@@ -77,6 +77,10 @@ h3 {
     color: var(--cor3);
 }
 
+#backButton{
+    cursor: pointer;
+}
+
 #box {
     display: flex;
     align-items: center;
