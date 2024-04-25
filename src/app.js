@@ -58,7 +58,7 @@ app.get('/Sair', sendIndexFile);
 app.get('/HistoryAdmin', sendIndexFile);
 app.get('/AddHistory', sendIndexFile);
 app.get('/QuizzesAdmin', sendIndexFile);
-app.get('/ReicpesAdmin', sendIndexFile);
+app.get('/RecipesAdmin', sendIndexFile);
 app.get('/RegisterAdmin', sendIndexFile);
 app.get('/AddQuizzes', sendIndexFile);
 
