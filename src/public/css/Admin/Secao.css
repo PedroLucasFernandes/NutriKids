@@ -30,7 +30,7 @@ header {
     align-items: center;
     justify-content: center;
     position: -webkit-sticky;
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     z-index: 1000;
     
@@ -55,6 +55,12 @@ header div h4 {
     color: white;
     font-size: 60px;
     font-family: var(--font1);
+    cursor: pointer;
+}
+
+header div h4:hover{
+    color: var(--cor5);
+    transition-duration: 0.2s;
 }
 
 header img {
@@ -94,12 +100,14 @@ button {
     font-family: var(--font2);
     font-size: 20px;
     color: white;
+    cursor: pointer;
 }
 
 h4 {
     font-size: 25px;
     color: var(--cor5);
     font-family: var(--font2);
+    cursor: pointer;
 }
 
 #funciona {
@@ -160,6 +168,11 @@ h4 {
 .box button {
     width: 30px;
     height: 30px;
+    cursor: pointer;
+}
+
+.box button:hover{
+    border: 1px solid black;
 }
 
 #btn {

@@ -3,7 +3,7 @@ import ModalQuizzes from "../modal/ModalQuizzes.js";
 
 export default function AddQuizzes() {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Add.css"
+    test.href = "../../../../../css/Admin/Add.css";
     const root = document.getElementById('root');
     root.innerHTML = "";
 
@@ -18,23 +18,24 @@ export default function AddQuizzes() {
     const buttonNewQuizzes = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
+    h4Back.id = "backButton";
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
 
-    h3.innerHTML = "Crie/Edite uma Quiz";
+    h3.innerHTML = "Crie/Edite um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Quizzes.innerHTML = "Quadrinhos atuais:";
     inputFile.type = "file";
-    buttonNewQuizzes.innerHTML = "Nova pergunta"
-    divAddImage.id = "image"
-    buttonNewQuizzes.accept = "image/*"
-    buttonNewQuizzes.multiple = true
+    buttonNewQuizzes.innerHTML = "Nova pergunta";
+    divAddImage.id = "image";
+    buttonNewQuizzes.accept = "image/*";
+    buttonNewQuizzes.multiple = true;
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
     divContent.id = "admin";
-    divQuizzes.classList.add("divItens")
-    divAddImage.id = "div-image"
+    divQuizzes.classList.add("divItens");
+    divAddImage.id = "div-image";
 
     divQuizzes.appendChild(divAddImage);
     divQuizzes.appendChild(buttonNewQuizzes);
@@ -51,13 +52,13 @@ export default function AddQuizzes() {
 
     buttonNewQuizzes.addEventListener("click", function(){
         root.appendChild(ModalQuizzes());
-    })
+    });
 
     h4Back.addEventListener("click", function () {
-        const event = new CustomEvent("pageChange", { detail: "/QuizzesAdmin" })
+        const event = new CustomEvent("pageChange", { detail: "/QuizzesAdmin" });
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);

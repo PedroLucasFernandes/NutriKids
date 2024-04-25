@@ -1,3 +1,4 @@
+import InitialUser from "./users/js/components/Pages/Initial.js";
 import Home from "./users/js/components/Pages/Home.js";
 import Games from "./users/js/components/Pages/Game.js";
 import Quizzes from "./users/js/components/Pages/Quizzes.js";
@@ -14,6 +15,7 @@ import Admins from "./admins/js/components/Pages/Admin.js";
 import AddQuizzes from "./admins/js/components/Pages/AddQuizAdmin.js";
 
 const router = {
+    "/": InitialUser,
     "/Inicio": Home,
     "/Main": Home,
     "/menuHamburguer": menuHamburguer,
@@ -27,7 +29,7 @@ const router = {
     "/HistoryAdmin": HistoryAdmin,
     "/AddHistory": AddHistory,
     "/QuizzesAdmin": QuizzesAdmin,
-    "/ReicpesAdmin": RecipesAdmin,
+    "/RecipesAdmin": RecipesAdmin,
     "/RegisterAdmin": Admins,
     "/AddQuizzes": AddQuizzes
 };
@@ -37,17 +39,40 @@ function render(page) {
 }
 
 function startRouter() {
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            console.log('A página foi recarregada.');
+        } else {
+            console.log('A página não foi recarregada.');
+        }
+    });
+
     window.addEventListener("pageChange", (e) => {
         console.log(e.detail)
         window.history.pushState(undefined, undefined, e.detail)
+
         render(e.detail)
     })
 
-    window.addEventListener("popstate", function(e){
+    window.addEventListener("popstate", function (e) {
         const newPage = window.location.pathname;
-        
+
         render(newPage)
     })
+
+
+    // ler o valor da URL e acionar a mudança de página
+    const event = new CustomEvent("pageChange", { detail: location.pathname })
+
+    window.dispatchEvent(event)
 }
 
-export { startRouter }
+function test() {
+    console.log(e.detail)
+    window.history.pushState(undefined, undefined, e.detail)
+
+    render(e.detail)
+}
+
+export { startRouter };

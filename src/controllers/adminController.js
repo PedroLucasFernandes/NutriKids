@@ -11,16 +11,8 @@ const adminController = {
     try {
       const foundAdmin = await adminService.getAdminByUsername(username);
 
-      console.log(`AQUI1: ${foundAdmin.login}`);
-
-      console.log(password)
-
       if (!foundAdmin || !foundAdmin.password) {
-        //CORRIGINDO: para garantir que o admin foi encontrado e que a senha está disponível antes de chamar o bcrypt.compare.
         return res.status(401).json({ error: 'admin não encontrado ou senha não disponível' });
-        //status 401 significa que a requisição não foi autorizada.
-        //aqui usei só o res.status, pois trata-se de uma resposta de erro direcionada ao cliente (front-end), então, não é necessário usar o throw new Error, pois não é um erro que será tratado internamente no servidor.
-        //foi utilizada essa estrutura '({ error: 'mensagem de erro' })' para que o front-end possa capturar essa mensagem de erro e exibi-la para o usuário (por exemplo, em um alerta ou em um campo de texto na tela). { error: 'mensagem de erro' } é um objeto JSON com uma propriedade error que contém a mensagem de erro.
       }
 
       const passwordIsValid = await bcrypt.compare(password, foundAdmin.password);
@@ -35,18 +27,12 @@ const adminController = {
         { expiresIn: '1h' }
       );
 
-      console.log('1')
-
       res.cookie('session_id', token, { httpOnly: true, maxAge: 3600000 });
 
       res.status(200).json({ success: true });
-      //status 200 significa que a requisição foi bem-sucedida.
-      //({ success: true }) é um objeto JSON com uma propriedade success que contém o valor true. foi utilizado para que o front-end possa capturar essa mensagem de sucesso e exibi-la para o usuário. o ideal é que o front-end tenha um tratamento específico para cada tipo de resposta, seja de sucesso ou de erro.
-
     } catch (error) {
       console.error(`${error.message}`);
       res.status(500).json({ error: 'erro ao tentar fazer login' });
-      //status 500 significa que houve um erro interno no servidor.
     }
   },
 
@@ -67,7 +53,6 @@ const adminController = {
 
       return res.status(200).json({ username: foundAdmin.login, name: foundAdmin.name });
       //({ username: foundAdmin.username, name: foundAdmin.name }) é um objeto JSON com duas propriedades: username e name, que contêm, respectivamente, o username e o name do admin encontrado no banco de dados. foi utilizado para que o front-end possa capturar essas informações e exibi-las para o usuário em caso de sucesso.
-
     } catch (error) {
       console.error(`${error.message}`);
       res.status(401).json({ error: 'falha na autenticação' });

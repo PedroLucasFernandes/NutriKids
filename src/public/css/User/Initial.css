@@ -81,6 +81,8 @@ input {
     width: 150px;
     height: 35px;
     padding: 5px;
+    border: 1px solid var(--cor4);
+    border-radius: 8px;
 }
 
 button {
@@ -92,6 +94,7 @@ button {
     color: white;
     font-family: var(--font1);
     font-size: 15px;
+    cursor: pointer;
 }
 
 footer {
@@ -177,9 +180,11 @@ footer {
         color: white;
         font-family: var(--font2);
         font-size: 20px;
-        cursor: pointer;
     }
     
+    footer a{
+        cursor: pointer;
+    }
 }
 
 @media (min-width: 1700px) {

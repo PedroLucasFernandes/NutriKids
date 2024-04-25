@@ -6,7 +6,7 @@ export default function jogos() {
     const divDestaque = document.createElement('div');
     const esquerdaH3 = document.createElement('h3');
     const direitaH3 = document.createElement('h3');
-    const btnVerMais = document.createElement('button')
+    const btnVerMais = document.createElement('button');
 
     img.src = "./images/cereja1.png";
 
@@ -15,21 +15,15 @@ export default function jogos() {
     div.classList.add("destaques");
     divDestaque.classList.add("conjunto");
 
-    esquerdaH3.innerHTML = "<";
-    div.appendChild(esquerdaH3);
-
     for (let i = 0; i < 2; i++) {
         const quadrado = document.createElement('div');
         quadrado.classList.add("quadrado");
         div.appendChild(quadrado);
     }
 
-    direitaH3.innerHTML = ">";
-    div.appendChild(direitaH3);
-
     btnVerMais.innerHTML = "Ver mais!";
 
-    divMain.classList.add("secao1")
+    divMain.classList.add("secao1");
 
     divDestaque.appendChild(h3);
     divDestaque.appendChild(div);
@@ -39,13 +33,13 @@ export default function jogos() {
     divMain.appendChild(divDestaque);
 
     btnVerMais.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Jogos"})
+        const event = new CustomEvent("pageChange", {detail: "/Jogos"});
         const main = document.querySelector("main");
 
         main.innerHTML = "";
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     return divMain;
 }

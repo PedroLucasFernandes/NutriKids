@@ -8,15 +8,15 @@ export default function ModalHistory(arrayImg) {
     const button = document.createElement('button');
 
     h3.innerHTML = "Envie um novo quadrinho";
-    input.type = "file"
+    input.type = "file";
     close.innerHTML = "X";
     button.innerHTML = "Confirmar";
-    input.id = "image"
-    input.accept = "image/*"
+    input.id = "image";
+    input.accept = "image/*";
     // input.multiple = true
-    modal.id = "modal"
-    div.id = "box"
-    modalContent.id = "modal-content"
+    modal.id = "modal";
+    div.id = "box";
+    modalContent.id = "modal-content";
 
     modalContent.appendChild(close);
     modalContent.appendChild(h3);
@@ -38,27 +38,25 @@ export default function ModalHistory(arrayImg) {
 
                 const img = document.createElement('img');
                 img.src = readerTarget.result;
-                img.id = "img"
-                
-                const sla = document.getElementById('div-image');
-
+                img.id = "img";
+            
                 const box = document.getElementById('box');
-                console.log(img)
-                box.appendChild(img)
+                console.log(img);
+                box.appendChild(img);
             })
-            reader.readAsDataURL(file)
-            console.log(file)
-            arrayImg.push(file)
-            console.log(arrayImg)
+            reader.readAsDataURL(file);
+            console.log(file);
+            arrayImg.push(file);
+            console.log(arrayImg);
         }
 
-        console.log(file)
+        console.log(file);
     })
 
     close.addEventListener("click", function() {
         modal.innerHTML = "";
-        modal.style.display = "none"
-    })
+        modal.style.display = "none";
+    });
 
     button.addEventListener('click', function() {
         const img = document.getElementById('img');
@@ -72,11 +70,11 @@ export default function ModalHistory(arrayImg) {
 
         
         modal.innerHTML = "";
-        modal.style.display = "none"
-        console.log(arrayImg)
-    })
+        modal.style.display = "none";
+        console.log(arrayImg);
+    });
 
-    return modal
+    return modal;
 }
 
 

@@ -42,15 +42,6 @@ header {
     padding: 20px;
 }
 
-header li{
-    cursor: pointer;
-}
-
-header li:hover{
-    color: var(--cor5);
-    transition-duration: 0.2s;
-}
-
 #menu {
     width: 50px;
 }
@@ -74,13 +65,8 @@ main {
     font-family: var(--font1);
     padding: 50px;
 }
-
 main div {
-    width: 300px;
-    height: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 800px;
 }
 
 main img {
@@ -91,36 +77,24 @@ h3 {
     color: var(--cor3);
 }
 
-#container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 300px;
-    height: 500px;
+#backButton{
+    cursor: pointer;
 }
 
 #box {
     display: flex;
     align-items: center;
     gap: 20px;
-    width: 300px;
-    height: 400px;
-    overflow: auto;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-
+    width: 800px;
+    height: 500px;
+    
 }
-
-/* #box div {
-    height: 240px;
-} */
 
 .quadrado {
     display: flex;
     flex-direction: row;
     width: 50px;
-    /* height: 50px; */
+    height: 50px;
     background-color: var(--cor5);
     gap: 20px;
     margin-bottom: 50px;
@@ -128,7 +102,7 @@ h3 {
 
 footer {
     background-color: var(--cor5);
-
+    
 }
 
 footer div {
@@ -157,10 +131,13 @@ footer h4 {
     color: white;
 }
 
-footer li:hover{
-    color: var(--cor3);
-    transition-duration: 0.2s;
-    cursor: pointer;
+#box {
+    display: flex;
+    flex-wrap: wrap;
+    /* height: 600px;
+    width: 1000px; */
+    overflow:auto; 
+    justify-content: center;
 }
 
 #modal {
@@ -236,28 +213,24 @@ footer li:hover{
         font-size: 40px;
     }
 
-
+    
     main {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 50px;
     }
-
+    
     main img {
         width: 250px;
     }
-
+    
     #box {
         display: flex;
         align-items: center;
         gap: 20px;
-        width: 600px;
-        height: 500px;
-        flex-direction: row;
-        flex-wrap: wrap;
     }
-
+    
     .quadrado {
         width: 70px;
         height: 70px;
@@ -267,7 +240,7 @@ footer li:hover{
         width: 200px;
     }
 
-
+    
 }
 
 @media (min-width: 1200px) {
@@ -284,8 +257,7 @@ footer li:hover{
         width: 200px;
     }
 
-    header nav,
-    ul {
+    header nav, ul{
         display: flex;
     }
 
@@ -300,7 +272,7 @@ footer li:hover{
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: row-reverse;
+        flex-direction: column;
         justify-content: center;
         gap: 50px;
     }
@@ -308,28 +280,37 @@ footer li:hover{
     main div {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        font-size: 30px;
+        font-size: 25px;
         gap: 50px;
+        color: var(--cor3);
     }
 
-    #container {
-        width: 700px;
+    main h3 {
+        font-size: 40px;
+    }
+
+    main h4 {
+        font-size: 35px;
+        color: var(--cor3);
     }
 
     #box {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        width: 700px;
     }
 
-    .box {
-        height: 200px;
+    #img {
+        width: 400px;
+        height: 300px;
     }
-
-    main img {
-        width: 350px;
+    
+    #img div {
+        width: 400px;
+        height: 300px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #navegacao {
@@ -351,7 +332,7 @@ footer li:hover{
         height: 150px;
         margin: 0 10px 0 20px;
     }
-
+    
     footer h4 {
         width: 500px;
         font-size: 20px;
@@ -362,13 +343,9 @@ footer li:hover{
     main {
         gap: 70px;
     }
-
+    
     main img {
         width: 450px;
-    }
-
-    #box {
-        width: 1000px;
     }
 
     #navegacao {

@@ -1,6 +1,7 @@
 export default function menuHamburguer() {
     const root = document.getElementById("root")
-    const divroot = document.createElement("div")
+    const test = document.getElementById('css');
+    test.href = "../../../../../css/User/menuHamburguer.css"
     const header = document.createElement('header');
     const divHeader = document.createElement('div');
     const h2 = document.createElement('h2')
@@ -10,7 +11,6 @@ export default function menuHamburguer() {
     const fechar = document.createElement('img');
 
     // root.innerHTML = "";
-    divroot.id = "test"
     fechar.id = "fechar"
     divHeader.id = "head"
 
@@ -23,8 +23,7 @@ export default function menuHamburguer() {
         h3.innerHTML = item;
 
         h3.addEventListener("click", ()=> {
-            divroot.innerHTML = ""
-            divroot.id = "root"
+            root.innerHTML = ""
             const event = new CustomEvent("pageChange", {detail: `/${item}`});
 
             window.dispatchEvent(event);
@@ -36,18 +35,15 @@ export default function menuHamburguer() {
     fechar.src = "./images/fechar.png"
     img.src = "./images/logo.png";
 
-    divHeader.appendChild(fechar);
-    divHeader.appendChild(h2);
-    header.appendChild(divHeader);
+    header.appendChild(fechar);
+    header.appendChild(h2);
     main.appendChild(div);
     main.appendChild(img);
-    divroot.appendChild(header);
-    divroot.appendChild(main);
-    root.appendChild(divroot)
+    root.appendChild(header)
+    root.appendChild(main)
 
     fechar.addEventListener("click", () => {
-        divroot.innerHTML = ""
-        divroot.id = "root"
+        root.innerHTML = ""
         const event = new CustomEvent("pageChange", {detail: "/Inicio"});
 
         window.dispatchEvent(event);

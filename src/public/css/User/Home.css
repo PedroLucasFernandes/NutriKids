@@ -41,6 +41,15 @@ header {
     padding: 20px;
 }
 
+header li{
+    cursor: pointer;
+}
+
+header li:hover{
+    color: var(--cor5);
+    transition-duration: 0.2s;
+}
+
 #menu {
     width: 50px;
 }
@@ -94,6 +103,32 @@ main img {
 
 }
 
+#test {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#test h3 {
+    font-size: 15px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 170px;
+    background-color: var(--cor5);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.box img {
+    width: 130px;
+}
+
 .destaques {
     display: flex;
     flex-direction: row;
@@ -118,6 +153,7 @@ button {
     border-radius: 20px;
     font-family: var(--font1);
     font-size: 15px;
+    cursor: pointer;
 }
 
 footer {
@@ -171,12 +207,26 @@ footer h4 {
     .destaques {
         gap: 30px;
         color: var(--cor5);
+    }header li{
+        cursor: pointer;
+    }
+    
+    header li:hover{
+        color: var(--cor5);
+        transition-duration: 0.2s;
     }
     
     .quadrado {
         width: 90px;
         height: 90px;
         background-color: var(--cor5);
+        cursor: pointer;
+    }
+
+    .quadrado:hover{
+        width: 120px;
+        height: 120px;
+        transition-duration: 0.2s;
     }
     
     button {
@@ -201,6 +251,12 @@ footer h4 {
     footer h4 {
         width: 500px;
         font-size: 20px;
+    }
+
+    footer li:hover{
+        color: var(--cor3);
+        transition-duration: 0.2s;
+        cursor: pointer;
     }
 }
 
