@@ -86,9 +86,9 @@ const quizModel = {
 }
 
 const questionModel = {
-    async createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer) {
-        const query = `INSERT INTO question (id_quiz, question_text, option_1, option_2, option_3, option_4, answer) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
-        const values = [id_quiz, question_text, option_1, option_2, option_3, option_4, answer];
+    async createQuestion(id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation) {
+        const query = `INSERT INTO question (id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+        const values = [id_quiz, question_text, option_1, option_2, option_3, option_4, answer, explanation];
 
         try {
             const { rows } = await pool.query(query, values);

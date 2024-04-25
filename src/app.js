@@ -15,8 +15,6 @@ const gameRoutes = require('./routes/gameRoutes.js');
 const app = express();
 //criando uma instância do express, ou seja, um servidor.
 
-const port = 3000
-
 const cors = require('cors');
 
 app.use(cors({

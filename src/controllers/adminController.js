@@ -15,7 +15,7 @@ const adminController = {
 
       console.log(password)
 
-      if (!foundAdmin | !foundAdmin.password) {
+      if (!foundAdmin || !foundAdmin.password) {
         //CORRIGINDO: para garantir que o admin foi encontrado e que a senha está disponível antes de chamar o bcrypt.compare.
         return res.status(401).json({ error: 'admin não encontrado ou senha não disponível' });
         //status 401 significa que a requisição não foi autorizada.
