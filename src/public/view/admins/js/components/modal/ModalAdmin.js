@@ -5,20 +5,20 @@ export default function ModalAdmin() {
     const h4Name = document.createElement('h4');
     const inputName = document.createElement('input');
     const h4Login = document.createElement('h4');
-    const inputLogin = document.createElement('input')
+    const inputLogin = document.createElement('input');
     const h4Password = document.createElement('h4');
-    const inputPassword = document.createElement('input') 
+    const inputPassword = document.createElement('input') ;
     const close = document.createElement('h2');
     const button = document.createElement('button');
 
     h3.innerHTML = "NOvo Administrador";
     close.innerHTML = "X";
     button.innerHTML = "Criar novo admin";
-    modal.id = "modal"
-    modalContent.id = "modal-content"
+    modal.id = "modal";
+    modalContent.id = "modal-content";
     h4Name.innerHTML = "Nome:";
-    h4Login.innerHTML = "Login:"
-    h4Password.innerHTML = "Senha:"
+    h4Login.innerHTML = "Login:";
+    h4Password.innerHTML = "Senha:";
 
     modalContent.appendChild(close);
     modalContent.appendChild(h3);
@@ -34,13 +34,13 @@ export default function ModalAdmin() {
 
     close.addEventListener("click", function() {
         modal.innerHTML = "";
-        modal.style.display = "none"
-    })
+        modal.style.display = "none";
+    });
 
     button.addEventListener('click', function() {
         modal.innerHTML = "";
-        modal.style.display = "none"
-    })
+        modal.style.display = "none";
+    });
 
-    return modal
+    return modal;
 }

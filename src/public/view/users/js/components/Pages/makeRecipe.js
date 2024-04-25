@@ -1,8 +1,8 @@
 export default function makeRecipe(recipe) {
     const main = document.getElementById('main');
-    main.innerHTML = ""
+    main.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/User/Receita.css"
+    test.href = "../../../../../css/User/Receita.css";
 
     const h3Title = document.createElement('h3');
     const div = document.createElement('div');
@@ -15,16 +15,16 @@ export default function makeRecipe(recipe) {
     const divBox = document.createElement('div');
     const h3Instructions = document.createElement('h3');
     const h3InstructionsDetails = document.createElement('h4');
-    const divInstructions = document.createElement('div')
+    const divInstructions = document.createElement('div');
 
     h3Title.innerHTML = recipe.title;
     h4rendimento.innerHTML = `Rendimentos: ${recipe.yield}`;
-    h3Ingredientes.innerHTML = "Ingredientes:"
+    h3Ingredientes.innerHTML = "Ingredientes:";
     h4IngredientesDetails.innerHTML = recipe.ingredients;
     h3Instructions.innerHTML = "Como fazer:";
     h3InstructionsDetails.innerHTML = recipe.instructions;
-    h4Back.innerHTML = "Voltar"
-    divImage.id = "img"
+    h4Back.innerHTML = "Voltar";
+    divImage.id = "img";
 
     divBox.appendChild(h4rendimento);
     divBox.appendChild(h3Ingredientes);
@@ -34,15 +34,15 @@ export default function makeRecipe(recipe) {
     divInstructions.appendChild(h3InstructionsDetails);
 
     img.src = `./uploads/${recipe.image_path}`;
-    div.appendChild(img)
+    div.appendChild(img);
 
     divImage.appendChild(div);
 
     h4Back.addEventListener("click", ()=> {
         const event = new CustomEvent("pageChange", {detail: "/Receitas"});
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
     
     main.appendChild(h3Title);
     main.appendChild(divImage);
@@ -50,5 +50,5 @@ export default function makeRecipe(recipe) {
     main.appendChild(divInstructions);
     main.appendChild(h4Back);
 
-    return main
+    return main;
 }

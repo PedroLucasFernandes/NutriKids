@@ -40,5 +40,5 @@ export default function Modal() {
     modalContent.appendChild(inputExplanation);
     modal.appendChild(modalContent);
 
-    return modal
+    return modal;
 }

@@ -2,9 +2,9 @@ import Header from "../header/header.js";
 
 export default function QuizzesAdmin() {
     const root = document.getElementById('root');
-    root.innerHTML = ""
+    root.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Secao.css"
+    test.href = "../../../../../css/Admin/Secao.css";
 
     const main = document.createElement('main');
     const h3 = document.createElement('h3');
@@ -17,7 +17,7 @@ export default function QuizzesAdmin() {
     buttonAddQuizzes.innerHTML = "Criar novo Quiz";
     h4.innerHTML = "Voltar";
     divContent.id = "admin";
-    divHistory.classList.add("divItens")
+    divHistory.classList.add("divItens");
 
     main.appendChild(h3);
     main.appendChild(divHistory);
@@ -25,20 +25,20 @@ export default function QuizzesAdmin() {
     main.appendChild(h4);
 
     buttonAddQuizzes.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/AddQuizzes"})
+        const event = new CustomEvent("pageChange", {detail: "/AddQuizzes"});
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     h4.addEventListener("click", function(){
-        const event = new CustomEvent("pageChange", {detail: "/Admin"})
+        const event = new CustomEvent("pageChange", {detail: "/Admin"});
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
-    root.appendChild(divContent)
+    root.appendChild(divContent);
 
-    return root
+    return root;
 }

@@ -1,5 +1,4 @@
 import Header from "../header/header";
-import Modal from "../modal/Modal";
 
 export default function Quizzes() {
     const root = document.getElementById('root');

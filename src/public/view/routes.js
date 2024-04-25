@@ -29,7 +29,7 @@ const router = {
     "/HistoryAdmin": HistoryAdmin,
     "/AddHistory": AddHistory,
     "/QuizzesAdmin": QuizzesAdmin,
-    "/ReicpesAdmin": RecipesAdmin,
+    "/RecipesAdmin": RecipesAdmin,
     "/RegisterAdmin": Admins,
     "/AddQuizzes": AddQuizzes
 };
@@ -76,4 +76,4 @@ function test() {
     render(e.detail)
 }
 
-export { startRouter }
+export { startRouter };

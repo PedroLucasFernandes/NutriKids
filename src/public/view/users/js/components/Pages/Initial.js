@@ -1,6 +1,6 @@
 export default function InitialUser() {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/User/Initial.css"
+    test.href = "../../../../../css/User/Initial.css";
     const root = document.getElementById('root');
     const header = document.createElement('header');
     const main = document.createElement('main')
@@ -12,12 +12,12 @@ export default function InitialUser() {
     const form = document.createElement('form');
     const footer = document.createElement('footer');
 
-    header.innerHTML = "NutriKids"
-    container.id = "container"
-    img.src = "./images/logoInicial.png"
+    header.innerHTML = "NutriKids";
+    container.id = "container";
+    img.src = "./images/logoInicial.png";
     input.placeholder = "Apelido";
     button.innerHTML = "Entrar";
-    footer.innerHTML = "Administrativo"
+    footer.innerHTML = "Administrativo";
 
     form.appendChild(input);
     form.appendChild(button);
@@ -32,12 +32,12 @@ export default function InitialUser() {
     form.addEventListener("submit", (e) => {
         e.preventDefault()
 
-        const event = new CustomEvent("pageChange", { detail: "/Main" })
+        const event = new CustomEvent("pageChange", { detail: "/Main" });
 
         container.innerHTML = "";
 
 
-        window.dispatchEvent(event)
+        window.dispatchEvent(event);
     })
 
     footer.addEventListener("click", () => {
@@ -46,14 +46,5 @@ export default function InitialUser() {
         window.dispatchEvent(event);
     })
 
-    return root
-}
-
-function Logar() {
-    const event = new CustomEvent("pageChange", { detail: "/Main" })
-
-    container.innerHTML = "";
-
-
-    window.dispatchEvent(event)
+    return root;
 }

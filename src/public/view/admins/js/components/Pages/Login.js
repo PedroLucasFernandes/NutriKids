@@ -1,11 +1,10 @@
-import footer from "../../../../users/js/components/footer/footer.js";
-import Header from "../header/header.js"
+import Header from "../header/header.js";
 
 export default function Login() {
     const root = document.getElementById('root');
-    root.innerHTML = ""
+    root.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Login.css"
+    test.href = "../../../../../css/Admin/Login.css";
 
     const divContent = document.createElement('div');
     const main = document.createElement('main');
@@ -18,14 +17,14 @@ export default function Login() {
     const button = document.createElement('button');
     const footer = document.createElement('footer');
 
-    divContent.id = "login"
+    divContent.id = "login";
     image.src = "./images/logo.png";
     h3.innerHTML = "Setor Administrativo";
     inputUser.placeholder = "Usuário";
     inputPassword.placeholder = "Senha";
-    inputPassword.type = "password"
+    inputPassword.type = "password";
     button.innerHTML = "Entrar";
-    footer.innerHTML = "Usuário"
+    footer.innerHTML = "Usuário";
 
     form.appendChild(inputUser);
     form.appendChild(inputPassword);
@@ -36,16 +35,16 @@ export default function Login() {
         // const event = new CustomEvent("pageChange", {detail: "/Admin"})
 
         // window.dispatchEvent(event)
-        e.preventDefault()
+        e.preventDefault();
         const username = inputUser.value;
         const password = inputPassword.value;
 
-        login(username,password)
+        login(username,password);
     })
 
     footer.addEventListener("click", function() {
         root.innerHTML = ""
-        const event = new CustomEvent("pageChange", {detail: "/"})
+        const event = new CustomEvent("pageChange", {detail: "/"});
 
             window.dispatchEvent(event);
     })
@@ -57,11 +56,11 @@ export default function Login() {
     main.appendChild(div);
     root.appendChild(Header());
     root.appendChild(main);
-    root.appendChild(footer)
+    root.appendChild(footer);
 
 
 
-    return root
+    return root;
 }
 
 async function login(username, password) {
@@ -79,12 +78,12 @@ async function login(username, password) {
             document.cookie = "";
         }
         else {
-            const event = new CustomEvent("pageChange", {detail: "/Admin"})
+            const event = new CustomEvent("pageChange", {detail: "/Admin"});
 
             window.dispatchEvent(event);
         }
     }
     catch(error) {
-        console.error(`Erro na requisição: ${error}`)
+        console.error(`Erro na requisição: ${error}`);
     }
 }

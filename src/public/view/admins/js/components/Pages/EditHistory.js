@@ -3,7 +3,7 @@ import ModalHistory from "../modal/ModalHistory.js";
 
 export default function EditHistory(id) {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Add.css"
+    test.href = "../../../../../css/Admin/Add.css";
     const root = document.getElementById('root');
     root.innerHTML = "";
 
@@ -29,24 +29,24 @@ export default function EditHistory(id) {
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Comics.innerHTML = "Quadrinhos atuais:";
-    h4History.innerHTML = "Historia:"
+    h4History.innerHTML = "Historia:";
     inputFile.type = "file";
-    inputFile.id = "file"
-    buttonNewComics.innerHTML = "novo quadrinho"
-    divAddImage.id = "image"
-    buttonNewComics.accept = "image/*"
-    buttonNewComics.multiple = true
+    inputFile.id = "file";
+    buttonNewComics.innerHTML = "novo quadrinho";
+    divAddImage.id = "image";
+    buttonNewComics.accept = "image/*";
+    buttonNewComics.multiple = true;
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
     divContent.id = "admin";
     // divHistory.innerHTML = "Insira uma capa primeiro"
-    divHistory.classList.add("divItens")
+    divHistory.classList.add("divItens");
     divAddImage.id = "div-image";
     inputTitle.id = "title";
-    inputHistory.id = "history"
-    divHistory.id = "itens"
+    inputHistory.id = "history";
+    divHistory.id = "itens";
 
-    updateHistory(id)
+    updateHistory(id);
 
     form.appendChild(h4Image);
     form.appendChild(inputFile);
@@ -58,41 +58,39 @@ export default function EditHistory(id) {
     form.appendChild(divHistory);
     form.appendChild(buttonAdd);
 
-    main.appendChild(form)
-    main.appendChild(h4Back)
+    main.appendChild(form);
+    main.appendChild(h4Back);
 
-    const arrayImg = []
+    const arrayImg = [];
 
     inputFile.addEventListener("change", function (e) {
-        divHistory.innerHTML = ""
+        divHistory.innerHTML = "";
 
         const inputTarget = e.target;
         const file = inputTarget.files[0];
 
-        arrayImg.push(file)
-        console.log(arrayImg)
+        arrayImg.push(file);
+        console.log(arrayImg);
 
         divHistory.appendChild(divAddImage);
         divHistory.appendChild(buttonNewComics);
-    })
+    });
 
     buttonNewComics.addEventListener("click", function (e) {
-        e.preventDefault()
+        e.preventDefault();
         root.appendChild(ModalHistory(arrayImg));
-    })
+    });
 
     buttonAdd.addEventListener("click", async function (e) {
-        e.preventDefault()
-        const title = inputTitle.value;
-        const history = inputHistory.value;
+        e.preventDefault();
 
         const formData = new FormData();
-        formData.append("title", inputTitle.value)
-        formData.append("story", inputHistory.value)
-        formData.append("created_by", 1)
-        formData.append("updated_by", 1)
+        formData.append("title", inputTitle.value);
+        formData.append("story", inputHistory.value);
+        formData.append("created_by", 1);
+        formData.append("updated_by", 1);
         // formData.append("file", arrayImg)
-        arrayImg.forEach(img => formData.append("file", img))
+        arrayImg.forEach(img => formData.append("file", img));
         
         console.log(formData.entries());
 
@@ -101,13 +99,13 @@ export default function EditHistory(id) {
         } catch (error) {
             console.error(`Erro na requisição: ${error}`);
         }
-    })
+    });
 
     h4Back.addEventListener("click", function () {
-        const event = new CustomEvent("pageChange", { detail: "/HistoryAdmin" })
+        const event = new CustomEvent("pageChange", { detail: "/HistoryAdmin" });
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
@@ -118,18 +116,18 @@ export default function EditHistory(id) {
 
 async function updateHistory(item) {
     try {
-        console.log(item)
-        console.log(`http://localhost:3000/api/history/:`,item)
-        const response = await fetch(`http://localhost:3000/api/history/${item}`)
+        console.log(item);
+        console.log(`http://localhost:3000/api/history/:`,item);
+        const response = await fetch(`http://localhost:3000/api/history/${item}`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
         }
 
-        const data = await response.json()
-        console.log(data)
+        const data = await response.json();
+        console.log(data);
 
-        return renderEdit(data)
+        return renderEdit(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
@@ -159,7 +157,7 @@ function renderEdit(data){
 }
 
 async function addHistory(formData) {
-    console.log(formData)
+    console.log(formData);
 
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
@@ -170,16 +168,16 @@ async function addHistory(formData) {
             // headers: {
             //     "Content-Type": contentType
             // }
-        })
+        });
 
         if (!response.status) {
             throw new Error('Erro na requisição');
         }
 
         const data = await response.json();
-        console.log(data)
+        console.log(data);
     }
     catch (error) {
-        console.error(`Erro na requisição: ${error}`)
+        console.error(`Erro na requisição: ${error}`);
     }
 }
