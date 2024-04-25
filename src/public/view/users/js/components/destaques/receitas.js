@@ -1,3 +1,5 @@
+import makeRecipe from "../Pages/makeRecipe.js";
+
 export default function receita() {
     const divMain = document.createElement('div')
     const img = document.createElement('img');
@@ -15,17 +17,15 @@ export default function receita() {
     divDestaque.classList.add("conjunto");
     div.classList.add("destaques");
 
-    esquerdaH3.innerHTML = "<";
-    div.appendChild(esquerdaH3);
+    div.id = "cereja"
 
     for (let i = 0; i < 2; i++) {
-        const quadrado = document.createElement('div');
-        quadrado.classList.add("quadrado");
-        div.appendChild(quadrado);
-    }
+        // const quadrado = document.createElement('div');
+        // quadrado.classList.add("quadrado");
+        // div.appendChild(quadrado);
 
-    direitaH3.innerHTML = ">";
-    div.appendChild(direitaH3);
+        getRecipe(i)
+    }
 
     btnVerMais.innerHTML = "Ver mais!";
 
@@ -48,4 +48,51 @@ export default function receita() {
     })
 
     return divMain;
+}
+
+async function getRecipe(i) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/recipe/`);
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+
+        const data = await response.json()
+        console.log(data)
+
+        render(data[i])
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
+    }
+}
+
+function render(data) {
+    console.log(data)
+
+    const divtest = document.getElementById('cereja')
+
+    const div = document.createElement("div")
+    div.classList.add("box")
+
+    const title = document.createElement("h3");
+    const img = document.createElement("img");
+
+    console.log(data)
+    console.log(data.title)
+    title.innerHTML = data.title;
+    title.style.fontSize = "15px"
+    img.src = `./uploads/${data.image_path}`;
+
+    div.addEventListener('click', function () {
+        console.log(data)
+        makeRecipe(data)
+    })
+
+    div.appendChild(title);
+    div.appendChild(img);
+
+    divtest.appendChild(div)
+
 }

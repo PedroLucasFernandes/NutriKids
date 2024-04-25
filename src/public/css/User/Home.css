@@ -108,16 +108,16 @@ main img {
 .box {
     display: flex;
     flex-direction: column;
-    width: 150;
-    height: 200px;
-    background-color: var(--cor7);
+    width: 150px;
+    height: 170px;
+    background-color: var(--cor5);
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
 .box img {
-    width: 100px;
+    width: 130px;
 }
 
 .destaques {

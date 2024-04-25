@@ -15,17 +15,11 @@ export default function jogos() {
     div.classList.add("destaques");
     divDestaque.classList.add("conjunto");
 
-    esquerdaH3.innerHTML = "<";
-    div.appendChild(esquerdaH3);
-
     for (let i = 0; i < 2; i++) {
         const quadrado = document.createElement('div');
         quadrado.classList.add("quadrado");
         div.appendChild(quadrado);
     }
-
-    direitaH3.innerHTML = ">";
-    div.appendChild(direitaH3);
 
     btnVerMais.innerHTML = "Ver mais!";
 

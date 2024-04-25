@@ -18,6 +18,7 @@ export default function History() {
     h3.innerHTML = "Historias:";
     divBox.id = "box"
     main.id = "main"
+    div.id = "container"
 
     const menu = ["Inicio", "Jogos", "Quizzes", "Receitas"]
 
