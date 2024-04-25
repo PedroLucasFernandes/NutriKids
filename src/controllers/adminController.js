@@ -9,7 +9,7 @@ const adminController = {
     const { username, password } = req.body;
 
     try {
-      const foundAdmin = await adminService.toLocateAdminByUsername(username);
+      const foundAdmin = await adminService.getAdminByUsername(username);
 
       console.log(`AQUI1: ${foundAdmin.login}`);
 
@@ -59,7 +59,7 @@ const adminController = {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const foundAdmin = await adminService.toLocateAdminByUsername(decoded.username);
+      const foundAdmin = await adminService.getAdminByUsername(decoded.username);
 
       if (!foundAdmin) {
         return res.status(401).json({ error: 'admin não encontrado' });
@@ -71,6 +71,35 @@ const adminController = {
     } catch (error) {
       console.error(`${error.message}`);
       res.status(401).json({ error: 'falha na autenticação' });
+    }
+  },
+
+  async getAllAdmins(req, res) {
+    try {
+      const allAdmins = await adminService.getAllAdmins();
+
+      res.status(200).json(allAdmins);
+    } catch (error) {
+      console.error(`${error.message}`);
+      res.status(500).json({ error: 'erro ao tentar buscar todos os administradores' });
+    }
+  
+  },
+
+  async getAdminById(req, res) {
+    const { id } = req.params;
+
+    try {
+      const admin = await adminService.getAdminById(id);
+
+      if (!admin) {
+        return res.status(404).json({ error: 'administrador não existe' });
+      }
+
+      res.status(200).json(admin);
+    } catch (error) {
+      console.error(`${error.message}`);
+      res.status(500).json({ error: 'erro ao tentar buscar administrador' });
     }
   }
 };
@@ -87,5 +116,11 @@ module.exports = adminController;
 
 //rotas que requerem cookie de sessão (adquirido por meio da autenticação (login)):
 //testar confirmLogin:
-//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/admin
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA2ODcwMCwiZXhwIjoxNzE0MDcyMzAwfQ.G1RL18GkjBY5cTUbBf_CMyii2vMHTHpYinwp6KzYPdI" http://localhost:3000/api/admin
 //curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsImlhdCI6MTcxMzgxOTU5NiwiZXhwIjoxNzEzODIzMTk2fQ.UdfPlCIjhb8gFgMGBTKKwERQ-8iRNrx1O_5IkyGqtJI" http://localhost:3000/api/admin
+
+//testar getAllAdmins:
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA2ODcwMCwiZXhwIjoxNzE0MDcyMzAwfQ.G1RL18GkjBY5cTUbBf_CMyii2vMHTHpYinwp6KzYPdI" http://localhost:3000/api/admin/all
+
+//testar getAdminById:
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA2ODcwMCwiZXhwIjoxNzE0MDcyMzAwfQ.G1RL18GkjBY5cTUbBf_CMyii2vMHTHpYinwp6KzYPdI" http://localhost:3000/api/admin/1
