@@ -11,7 +11,7 @@ const adminController = {
     try {
       const foundAdmin = await adminService.toLocateAdminByUsername(username);
 
-      if (!foundAdmin | !foundAdmin.password) {
+      if (!foundAdmin || !foundAdmin.password) {
         return res.status(401).json({ error: 'admin não encontrado ou senha não disponível' });
       }
 
