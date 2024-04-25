@@ -3,9 +3,9 @@ import ModalRecipes from "../modal/ModalRecipes.js";
 
 export default function RecipesAdmin() {
     const root = document.getElementById('root');
-    root.innerHTML = ""
+    root.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Secao.css"
+    test.href = "../../../../../css/Admin/Secao.css";
 
     const main = document.createElement('main');
     const h3 = document.createElement('h3');
@@ -19,9 +19,9 @@ export default function RecipesAdmin() {
     h4.innerHTML = "Voltar";
     divContent.id = "admin";
     divHistory.classList.add("divItens");
-    divHistory.id = "funciona"
+    divHistory.id = "funciona";
 
-    getRecipes()
+    getRecipes();
 
     main.appendChild(h3);
     main.appendChild(divHistory);
@@ -30,19 +30,19 @@ export default function RecipesAdmin() {
 
     buttonAddHistory.addEventListener("click", () => {
         root.appendChild(ModalRecipes());
-    })
+    });
 
     h4.addEventListener("click", function () {
-        const event = new CustomEvent("pageChange", { detail: "/Admin" })
+        const event = new CustomEvent("pageChange", { detail: "/Admin" });
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
-    root.appendChild(divContent)
+    root.appendChild(divContent);
 
-    return root
+    return root;
 }
 
 async function getRecipes() {
@@ -53,10 +53,10 @@ async function getRecipes() {
             throw new Error('Erro na requisição');
         }
 
-        const data = await response.json()
-        console.log(data)
+        const data = await response.json();
+        console.log(data);
 
-        return render(data)
+        return render(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
@@ -64,11 +64,11 @@ async function getRecipes() {
 }
 
 function render(data) {
-    const sla = document.getElementById('funciona')
+    const sla = document.getElementById('funciona');
 
     for (const item of data) {
-        const div = document.createElement("div")
-        div.classList.add("box")
+        const div = document.createElement("div");
+        div.classList.add("box");
 
         const title = document.createElement("h3");
         const img = document.createElement("img");
@@ -76,22 +76,22 @@ function render(data) {
         const btnEdit = document.createElement("button");
         const btnDelete = document.createElement("button");
 
-        btnEdit.innerHTML = "✏️"
-        btnDelete.innerHTML = "🗑️"
-        divbtn.id = "btn"
+        btnEdit.innerHTML = "✏️";
+        btnDelete.innerHTML = "🗑️";
+        divbtn.id = "btn";
 
-        console.log(data)
-        console.log(item.title)
+        console.log(data);
+        console.log(item.title);
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
 
         btnEdit.addEventListener('click', function () {
-            console.log(item)
-            editRecipe(item)
+            console.log(item);
+            editRecipe(item);
         })
 
         btnDelete.addEventListener('click', function () {
-            deleterecipe(item.id)
+            deleterecipe(item.id);
         })
 
         divbtn.appendChild(btnEdit);
@@ -101,7 +101,7 @@ function render(data) {
         div.appendChild(img);
         div.appendChild(divbtn);
 
-        sla.appendChild(div)
+        sla.appendChild(div);
     }
 }
 
@@ -140,19 +140,19 @@ function editRecipe(data) {
     const button = document.createElement('button');
     
 
-    console.log(data.image_path)
+    console.log(data.image_path);
 
     h3.innerHTML = "Editar Receita";
     close.innerHTML = "X";
     button.innerHTML = "COnfirmar";
-    modal.id = "modal"
-    modalContent.id = "modal-content"
+    modal.id = "modal";
+    modalContent.id = "modal-content";
     h4Ingredients.innerHTML = "Ingredientes:";
-    h4ModoDePreparo.innerHTML = "Modo de preparo:"
-    h4explication.innerHTML = "Rendimento:"
+    h4ModoDePreparo.innerHTML = "Modo de preparo:";
+    h4explication.innerHTML = "Rendimento:";
     h4Capa.innerHTML = "Capa:";
-    inputImg.type = "file"
-    h4Title.innerHTML = "Titulo:"
+    inputImg.type = "file";
+    h4Title.innerHTML = "Titulo:";
 
     inputTitle.value = data.title;
     inputIngredients.value = data.ingredients;
@@ -173,39 +173,39 @@ function editRecipe(data) {
     modalContent.appendChild(inputExplication);
     modalContent.appendChild(button);
 
-    const imgFile = []
+    const imgFile = [];
 
     inputImg.addEventListener("change", function(e){
         const file = inputImg.files[0];
 
-        imgFile.push(file)
+        imgFile.push(file);
     }) 
 
     button.addEventListener("click", async function (e) {
-        e.preventDefault()
+        e.preventDefault();
         // const title = inputTitle.value;
         // const history = inputHistory.value;
 
         if (imgFile.length === 0) {
-            imgFile.push(data.image_path)
-            console.log(imgFile)
+            imgFile.push(data.image_path);
+            console.log(imgFile);
         }
 
         const formData = new FormData();
-        formData.append("title", inputTitle.value)
-        formData.append("ingredients", inputIngredients.value)
-        formData.append("instructions", textModoDePreparo.value)
-        formData.append("yield", inputExplication.value)
-        formData.append("created_by", 1)
-        formData.append("updated_by", 1)
+        formData.append("title", inputTitle.value);
+        formData.append("ingredients", inputIngredients.value);
+        formData.append("instructions", textModoDePreparo.value);
+        formData.append("yield", inputExplication.value);
+        formData.append("created_by", 1);
+        formData.append("updated_by", 1);
         // formData.append("file", inputImg)
-        imgFile.forEach(img => formData.append("file", img))
+        imgFile.forEach(img => formData.append("file", img));
 
         console.log(formData);
 
         try {
             modal.innerHTML = "";
-            modal.style.display = "none"
+            modal.style.display = "none";
             await updatedRecipe(formData, data.id);
         } catch (error) {
             console.error(`Erro na requisição: ${error}`);
@@ -214,15 +214,14 @@ function editRecipe(data) {
 
     close.addEventListener("click", function() {
         modal.innerHTML = "";
-        modal.style.display = "none"
+        modal.style.display = "none";
     })
 
     modal.appendChild(modalContent);
-    root.appendChild(modal)
+    root.appendChild(modal);
 }
 
 async function updatedRecipe(formdata, id) {
-    console.log(`http://localhost:3000/api/recipe/${id}`)
     try {
         const response = await fetch(`http://localhost:3000/api/recipe/${id}`, {
             method: 'PUT',

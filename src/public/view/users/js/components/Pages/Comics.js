@@ -2,7 +2,7 @@ export default function comicsMain(comic) {
     const main = document.getElementById('main');
     main.innerHTML = ""
     const test = document.getElementById('css');
-    test.href = "../../../../../css/User/mainHistory.css"
+    test.href = "../../../../../css/User/mainHistory.css";
 
     const h3Title = document.createElement('h3');
     const div = document.createElement('div');
@@ -13,18 +13,18 @@ export default function comicsMain(comic) {
     const h4prev = document.createElement('h4');
     const divImage = document.createElement('div');
 
-    let currentIndex = 0
-    const comicsBox = comic.comics
+    let currentIndex = 0;
+    const comicsBox = comic.comics;
 
     h3Title.innerHTML = comic.title;
-    h4next.innerHTML = ">"
-    h4prev.innerHTML = "<"
-    h4Count.innerHTML = `Quadrinho: ${currentIndex + 1} de ${comicsBox.length}`
-    h4Back.innerHTML = "Voltar"
+    h4next.innerHTML = ">";
+    h4prev.innerHTML = "<";
+    h4Count.innerHTML = `Quadrinho: ${currentIndex + 1} de ${comicsBox.length}`;
+    h4Back.innerHTML = "Voltar";
 
-    console.log(comicsBox[0].image_path)
+    console.log(comicsBox[0].image_path);
     img.src = `./uploads/${comicsBox[0].image_path}`;
-    div.appendChild(img)
+    div.appendChild(img);
 
     divImage.appendChild(h4prev);
     divImage.appendChild(div);
@@ -39,9 +39,9 @@ export default function comicsMain(comic) {
 
         const imageObj = comicsBox[currentIndex];
         img.src = `./uploads/${imageObj.image_path}`;
-        h4Count.innerHTML = `Quadrinho: ${currentIndex + 1} de ${comicsBox.length}`
-        div.appendChild(img)
-    })
+        h4Count.innerHTML = `Quadrinho: ${currentIndex + 1} de ${comicsBox.length}`;
+        div.appendChild(img);
+    });
 
     h4prev.addEventListener('click', function() {
         if (currentIndex === 0) {
@@ -52,20 +52,20 @@ export default function comicsMain(comic) {
 
         const imageObj = comic.comics[currentIndex];
         img.src = `./uploads/${imageObj.image_path}`;
-        h4Count.innerHTML = `Quadrinho: ${currentIndex + 1} de ${comicsBox.length}`
-        div.appendChild(img)
-    })
+        h4Count.innerHTML = `Quadrinho: ${currentIndex + 1} de ${comicsBox.length}`;
+        div.appendChild(img);
+    });
 
     h4Back.addEventListener("click", ()=> {
         const event = new CustomEvent("pageChange", {detail: "/Historias"});
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
     
     main.appendChild(h3Title);
     main.appendChild(divImage);
     main.appendChild(h4Count);
     main.appendChild(h4Back);
 
-    return main
+    return main;
 }

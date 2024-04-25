@@ -3,9 +3,9 @@ import EditHistory from "./EditHistory.js";
 
 export default function HistoryAdmin() {
     const root = document.getElementById('root');
-    root.innerHTML = ""
+    root.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Secao.css"
+    test.href = "../../../../../css/Admin/Secao.css";
 
     const main = document.createElement('main');
     const h3 = document.createElement('h3');
@@ -18,8 +18,8 @@ export default function HistoryAdmin() {
     buttonAddHistory.innerHTML = "Criar nova História";
     h4.innerHTML = "Voltar";
     divContent.id = "admin";
-    divHistory.classList.add("divItens")
-    divHistory.id = "funciona"
+    divHistory.classList.add("divItens");
+    divHistory.id = "funciona";
 
     getHistory()
 
@@ -29,22 +29,22 @@ export default function HistoryAdmin() {
     main.appendChild(h4);
 
     buttonAddHistory.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", { detail: "/AddHistory" })
+        const event = new CustomEvent("pageChange", { detail: "/AddHistory" });
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     h4.addEventListener("click", function () {
-        const event = new CustomEvent("pageChange", { detail: "/Admin" })
+        const event = new CustomEvent("pageChange", { detail: "/Admin" });
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
-    root.appendChild(divContent)
+    root.appendChild(divContent);
 
-    return root
+    return root;
 }
 
 async function getHistory() {
@@ -55,10 +55,10 @@ async function getHistory() {
             throw new Error('Erro na requisição');
         }
 
-        const data = await response.json()
-        console.log(data)
+        const data = await response.json();
+        console.log(data);
 
-        return render(data)
+        return render(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
@@ -66,11 +66,11 @@ async function getHistory() {
 }
 
 function render(data) {
-    const sla = document.getElementById('funciona')
+    const sla = document.getElementById('funciona');
 
     for (const item of data) {
-        const div = document.createElement("div")
-        div.classList.add("box")
+        const div = document.createElement("div");
+        div.classList.add("box");
 
         const title = document.createElement("h3");
         const img = document.createElement("img");
@@ -78,21 +78,21 @@ function render(data) {
         const btnEdit = document.createElement("button");
         const btnDelete = document.createElement("button");
 
-        btnEdit.innerHTML = "✏️"
-        btnDelete.innerHTML = "🗑️"
-        divbtn.id = "btn"
+        btnEdit.innerHTML = "✏️";
+        btnDelete.innerHTML = "🗑️";
+        divbtn.id = "btn";
 
-        console.log(data)
-        console.log(item.title)
+        console.log(data);
+        console.log(item.title);
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
 
         btnEdit.addEventListener('click', function () {
-            EditHistory(item.id)
+            EditHistory(item.id);
         })
 
         btnDelete.addEventListener('click', function() {
-            deleteHistory(item.id)
+            deleteHistory(item.id);
         })
 
         divbtn.appendChild(btnEdit);
@@ -102,7 +102,7 @@ function render(data) {
         div.appendChild(img);
         div.appendChild(divbtn);
 
-        sla.appendChild(div)
+        sla.appendChild(div);
     }
 }
 

@@ -5,17 +5,17 @@ export default function ModalQuizzes() {
     const h4Question = document.createElement('h4');
     const inputQuestion = document.createElement('input');
     const h4explication = document.createElement('h4');
-    const inputExplication = document.createElement('textarea') 
+    const inputExplication = document.createElement('textarea') ;
     const close = document.createElement('h2');
     const button = document.createElement('button');
 
     h3.innerHTML = "Nova pergunta";
     close.innerHTML = "X";
     button.innerHTML = "Adicionar ao quiz";
-    modal.id = "modal"
-    modalContent.id = "modal-content"
+    modal.id = "modal";
+    modalContent.id = "modal-content";
     h4Question.innerHTML = "Questão:";
-    h4explication.innerHTML = "Explicação"
+    h4explication.innerHTML = "Explicação";
 
     modalContent.appendChild(close);
     modalContent.appendChild(h3);
@@ -27,12 +27,12 @@ export default function ModalQuizzes() {
         const h4Resp = document.createElement('p');
         const inputResp = document.createElement('input');
         const check = document.createElement('input');
-        const gabarito = document.createElement('p')
+        const gabarito = document.createElement('p');
 
         h4Resp.innerHTML = "Resposta:";
         check.type = "checkbox";
-        check.id = `resp${i}`
-        gabarito.innerHTML = "Gabarito"
+        check.id = `resp${i}`;
+        gabarito.innerHTML = "Gabarito";
 
         div.appendChild(h4Resp);
         div.appendChild(inputResp);
@@ -50,13 +50,13 @@ export default function ModalQuizzes() {
 
     close.addEventListener("click", function() {
         modal.innerHTML = "";
-        modal.style.display = "none"
-    })
+        modal.style.display = "none";
+    });
 
     button.addEventListener('click', function() {
         modal.innerHTML = "";
-        modal.style.display = "none"
-    })
+        modal.style.display = "none";
+    });
 
-    return modal
+    return modal;
 }

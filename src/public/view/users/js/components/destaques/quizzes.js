@@ -1,12 +1,12 @@
 export default function quizzes() {
-    const divMain = document.createElement('div')
+    const divMain = document.createElement('div');
     const img = document.createElement('img');
     const h3 = document.createElement('h3');
     const div = document.createElement('div');
     const divDestaque = document.createElement('div');
     const esquerdaH3 = document.createElement('h3');
     const direitaH3 = document.createElement('h3');
-    const btnVerMais = document.createElement('button')
+    const btnVerMais = document.createElement('button');
 
     img.src = "./images/couve1.png";
 
@@ -23,7 +23,7 @@ export default function quizzes() {
 
     btnVerMais.innerHTML = "Ver mais!";
 
-    divMain.classList.add("secao2")
+    divMain.classList.add("secao2");
 
     divDestaque.appendChild(h3);
     divDestaque.appendChild(div);
@@ -33,13 +33,13 @@ export default function quizzes() {
     divMain.appendChild(divDestaque);
 
     btnVerMais.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Quizzes"})
+        const event = new CustomEvent("pageChange", {detail: "/Quizzes"});
         const main = document.querySelector("main");
 
         main.innerHTML = "";
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     return divMain;
 }

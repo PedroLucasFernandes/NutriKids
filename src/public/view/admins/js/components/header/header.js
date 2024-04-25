@@ -10,15 +10,15 @@ export default function Header() {
     h4.innerHTML = "Sair";
 
     h4.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Sair"})
+        const event = new CustomEvent("pageChange", {detail: "/Sair"});
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     div.appendChild(h2);
     div.appendChild(img);
     div.appendChild(h4);
-    header.appendChild(div)
+    header.appendChild(div);
     
-    return header
+    return header;
 }

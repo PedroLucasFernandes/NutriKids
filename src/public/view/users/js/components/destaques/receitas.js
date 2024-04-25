@@ -1,14 +1,14 @@
 import makeRecipe from "../Pages/makeRecipe.js";
 
 export default function receita() {
-    const divMain = document.createElement('div')
+    const divMain = document.createElement('div');
     const img = document.createElement('img');
     const h3 = document.createElement('h3');
     const div = document.createElement('div');
     const divDestaque = document.createElement('div');
     const esquerdaH3 = document.createElement('h3');
     const direitaH3 = document.createElement('h3');
-    const btnVerMais = document.createElement('button')
+    const btnVerMais = document.createElement('button');
 
     img.src = "./images/cerejaReceita1.png";
 
@@ -17,19 +17,19 @@ export default function receita() {
     divDestaque.classList.add("conjunto");
     div.classList.add("destaques");
 
-    div.id = "cereja"
+    div.id = "cereja";
 
     for (let i = 0; i < 2; i++) {
         // const quadrado = document.createElement('div');
         // quadrado.classList.add("quadrado");
         // div.appendChild(quadrado);
 
-        getRecipe(i)
+        getRecipe(i);
     }
 
     btnVerMais.innerHTML = "Ver mais!";
 
-    divMain.classList.add("secao2")
+    divMain.classList.add("secao2");
 
     divDestaque.appendChild(h3);
     divDestaque.appendChild(div);
@@ -39,13 +39,13 @@ export default function receita() {
     divMain.appendChild(divDestaque);
 
     btnVerMais.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", {detail: "/Receitas"})
+        const event = new CustomEvent("pageChange", {detail: "/Receitas"});
         const main = document.querySelector("main");
 
         main.innerHTML = "";
 
-        window.dispatchEvent(event)
-    })
+        window.dispatchEvent(event);
+    });
 
     return divMain;
 }
@@ -58,10 +58,10 @@ async function getRecipe(i) {
             throw new Error('Erro na requisição');
         }
 
-        const data = await response.json()
-        console.log(data)
+        const data = await response.json();
+        console.log(data);
 
-        render(data[i])
+        render(data[i]);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
@@ -69,30 +69,29 @@ async function getRecipe(i) {
 }
 
 function render(data) {
-    console.log(data)
+    console.log(data);
 
-    const divtest = document.getElementById('cereja')
+    const divtest = document.getElementById('cereja');
 
-    const div = document.createElement("div")
-    div.classList.add("box")
+    const div = document.createElement("div");
+    div.classList.add("box");
 
     const title = document.createElement("h3");
     const img = document.createElement("img");
 
-    console.log(data)
-    console.log(data.title)
+    console.log(data);
+    console.log(data.title);
     title.innerHTML = data.title;
-    title.style.fontSize = "15px"
+    title.style.fontSize = "15px";
     img.src = `./uploads/${data.image_path}`;
 
     div.addEventListener('click', function () {
-        console.log(data)
-        makeRecipe(data)
-    })
+        console.log(data);
+        makeRecipe(data);
+    });
 
     div.appendChild(title);
     div.appendChild(img);
 
     divtest.appendChild(div)
-
 }

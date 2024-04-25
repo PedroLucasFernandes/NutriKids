@@ -7,12 +7,12 @@ import footer from "../footer/footer.js";
 
 export default function Home() {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/User/Home.css"
+    test.href = "../../../../../css/User/Home.css";
     const root = document.getElementById("root");
     root.innerHTML = "";
 
     const main = document.createElement('main');
-    main.id = "main"
+    main.id = "main";
 
     const menu = ["Jogos", "Quizzes", "Historias", "Receitas"];
 

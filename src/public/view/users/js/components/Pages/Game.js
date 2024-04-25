@@ -5,7 +5,7 @@ export default function Game() {
     const root = document.getElementById('root');
     root.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/User/Secao.css"
+    test.href = "../../../../../css/User/Secao.css";
 
     const main = document.createElement('main');
     const img = document.createElement('img');
@@ -15,9 +15,9 @@ export default function Game() {
     
     img.src = "./images/cereja2.png";
     h3.innerHTML = "Jogos:";
-    divBox.id = "box"
+    divBox.id = "box";
 
-    const menu = ["Inicio", "Quizzes", "Historias", "Receitas"]
+    const menu = ["Inicio", "Quizzes", "Historias", "Receitas"];
 
     for (let i = 0; i < 3; i++) {
         const quadrado = document.createElement('div');
