@@ -3,7 +3,7 @@ export default function Main() {
     const h3 = document.createElement('h3');
     const container = document.createElement('div');
 
-    h3.innerHTML = "Olá admin, bem vindo!"
+    h3.innerHTML = "Olá admin, bem vindo!";
 
     const menu = [
         {
@@ -15,7 +15,7 @@ export default function Main() {
             img: "./images/iconQuizzes.png"
         },
         {
-            name: "Reicpes",
+            name: "Recipes",
             img: "./images/iconRecipe.png"
         },
         {
@@ -30,26 +30,26 @@ export default function Main() {
         const h3 = document.createElement('h3');
         const next = document.createElement('img');
 
-        div.classList.add('secao')
+        div.classList.add('secao');
         icon.src = item.img;
         h3.innerHTML = item.name;
         next.src = "./images/next.png";
-        next.classList.add('next')
+        next.classList.add('next');
 
         div.addEventListener("click", () => {
-            const event = new CustomEvent("pageChange", {detail: `/${item.name}Admin`})
+            const event = new CustomEvent("pageChange", {detail: `/${item.name}Admin`});
     
-            window.dispatchEvent(event)
+            window.dispatchEvent(event);
         })
         
         div.appendChild(icon);
         div.appendChild(h3);
         div.appendChild(next);
-        container.appendChild(div)
+        container.appendChild(div);
     }
 
     main.appendChild(h3);
     main.appendChild(container);
 
-    return main
+    return main;
 }

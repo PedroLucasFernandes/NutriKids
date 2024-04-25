@@ -90,6 +90,14 @@ button {
     color: white;
 }
 
+footer {
+    text-align: center;
+    font-size: 30px;
+    color: var(--cor4);
+    font-family: var(--font2);
+    cursor: pointer;
+}
+
 @media (min-width: 1700px) {
     main img {
         width: 700px;
