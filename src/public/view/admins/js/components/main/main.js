@@ -15,7 +15,7 @@ export default function Main() {
             img: "./images/iconQuizzes.png"
         },
         {
-            name: "Reicpes",
+            name: "Recipes",
             img: "./images/iconRecipe.png"
         },
         {
