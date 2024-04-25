@@ -186,10 +186,10 @@ function editRecipe(data) {
         // const title = inputTitle.value;
         // const history = inputHistory.value;
 
-        if (imgFile.length === 0) {
-            imgFile.push(data.image_path);
-            console.log(imgFile);
-        }
+        // if (imgFile.length === 0) {
+        //     imgFile.push(data.image_path)
+        //     console.log(imgFile)
+        // }
 
         const formData = new FormData();
         formData.append("title", inputTitle.value);

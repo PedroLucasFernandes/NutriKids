@@ -133,17 +133,16 @@ const recipeController = {
         }
 
         //file não pode ser null (?):
-        if (!file) {
-            return res.status(400).json({ error: 'imagem para capa da receita é obrigatória' });
-        }
-
-        const banner = file[0].filename;
+         // if (!file) {
+        //     return res.status(400).json({ error: 'imagem da receita é obrigatória' });
+        // }
 
         try {
             const oldRecipe = await recipeService.getRecipeById(id_number);
+            const banner = file?.[0]?.filename || oldRecipe.image_path;
             const updatedHistory = await recipeService.updateRecipe(id_number, title, banner, yield, ingredients, instructions, updated_by_number);
 
-            if (fs.existsSync(`src/public/uploads/${oldRecipe.image_path}`)) {
+            if (updatedHistory.image_path !== oldRecipe.image_path && fs.existsSync(`src/public/uploads/${oldRecipe.image_path}`)) {
                 //se o processo de atualizar receita falhar, o arquivo de imagem da receita é excluído
                 try {
                     fs.unlinkSync(`src/public/uploads/${oldRecipe.image_path}`);
