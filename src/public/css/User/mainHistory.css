@@ -64,10 +64,27 @@ main {
     align-items: center;
     font-family: var(--font1);
     gap: 50px;
+    margin: 20px;
+}
+
+main div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+main div h4 {
+    font-size: 30px;
 }
 
 main img {
-    width: 250px;
+    width: 220px;
+}
+
+main h4 {
+    font-size: 20px;
+    color: var(--cor3);
 }
 
 h3 {
