@@ -42,9 +42,27 @@ app.use('/api/game', gameRoutes);
 
 app.use(express.static('src/public'));
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/view/index.html');
-});
+function sendIndexFile(req, res) {
+    res.sendFile(__dirname + '/public/view/index.html')
+}
+
+app.get('/', sendIndexFile);
+app.get('/Historias', sendIndexFile);
+app.get('/Inicio', sendIndexFile);
+app.get('/Main', sendIndexFile);
+app.get('/menuHamburguer', sendIndexFile);
+app.get('/Jogos', sendIndexFile);
+app.get('/Quizzes', sendIndexFile);
+app.get('/Receitas', sendIndexFile);
+app.get('/Login', sendIndexFile);
+app.get('/Admin', sendIndexFile);
+app.get('/Sair', sendIndexFile);
+app.get('/HistoryAdmin', sendIndexFile);
+app.get('/AddHistory', sendIndexFile);
+app.get('/QuizzesAdmin', sendIndexFile);
+app.get('/ReicpesAdmin', sendIndexFile);
+app.get('/RegisterAdmin', sendIndexFile);
+app.get('/AddQuizzes', sendIndexFile);
 
 app.listen(process.env.PORT, () => {
     console.log(`servidor está rodando em http://localhost:${process.env.PORT}`);

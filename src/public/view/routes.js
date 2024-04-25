@@ -39,17 +39,41 @@ function render(page) {
 }
 
 function startRouter() {
+    // window.location.reload(test())
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            console.log('A página foi recarregada.');
+        } else {
+            console.log('A página não foi recarregada.');
+        }
+    });
+
     window.addEventListener("pageChange", (e) => {
         console.log(e.detail)
         window.history.pushState(undefined, undefined, e.detail)
+
         render(e.detail)
     })
 
-    window.addEventListener("popstate", function(e){
+    window.addEventListener("popstate", function (e) {
         const newPage = window.location.pathname;
-        
+
         render(newPage)
     })
+
+
+    // ler o valor da URL e acionar a mudança de página
+    const event = new CustomEvent("pageChange", { detail: location.pathname })
+
+    window.dispatchEvent(event)
+}
+
+function test() {
+    console.log(e.detail)
+    window.history.pushState(undefined, undefined, e.detail)
+
+    render(e.detail)
 }
 
 export { startRouter }
