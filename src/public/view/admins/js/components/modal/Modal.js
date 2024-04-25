@@ -6,7 +6,7 @@ export default function Modal() {
     const questionInput = document.createElement('input')
     const explanation = document.createElement('h4');
     const inputExplanation = document.createElement('input');
-    const close = document.createElement('h3');
+    const close = document.createElement('h2');
     const button = document.createElement('button');
 
     h3.innerHTML = "Nova pergunta";

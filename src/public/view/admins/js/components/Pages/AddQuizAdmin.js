@@ -18,6 +18,7 @@ export default function AddQuizzes() {
     const buttonNewQuizzes = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
+    h4Back.id = "backButton";
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
 

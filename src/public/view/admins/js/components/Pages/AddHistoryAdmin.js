@@ -21,6 +21,7 @@ export default function AddHistory() {
     const buttonNewComics = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
+    h4Back.id = "backButton";
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
     const form = document.createElement('form');
@@ -29,7 +30,7 @@ export default function AddHistory() {
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Comics.innerHTML = "Quadrinhos atuais:";
-    h4History.innerHTML = "Historia:";
+    h4History.innerHTML = "História:";
     inputFile.type = "file";
     buttonNewComics.innerHTML = "novo quadrinho";
     divAddImage.id = "image";

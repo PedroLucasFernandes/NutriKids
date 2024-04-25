@@ -51,6 +51,12 @@ header div h4 {
     color: white;
     font-size: 60px;
     font-family: var(--font1);
+    cursor: pointer;
+}
+
+header div h4:hover{
+    color: var(--cor5);
+    transition-duration: 0.2s;
 }
 
 header img {
@@ -92,12 +98,19 @@ button {
     font-family: var(--font2);
     font-size: 20px;
     color: white;
+    cursor: pointer;
+    margin: auto;
+    display: block;
 }
 
 h4 {
     font-size: 25px;
     color: var(--cor5);
     font-family: var(--font2);
+}
+
+#backButton{
+    cursor: pointer;
 }
 
 #div-image {
@@ -162,6 +175,11 @@ h4 {
 #modal-content img {
     width: 800px;
     height: 500px;
+}
+
+#modal-content h2 {
+    user-select: none;
+    cursor: pointer;
 }
 
 #box-image {

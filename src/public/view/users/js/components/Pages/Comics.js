@@ -9,8 +9,11 @@ export default function comicsMain(comic) {
     const img = document.createElement('img');
     const h4Count = document.createElement('h4')
     const h4Back = document.createElement('h4');
+    h4Back.id = "backButton";
     const h4next = document.createElement('h4');
+    h4next.id = "nextButton";
     const h4prev = document.createElement('h4');
+    h4prev.id = "prevButton";
     const divImage = document.createElement('div');
 
     let currentIndex = 0;

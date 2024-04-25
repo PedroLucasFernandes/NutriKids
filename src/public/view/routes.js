@@ -39,7 +39,6 @@ function render(page) {
 }
 
 function startRouter() {
-    // window.location.reload(test())
 
     window.addEventListener('pageshow', function(event) {
         if (event.persisted) {

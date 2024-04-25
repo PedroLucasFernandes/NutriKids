@@ -42,6 +42,15 @@ header {
     padding: 20px;
 }
 
+header li{
+    cursor: pointer;
+}
+
+header li:hover{
+    color: var(--cor5);
+    transition-duration: 0.2s;
+}
+
 #menu {
     width: 50px;
 }
@@ -85,6 +94,10 @@ main img {
 main h4 {
     font-size: 20px;
     color: var(--cor3);
+}
+
+#backButton, #prevButton, #nextButton{
+    cursor: pointer;
 }
 
 h3 {
@@ -136,6 +149,12 @@ footer h4 {
     font-family: var(--font1);
     text-align: center;
     color: white;
+}
+
+footer li:hover{
+    color: var(--cor3);
+    transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 #box {

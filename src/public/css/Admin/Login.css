@@ -75,7 +75,8 @@ input {
     width: 200px;
     height: 40px;
     background-color: var(--cor8);
-    border: none;
+    border: 1px solid var(--cor4);
+    border-radius: 8px;
     padding: 10px;
 }
 
@@ -88,13 +89,17 @@ button {
     font-family: var(--font2);
     font-size: 20px;
     color: white;
+    cursor: pointer;
 }
 
 footer {
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     color: var(--cor4);
     font-family: var(--font2);
+}
+
+footer a {
     cursor: pointer;
 }
 

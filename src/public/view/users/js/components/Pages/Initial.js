@@ -17,7 +17,7 @@ export default function InitialUser() {
     img.src = "./images/logoInicial.png";
     input.placeholder = "Apelido";
     button.innerHTML = "Entrar";
-    footer.innerHTML = "Administrativo";
+    footer.innerHTML = "<a>Administrativo</a>";
 
     form.appendChild(input);
     form.appendChild(button);

@@ -11,7 +11,7 @@ export default function ModalAdmin() {
     const close = document.createElement('h2');
     const button = document.createElement('button');
 
-    h3.innerHTML = "NOvo Administrador";
+    h3.innerHTML = "Novo Administrador";
     close.innerHTML = "X";
     button.innerHTML = "Criar novo admin";
     modal.id = "modal";

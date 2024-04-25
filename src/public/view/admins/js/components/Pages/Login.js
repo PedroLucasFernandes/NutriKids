@@ -24,7 +24,7 @@ export default function Login() {
     inputPassword.placeholder = "Senha";
     inputPassword.type = "password";
     button.innerHTML = "Entrar";
-    footer.innerHTML = "Usuário";
+    footer.innerHTML = "<a>Usuário</a>";
 
     form.appendChild(inputUser);
     form.appendChild(inputPassword);
