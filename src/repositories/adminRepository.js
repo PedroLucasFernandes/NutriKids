@@ -5,8 +5,7 @@ const adminModel = require('../models/adminModel.js');
 
 const adminRepository = {
   //criando o objeto adminRepository
-  async findAdminByUsername(username) {
-    //criando o método findAdminByUsername que recebe username como parâmetro. ele executa o método getAdminByUsername do adminModel, passando username como argumento.
+  async getAdminByUsername(username) {
     try {
       return await adminModel.getAdminByUsername(username);
       //retornando a execução do método getAdminByUsername do adminModel, passando username como argumento.
@@ -18,17 +17,24 @@ const adminRepository = {
     }
   },
 
-  async addNewAdmin(name, username, password, created_by, updated_by) {
-    //criando o método addNewAdmin que recebe name, username, password, created_by, updated_by como parâmetros
+  async getAllAdmins() {
     try {
-      return await adminModel.createAdmin(name, username, password, created_by, updated_by);
-    } catch(error) {
+      return await adminModel.getAllAdmins();
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async getAdminById(id) {
+    try {
+      return await adminModel.getAdminById(id);
+    } catch (error) {
       throw error;
     }
   }
 };
 
-//criando o objeto adminRepository com os métodos findAdminByUsername e  addNewAdmin. o método findAdminByUsername executa o método getAdminByUsername do adminModel, passando username como argumento. o método addNewAdmin executa o método createAdmin do adminModel, passando name, username e password como argumentos. é um intermediário entre o controller e o model.
+
 
 module.exports = adminRepository;
 
