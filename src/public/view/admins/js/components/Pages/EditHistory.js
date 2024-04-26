@@ -46,7 +46,7 @@ export default function EditHistory(id) {
     inputHistory.id = "history";
     divHistory.id = "itens";
 
-    updateHistory(id);
+    getHistory(id);
 
     form.appendChild(h4Image);
     form.appendChild(inputFile);
@@ -95,7 +95,7 @@ export default function EditHistory(id) {
         console.log(formData.entries());
 
         try {
-            await addHistory(formData);
+            await updateHistory(formData, id);
         } catch (error) {
             console.error(`Erro na requisição: ${error}`);
         }
@@ -114,7 +114,7 @@ export default function EditHistory(id) {
     return root;
 }
 
-async function updateHistory(item) {
+async function getHistory(item) {
     try {
         console.log(item);
         console.log(`http://localhost:3000/api/history/:`,item);
@@ -156,14 +156,15 @@ function renderEdit(data){
     }
 }
 
-async function addHistory(formData) {
+async function updateHistory(formData, id) {
     console.log(formData);
+    console.log(id);
 
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
-        const response = await fetch('http://localhost:3000/api/history', {
-            method: 'POST',
+        const response = await fetch(`http://localhost:3000/api/history/${id}`, {
+            method: 'PUT',
             body: formData,
             // headers: {
             //     "Content-Type": contentType
