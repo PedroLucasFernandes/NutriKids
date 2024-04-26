@@ -1,7 +1,7 @@
 import Header from "../header/header.js";
-import ModalHistory from "../modal/ModalHistory.js";
+import ModalQuizzes from "../modal/ModalQuizzes.js";
 
-export default function EditHistory(id) {
+export default function editQuiz(id) {
     const test = document.getElementById('css');
     test.href = "../../../../../css/Admin/Add.css";
     const root = document.getElementById('root');
@@ -9,43 +9,37 @@ export default function EditHistory(id) {
 
     const main = document.createElement('main');
     const h3 = document.createElement('h3');
-    const divHistory = document.createElement('div');
+    const divQuiz = document.createElement('div');
     const h4Image = document.createElement('h4');
-    const imageButton = document.createElement('button')
     const h4Title = document.createElement('h4');
-    const h4Comics = document.createElement('h4');
-    const h4History = document.createElement('h4');
+    const h4Questions = document.createElement('h4');
     const inputFile = document.createElement('input');
     const inputTitle = document.createElement('input');
-    const inputHistory = document.createElement('textarea')
-    const buttonNewComics = document.createElement('button');
+    const buttonNewQuestions = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
     const form = document.createElement('form');
 
-    h3.innerHTML = "Crie/Edite uma História";
+    h3.innerHTML = "Crie/Edite um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
-    h4Comics.innerHTML = "Quadrinhos atuais:";
-    h4History.innerHTML = "Historia:";
+    h4Questions.innerHTML = "Perguntas atuais:";
     inputFile.type = "file";
     inputFile.id = "file";
-    buttonNewComics.innerHTML = "novo quadrinho";
+    buttonNewQuestions.innerHTML = "Nova Questão";
     divAddImage.id = "image";
-    buttonNewComics.accept = "image/*";
-    buttonNewComics.multiple = true;
+    buttonNewQuestions.accept = "image/*";
+    buttonNewQuestions.multiple = true;
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
     h4Back.id = "backButton";
     divContent.id = "admin";
-    // divHistory.innerHTML = "Insira uma capa primeiro"
-    divHistory.classList.add("divItens");
+    divQuiz.classList.add("divItens");
     divAddImage.id = "div-image";
     inputTitle.id = "title";
-    inputHistory.id = "history";
-    divHistory.id = "itens";
+    divQuiz.id = "itens";
 
     updateHistory(id);
 
@@ -53,10 +47,8 @@ export default function EditHistory(id) {
     form.appendChild(inputFile);
     form.appendChild(h4Title);
     form.appendChild(inputTitle);
-    form.appendChild(h4History);
-    form.appendChild(inputHistory);
-    form.appendChild(h4Comics);
-    form.appendChild(divHistory);
+    form.appendChild(h4Questions);
+    form.appendChild(divQuiz);
     form.appendChild(buttonAdd);
 
     main.appendChild(form);
@@ -65,7 +57,7 @@ export default function EditHistory(id) {
     const arrayImg = [];
 
     inputFile.addEventListener("change", function (e) {
-        divHistory.innerHTML = "";
+        divQuiz.innerHTML = "";
 
         const inputTarget = e.target;
         const file = inputTarget.files[0];
@@ -73,13 +65,13 @@ export default function EditHistory(id) {
         arrayImg.push(file);
         console.log(arrayImg);
 
-        divHistory.appendChild(divAddImage);
-        divHistory.appendChild(buttonNewComics);
+        divQuiz.appendChild(divAddImage);
+        divQuiz.appendChild(buttonNewQuestions);
     });
 
-    buttonNewComics.addEventListener("click", function (e) {
+    buttonNewQuestions.addEventListener("click", function (e) {
         e.preventDefault();
-        root.appendChild(ModalHistory(arrayImg));
+        root.appendChild(ModalQuizzes(arrayImg));
     });
 
     buttonAdd.addEventListener("click", async function (e) {
@@ -87,7 +79,6 @@ export default function EditHistory(id) {
 
         const formData = new FormData();
         formData.append("title", inputTitle.value);
-        formData.append("story", inputHistory.value);
         formData.append("created_by", 1);
         formData.append("updated_by", 1);
         // formData.append("file", arrayImg)
@@ -103,7 +94,7 @@ export default function EditHistory(id) {
     });
 
     h4Back.addEventListener("click", function () {
-        const event = new CustomEvent("pageChange", { detail: "/HistoryAdmin" });
+        const event = new CustomEvent("pageChange", { detail: "/QuizzesAdmin" });
 
         window.dispatchEvent(event);
     });
@@ -118,8 +109,8 @@ export default function EditHistory(id) {
 async function updateHistory(item) {
     try {
         console.log(item);
-        console.log(`http://localhost:3000/api/history/:`,item);
-        const response = await fetch(`http://localhost:3000/api/history/${item}`);
+        console.log(`http://localhost:3000/api/quiz/:`,item);
+        const response = await fetch(`http://localhost:3000/api/quiz/${item}`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
@@ -137,13 +128,11 @@ async function updateHistory(item) {
 
 function renderEdit(data){
     const inputTitle = document.getElementById("title");
-    const inputHistory = document.getElementById("history");
     const divitens = document.getElementById('itens')
     const inputFile = document.getElementById("file");
 
     // inputFile.value = data.image_path;
     inputTitle.value = data.title;
-    inputHistory.value = data.story;
 
     for(const item of data.comics) {
         const boxImage = document.createElement('img');
@@ -163,7 +152,7 @@ async function addHistory(formData) {
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
-        const response = await fetch('http://localhost:3000/api/history', {
+        const response = await fetch('http://localhost:3000/api/quiz', {
             method: 'POST',
             body: formData,
             // headers: {

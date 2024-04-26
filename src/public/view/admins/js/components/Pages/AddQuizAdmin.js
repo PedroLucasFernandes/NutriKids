@@ -25,7 +25,7 @@ export default function AddQuizzes() {
     h3.innerHTML = "Crie/Edite um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
-    h4Quizzes.innerHTML = "Quadrinhos atuais:";
+    h4Quizzes.innerHTML = "Perguntas atuais:";
     inputFile.type = "file";
     buttonNewQuizzes.innerHTML = "Nova pergunta";
     divAddImage.id = "image";
