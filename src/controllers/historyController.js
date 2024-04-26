@@ -135,16 +135,16 @@ const historyController = {
             return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
         }
 
-        //file não pode ser null (?):
-        if(!file) {
-            return res.status(400).json({ error: 'imagens para a história são obrigatórias' });
-        }
-
-        const banner = file[0].filename;
-        const comics = file.slice(1);
+        //file pode, sim, ser null, caso o cliente não queira atualizar as imagens (banner e/ou comics)
 
         try { 
             const oldHistory = await historyAndComicService.findHistoryWithComicsById(id_number);
+
+            const banner = file?.[0]?.filename || oldHistory.image_path;
+            //aqui, se o cliente não enviar nenhuma imagem, o valor de file será undefined, e, portanto, file?.[0]?.filename será undefined, e, portanto, banner será oldHistory.image_path.
+            const comics = file?.slice(1) || oldHistory.comics.map(comic => comic.image_path);
+            //aqui, se o cliente não enviar nenhuma imagem, o valor de file será undefined, e, portanto, file?.slice(1) será undefined, e, portanto o código após o || será executado, e, portanto, comics será um array de strings com os caminhos das imagens dos quadrinhos da história antiga.
+
             const updatedHistory = await historyAndComicService.updateHistoryWithComics(id_number, title, story, updated_by_number, banner, comics);
             
             if (fs.existsSync(`src/public/uploads/${oldHistory.image_path}`)) {
@@ -221,14 +221,12 @@ module.exports = historyController;
 // http://localhost:3000/api/history
 
 //testar updateHistory:
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA5MTgzMSwiZXhwIjoxNzE0MDk1NDMxfQ.CPADVZYYC3feV6EGayoknZJaKUtuYZU1mUWd_KN3OIw" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=história teste WWWWWC" \
+// -F "title=HISTÓRIA DO PEDRO MUDOU DE TÍTULO, PORÉM NÃO DE COMICS NEM BANNER" \
 // -F "story=o texto da história..." \
 // -F "updated_by=1" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
-// http://localhost:3000/api/history/90
+// http://localhost:3000/api/history/94
 
 
 //testar deleteHistory:
