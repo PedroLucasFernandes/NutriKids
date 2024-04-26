@@ -139,12 +139,12 @@ module.exports = recipeController;
 //updateRecipe: 
 // curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDE2NTE1NCwiZXhwIjoxNzE0MTY4NzU0fQ.rL_QBpTzi-NtGY01dspzSlrWG7ap_OVqeG_msGceZO0" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=receita teste3" \
+// -F "title=cachorro quente do vovô" \
 // -F "yield=4 porções" \
-// -F "ingredients=ingredientes da receita mudaram DE NOVO, porém, imagem não..." \
+// -F "ingredients=ingredientes da receita" \
 // -F "instructions=modo de preparo da receita..." \
 // -F "updated_by=1" \
-// http://localhost:3000/api/recipe/3
+// http://localhost:3000/api/recipe/8
 
 //deleteRecipe:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDE2NTE1NCwiZXhwIjoxNzE0MTY4NzU0fQ.rL_QBpTzi-NtGY01dspzSlrWG7ap_OVqeG_msGceZO0" http://localhost:3000/api/recipe/2
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDE2NTE1NCwiZXhwIjoxNzE0MTY4NzU0fQ.rL_QBpTzi-NtGY01dspzSlrWG7ap_OVqeG_msGceZO0" http://localhost:3000/api/recipe/8
