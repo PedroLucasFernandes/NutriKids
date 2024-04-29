@@ -14,6 +14,7 @@ export default function ModalRecipes() {
     const inputExplication = document.createElement('textarea') 
     const close = document.createElement('h2');
     const button = document.createElement('button');
+    const div = document.createElement('div');
 
     h3.innerHTML = "Criar nova Receita";
     close.innerHTML = "X";
@@ -29,18 +30,23 @@ export default function ModalRecipes() {
 
     modalContent.appendChild(close);
     modalContent.appendChild(h3);
-    modalContent.appendChild(h4Capa);
-    modalContent.appendChild(inputImg);
-    modalContent.appendChild(h4Title);
-    modalContent.appendChild(inputTitle);
-    modalContent.appendChild(h4Ingredients);
-    modalContent.appendChild(inputIngredients);
-    modalContent.appendChild(h4ModoDePreparo);
-    modalContent.appendChild(textModoDePreparo);
-    modalContent.appendChild(h4explication);
-    modalContent.appendChild(inputExplication);
+    
+    div.appendChild(h4Capa);
+    div.appendChild(inputImg);
+    div.appendChild(h4Title);
+    div.appendChild(inputTitle);
+    div.appendChild(h4Ingredients);
+    div.appendChild(inputIngredients);
+    div.appendChild(h4ModoDePreparo);
+    div.appendChild(textModoDePreparo);
+    div.appendChild(h4explication);
+    div.appendChild(inputExplication);
+    div.appendChild(inputExplication);
+
+    modalContent.appendChild(div);
     modalContent.appendChild(button);
 
+    modal.appendChild(modalContent);
     modal.appendChild(modalContent);
 
     const imgFile = [];

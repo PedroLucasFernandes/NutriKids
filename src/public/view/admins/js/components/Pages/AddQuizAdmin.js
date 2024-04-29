@@ -3,7 +3,7 @@ import ModalQuizzes from "../modal/ModalQuizzes.js";
 
 export default function AddQuizzes() {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Add.css";
+    test.href = "../../../../../css/Admin/AddQuiz.css";
     const root = document.getElementById('root');
     root.innerHTML = "";
 
@@ -36,9 +36,10 @@ export default function AddQuizzes() {
     divContent.id = "admin";
     divQuizzes.classList.add("divItens");
     divAddImage.id = "div-image";
+    buttonNewQuestions.id = "btn"
 
-    divQuizzes.appendChild(divAddImage);
-    divQuizzes.appendChild(buttonNewQuestions);
+    // divQuizzes.appendChild(divAddImage);
+    // divQuizzes.appendChild(buttonNewQuestions);
 
     main.appendChild(h3);
     main.appendChild(h4Image);
@@ -47,6 +48,7 @@ export default function AddQuizzes() {
     main.appendChild(inputTitle);
     main.appendChild(h4Quizzes);
     main.appendChild(divQuizzes);
+    main.appendChild(buttonNewQuestions);
     main.appendChild(buttonAdd);
     main.appendChild(h4Back);
 
@@ -95,6 +97,8 @@ export default function AddQuizzes() {
             const questionElement = document.createElement('div');
             const questionText = document.createElement('span');
             const deleteButton = document.createElement('button');
+            const div = document.createElement('div');
+            div.id = "container"
     
             questionElement.classList.add('question-container');
             questionText.textContent = `Pergunta ${index + 1}: ${question.question_text}`;
@@ -108,10 +112,11 @@ export default function AddQuizzes() {
     
             questionElement.appendChild(questionText);
             questionElement.appendChild(deleteButton);
-            divQuizzes.appendChild(questionElement);
+            div.appendChild(questionElement);
+            divQuizzes.appendChild(div);
         });
     
-        divQuizzes.appendChild(buttonNewQuestions);
+        // divQuizzes.appendChild(buttonNewQuestions);
     }
 
     divContent.appendChild(Header());

@@ -3,7 +3,7 @@ import ModalQuizzes from "../modal/ModalQuizzes.js";
 
 export default function editQuiz(id) {
     const test = document.getElementById('css');
-    test.href = "../../../../../css/Admin/Add.css";
+    test.href = "../../../../../css/Admin/AddQuiz.css";
     const root = document.getElementById('root');
     root.innerHTML = "";
 
@@ -43,17 +43,17 @@ export default function editQuiz(id) {
 
     updateQuiz(id);
 
-    form.appendChild(h4Image);
-    form.appendChild(inputFile);
-    form.appendChild(h4Title);
-    form.appendChild(inputTitle);
-    form.appendChild(h4Questions);
-    form.appendChild(divQuizzes);
-    divQuizzes.appendChild(buttonNewQuestions);
-    form.appendChild(buttonAdd);
+    
     
     main.appendChild(h3);
-    main.appendChild(form);
+    main.appendChild(h4Image);
+    main.appendChild(inputFile);
+    main.appendChild(h4Title);
+    main.appendChild(inputTitle);
+    main.appendChild(h4Questions);
+    main.appendChild(divQuizzes);
+    main.appendChild(buttonNewQuestions);
+    main.appendChild(buttonAdd);
     main.appendChild(h4Back);
 
     const arrayQuestions = [];
@@ -117,7 +117,7 @@ export default function editQuiz(id) {
             divQuizzes.appendChild(questionElement);
         });
     
-        divQuizzes.appendChild(buttonNewQuestions);
+        // divQuizzes.appendChild(buttonNewQuestions);
     }
 
     divContent.appendChild(Header());
