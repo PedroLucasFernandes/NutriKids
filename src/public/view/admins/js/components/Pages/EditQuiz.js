@@ -9,7 +9,7 @@ export default function editQuiz(id) {
 
     const main = document.createElement('main');
     const h3 = document.createElement('h3');
-    const divQuiz = document.createElement('div');
+    const divQuizzes = document.createElement('div');
     const h4Image = document.createElement('h4');
     const h4Title = document.createElement('h4');
     const h4Questions = document.createElement('h4');
@@ -22,7 +22,7 @@ export default function editQuiz(id) {
     const divAddImage = document.createElement('div');
     const form = document.createElement('form');
 
-    h3.innerHTML = "Crie/Edite um Quiz";
+    h3.innerHTML = "Edite um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Questions.innerHTML = "Perguntas atuais:";
@@ -36,58 +36,39 @@ export default function editQuiz(id) {
     h4Back.innerHTML = "Voltar";
     h4Back.id = "backButton";
     divContent.id = "admin";
-    divQuiz.classList.add("divItens");
+    divQuizzes.classList.add("divItens");
     divAddImage.id = "div-image";
     inputTitle.id = "title";
-    divQuiz.id = "itens";
+    divQuizzes.id = "itens";
 
-    updateHistory(id);
+    updateQuiz(id);
 
     form.appendChild(h4Image);
     form.appendChild(inputFile);
     form.appendChild(h4Title);
     form.appendChild(inputTitle);
     form.appendChild(h4Questions);
-    form.appendChild(divQuiz);
+    form.appendChild(divQuizzes);
+    divQuizzes.appendChild(buttonNewQuestions);
     form.appendChild(buttonAdd);
-
+    
+    main.appendChild(h3);
     main.appendChild(form);
     main.appendChild(h4Back);
 
+    const arrayQuestions = [];
     const arrayImg = [];
 
     inputFile.addEventListener("change", function (e) {
-        divQuiz.innerHTML = "";
-
         const inputTarget = e.target;
         const file = inputTarget.files[0];
 
         arrayImg.push(file);
-
-        divQuiz.appendChild(divAddImage);
-        divQuiz.appendChild(buttonNewQuestions);
     });
 
-    buttonNewQuestions.addEventListener("click", function (e) {
+    buttonNewQuestions.addEventListener("click", function(e) {
         e.preventDefault();
-        root.appendChild(ModalQuizzes(arrayImg));
-    });
-
-    buttonAdd.addEventListener("click", async function (e) {
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append("title", inputTitle.value);
-        formData.append("created_by", 1);
-        formData.append("updated_by", 1);
-        // formData.append("file", arrayImg)
-        arrayImg.forEach(img => formData.append("file", img));
-        
-        try {
-            await addHistory(formData);
-        } catch (error) {
-            console.error(`Erro na requisição: ${error}`);
-        }
+        root.appendChild(ModalQuizzes(arrayQuestions, updateQuizzesDiv));
     });
 
     h4Back.addEventListener("click", function () {
@@ -96,6 +77,49 @@ export default function editQuiz(id) {
         window.dispatchEvent(event);
     });
 
+    buttonAdd.addEventListener("click", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", inputTitle.value);
+        formData.append("questions", JSON.stringify(arrayQuestions));
+        formData.append("created_by", 1);
+        formData.append("updated_by", 1);
+        arrayImg.forEach(img => formData.append("file", img));
+        
+        try {
+            await updateQuizData(id, formData);
+        } catch (error) {
+            console.error(`Erro na requisição: ${error}`);
+        }
+    });
+
+    function updateQuizzesDiv() {
+        divQuizzes.innerHTML = "";
+        
+        arrayQuestions.forEach((question, index) => {
+            const questionElement = document.createElement('div');
+            const questionText = document.createElement('span');
+            const deleteButton = document.createElement('button');
+    
+            questionElement.classList.add('question-container');
+            questionText.textContent = `Pergunta ${index + 1}: ${question.question_text}`;
+            deleteButton.textContent = "🗑️";
+            deleteButton.classList.add('delete-button');
+            
+            deleteButton.addEventListener('click', function() {
+                arrayQuestions.splice(index, 1);
+                updateQuizzesDiv();
+            });
+    
+            questionElement.appendChild(questionText);
+            questionElement.appendChild(deleteButton);
+            divQuizzes.appendChild(questionElement);
+        });
+    
+        divQuizzes.appendChild(buttonNewQuestions);
+    }
+
     divContent.appendChild(Header());
     divContent.appendChild(main);
     root.appendChild(divContent);
@@ -103,7 +127,7 @@ export default function editQuiz(id) {
     return root;
 }
 
-async function updateHistory(item) {
+async function updateQuiz(item) {
     try {
         const response = await fetch(`http://localhost:3000/api/quiz/${item}`);
 
@@ -122,35 +146,15 @@ async function updateHistory(item) {
 
 function renderEdit(data){
     const inputTitle = document.getElementById("title");
-    const divitens = document.getElementById('itens')
-    const inputFile = document.getElementById("file");
-
-    // inputFile.value = data.image_path;
     inputTitle.value = data.title;
-
-    for(const item of data.comics) {
-        const boxImage = document.createElement('img');
-        const divAddImage = document.createElement('div');
-        divAddImage.id = "box-image"
-        const div = document.getElementById('div-image');
-
-        boxImage.src = `./uploads/${item.image_path}`;
-        divAddImage.appendChild(boxImage);
-        divitens.appendChild(divAddImage);
-    }
 }
 
-async function addHistory(formData) {
+async function updateQuizData(id, formData) {
 
     try {
-        // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
-
-        const response = await fetch('http://localhost:3000/api/quiz', {
-            method: 'POST',
+        const response = await fetch(`http://localhost:3000/api/quiz/${id}`, {
+            method: 'PUT',
             body: formData,
-            // headers: {
-            //     "Content-Type": contentType
-            // }
         });
 
         if (!response.status) {

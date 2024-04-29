@@ -15,7 +15,7 @@ export default function AddQuizzes() {
     const h4Quizzes = document.createElement('h4');
     const inputFile = document.createElement('input');
     const inputTitle = document.createElement('input');
-    const buttonNewQuizzes = document.createElement('button');
+    const buttonNewQuestions = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
     h4Back.id = "backButton";
@@ -27,10 +27,10 @@ export default function AddQuizzes() {
     h4Title.innerHTML = "Título:";
     h4Quizzes.innerHTML = "Perguntas atuais:";
     inputFile.type = "file";
-    buttonNewQuizzes.innerHTML = "Nova pergunta";
+    buttonNewQuestions.innerHTML = "Nova pergunta";
     divAddImage.id = "image";
-    buttonNewQuizzes.accept = "image/*";
-    buttonNewQuizzes.multiple = true;
+    buttonNewQuestions.accept = "image/*";
+    buttonNewQuestions.multiple = true;
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
     divContent.id = "admin";
@@ -38,7 +38,7 @@ export default function AddQuizzes() {
     divAddImage.id = "div-image";
 
     divQuizzes.appendChild(divAddImage);
-    divQuizzes.appendChild(buttonNewQuizzes);
+    divQuizzes.appendChild(buttonNewQuestions);
 
     main.appendChild(h3);
     main.appendChild(h4Image);
@@ -61,7 +61,7 @@ export default function AddQuizzes() {
         arrayImg.push(file);
     });
 
-    buttonNewQuizzes.addEventListener("click", function(){
+    buttonNewQuestions.addEventListener("click", function(){
         root.appendChild(ModalQuizzes(arrayQuestions, updateQuizzesDiv));
     });
 
@@ -111,8 +111,8 @@ export default function AddQuizzes() {
             divQuizzes.appendChild(questionElement);
         });
     
-        divQuizzes.appendChild(buttonNewQuizzes);
-    }    
+        divQuizzes.appendChild(buttonNewQuestions);
+    }
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
