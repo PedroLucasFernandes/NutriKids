@@ -65,7 +65,6 @@ export default function AddHistory() {
         const file = inputTarget.files[0];
 
         arrayImg.push(file);
-        console.log(arrayImg);
 
         divHistory.appendChild(divAddImage);
         divHistory.appendChild(buttonNewComics);
@@ -87,20 +86,18 @@ export default function AddHistory() {
         // formData.append("file", arrayImg)
         arrayImg.forEach(img => formData.append("file", img));
         
-        console.log(formData.entries());
-
         try {
             await addHistory(formData);
         } catch (error) {
             console.error(`Erro na requisição: ${error}`);
         }
-    })
+    });
 
     h4Back.addEventListener("click", function () {
         const event = new CustomEvent("pageChange", { detail: "/HistoryAdmin" });
 
         window.dispatchEvent(event);
-    })
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
@@ -110,8 +107,6 @@ export default function AddHistory() {
 }
 
 async function addHistory(formData) {
-    console.log(formData);
-
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
@@ -126,9 +121,6 @@ async function addHistory(formData) {
         if (!response.status) {
             throw new Error('Erro na requisição');
         }
-
-        const data = await response.json();
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);

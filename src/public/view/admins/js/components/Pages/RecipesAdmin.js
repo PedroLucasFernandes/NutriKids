@@ -54,8 +54,6 @@ async function getRecipes() {
         }
 
         const data = await response.json();
-        console.log(data);
-
         return render(data);
     }
     catch (error) {
@@ -80,13 +78,10 @@ function render(data) {
         btnDelete.innerHTML = "🗑️";
         divbtn.id = "btn";
 
-        console.log(data);
-        console.log(item.title);
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
 
         btnEdit.addEventListener('click', function () {
-            console.log(item);
             editRecipe(item);
         })
 
@@ -110,10 +105,6 @@ async function deleterecipe(id) {
         const response = await fetch(`http://localhost:3000/api/recipe/${id}`, {
             method: 'DELETE'
         });
-
-        const data = await response.json();
-
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
@@ -139,9 +130,6 @@ function editRecipe(data) {
     const close = document.createElement('h2');
     const button = document.createElement('button');
     
-
-    console.log(data.image_path);
-
     h3.innerHTML = "Editar Receita";
     close.innerHTML = "X";
     button.innerHTML = "COnfirmar";
@@ -188,7 +176,6 @@ function editRecipe(data) {
 
         // if (imgFile.length === 0) {
         //     imgFile.push(data.image_path)
-        //     console.log(imgFile)
         // }
 
         const formData = new FormData();
@@ -200,8 +187,6 @@ function editRecipe(data) {
         formData.append("updated_by", 1);
         // formData.append("file", inputImg)
         imgFile.forEach(img => formData.append("file", img));
-
-        console.log(formData);
 
         try {
             modal.innerHTML = "";
@@ -227,10 +212,6 @@ async function updatedRecipe(formdata, id) {
             method: 'PUT',
             body: formdata
         });
-
-        const data = await response.json();
-
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);

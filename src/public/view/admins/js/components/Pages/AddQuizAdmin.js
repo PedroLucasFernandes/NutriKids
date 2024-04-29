@@ -15,22 +15,22 @@ export default function AddQuizzes() {
     const h4Quizzes = document.createElement('h4');
     const inputFile = document.createElement('input');
     const inputTitle = document.createElement('input');
-    const buttonNewQuizzes = document.createElement('button');
+    const buttonNewQuestions = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
     h4Back.id = "backButton";
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
 
-    h3.innerHTML = "Crie/Edite um Quiz";
+    h3.innerHTML = "Crie um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Quizzes.innerHTML = "Perguntas atuais:";
     inputFile.type = "file";
-    buttonNewQuizzes.innerHTML = "Nova pergunta";
+    buttonNewQuestions.innerHTML = "Nova pergunta";
     divAddImage.id = "image";
-    buttonNewQuizzes.accept = "image/*";
-    buttonNewQuizzes.multiple = true;
+    buttonNewQuestions.accept = "image/*";
+    buttonNewQuestions.multiple = true;
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
     divContent.id = "admin";
@@ -38,7 +38,7 @@ export default function AddQuizzes() {
     divAddImage.id = "div-image";
 
     divQuizzes.appendChild(divAddImage);
-    divQuizzes.appendChild(buttonNewQuizzes);
+    divQuizzes.appendChild(buttonNewQuestions);
 
     main.appendChild(h3);
     main.appendChild(h4Image);
@@ -50,8 +50,19 @@ export default function AddQuizzes() {
     main.appendChild(buttonAdd);
     main.appendChild(h4Back);
 
-    buttonNewQuizzes.addEventListener("click", function(){
-        root.appendChild(ModalQuizzes());
+    const arrayQuestions = [];
+    const arrayImg = [];
+
+    inputFile.addEventListener("change", function (e) {
+
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        arrayImg.push(file);
+    });
+
+    buttonNewQuestions.addEventListener("click", function(){
+        root.appendChild(ModalQuizzes(arrayQuestions, updateQuizzesDiv));
     });
 
     h4Back.addEventListener("click", function () {
@@ -60,9 +71,68 @@ export default function AddQuizzes() {
         window.dispatchEvent(event);
     });
 
+    buttonAdd.addEventListener("click", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", inputTitle.value);
+        formData.append("questions", JSON.stringify(arrayQuestions));
+        formData.append("created_by", 1);
+        formData.append("updated_by", 1);
+        arrayImg.forEach(img => formData.append("file", img));
+        
+        try {
+            await addQuiz(formData);
+        } catch (error) {
+            console.error(`Erro na requisição: ${error}`);
+        }
+    });
+
+    function updateQuizzesDiv() {
+        divQuizzes.innerHTML = "";
+        
+        arrayQuestions.forEach((question, index) => {
+            const questionElement = document.createElement('div');
+            const questionText = document.createElement('span');
+            const deleteButton = document.createElement('button');
+    
+            questionElement.classList.add('question-container');
+            questionText.textContent = `Pergunta ${index + 1}: ${question.question_text}`;
+            deleteButton.textContent = "🗑️";
+            deleteButton.classList.add('delete-button');
+            
+            deleteButton.addEventListener('click', function() {
+                arrayQuestions.splice(index, 1);
+                updateQuizzesDiv();
+            });
+    
+            questionElement.appendChild(questionText);
+            questionElement.appendChild(deleteButton);
+            divQuizzes.appendChild(questionElement);
+        });
+    
+        divQuizzes.appendChild(buttonNewQuestions);
+    }
+
     divContent.appendChild(Header());
     divContent.appendChild(main);
     root.appendChild(divContent);
 
     return root;
+}
+
+async function addQuiz(formData) {
+    try {
+        const response = await fetch('http://localhost:3000/api/quiz', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
+    }
 }

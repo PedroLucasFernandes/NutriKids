@@ -53,8 +53,6 @@ export default function ModalRecipes() {
 
     button.addEventListener("click", async function (e) {
         e.preventDefault();
-        // const title = inputTitle.value;
-        // const history = inputHistory.value;
 
         const formData = new FormData();
         formData.append("title", inputTitle.value);
@@ -63,7 +61,6 @@ export default function ModalRecipes() {
         formData.append("yield", inputExplication.value);
         formData.append("created_by", 1);
         formData.append("updated_by", 1);
-        // formData.append("file", inputImg)
         imgFile.forEach(img => formData.append("file", img));
         
         console.log(formData.entries());

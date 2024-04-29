@@ -71,7 +71,6 @@ export default function EditHistory(id) {
         const file = inputTarget.files[0];
 
         arrayImg.push(file);
-        console.log(arrayImg);
 
         divHistory.appendChild(divAddImage);
         divHistory.appendChild(buttonNewComics);
@@ -93,8 +92,6 @@ export default function EditHistory(id) {
         // formData.append("file", arrayImg)
         arrayImg.forEach(img => formData.append("file", img));
         
-        console.log(formData.entries());
-
         try {
             await updateHistory(formData, id);
         } catch (error) {
@@ -117,8 +114,6 @@ export default function EditHistory(id) {
 
 async function getHistory(item) {
     try {
-        console.log(item);
-        console.log(`http://localhost:3000/api/history/:`,item);
         const response = await fetch(`http://localhost:3000/api/history/${item}`);
 
         if (!response.status) {
@@ -126,8 +121,6 @@ async function getHistory(item) {
         }
 
         const data = await response.json();
-        console.log(data);
-
         return renderEdit(data);
     }
     catch (error) {
@@ -158,9 +151,6 @@ function renderEdit(data){
 }
 
 async function updateHistory(formData, id) {
-    console.log(formData);
-    console.log(id);
-
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
@@ -176,8 +166,6 @@ async function updateHistory(formData, id) {
             throw new Error('Erro na requisição');
         }
 
-        const data = await response.json();
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
