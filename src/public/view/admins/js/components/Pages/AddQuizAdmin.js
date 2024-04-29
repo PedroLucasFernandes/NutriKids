@@ -22,7 +22,7 @@ export default function AddQuizzes() {
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
 
-    h3.innerHTML = "Crie/Edite um Quiz";
+    h3.innerHTML = "Crie um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Quizzes.innerHTML = "Perguntas atuais:";
@@ -81,8 +81,6 @@ export default function AddQuizzes() {
         formData.append("updated_by", 1);
         arrayImg.forEach(img => formData.append("file", img));
         
-        console.log(formData.entries());
-
         try {
             await addQuiz(formData);
         } catch (error) {
@@ -98,8 +96,6 @@ export default function AddQuizzes() {
 }
 
 async function addQuiz(formData) {
-    console.log(formData);
-
     try {
         const response = await fetch('http://localhost:3000/api/quiz', {
             method: 'POST',
@@ -109,9 +105,6 @@ async function addQuiz(formData) {
         if (!response.status) {
             throw new Error('Erro na requisição');
         }
-
-        const data = await response.json();
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);

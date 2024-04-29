@@ -63,7 +63,6 @@ export default function editQuiz(id) {
         const file = inputTarget.files[0];
 
         arrayImg.push(file);
-        console.log(arrayImg);
 
         divQuiz.appendChild(divAddImage);
         divQuiz.appendChild(buttonNewQuestions);
@@ -84,8 +83,6 @@ export default function editQuiz(id) {
         // formData.append("file", arrayImg)
         arrayImg.forEach(img => formData.append("file", img));
         
-        console.log(formData.entries());
-
         try {
             await addHistory(formData);
         } catch (error) {
@@ -108,8 +105,6 @@ export default function editQuiz(id) {
 
 async function updateHistory(item) {
     try {
-        console.log(item);
-        console.log(`http://localhost:3000/api/quiz/:`,item);
         const response = await fetch(`http://localhost:3000/api/quiz/${item}`);
 
         if (!response.status) {
@@ -117,7 +112,6 @@ async function updateHistory(item) {
         }
 
         const data = await response.json();
-        console.log(data);
 
         return renderEdit(data);
     }
@@ -147,7 +141,6 @@ function renderEdit(data){
 }
 
 async function addHistory(formData) {
-    console.log(formData);
 
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
@@ -164,8 +157,6 @@ async function addHistory(formData) {
             throw new Error('Erro na requisição');
         }
 
-        const data = await response.json();
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);

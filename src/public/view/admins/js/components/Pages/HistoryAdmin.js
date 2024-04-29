@@ -56,8 +56,6 @@ async function getHistory() {
         }
 
         const data = await response.json();
-        console.log(data);
-
         return render(data);
     }
     catch (error) {
@@ -82,8 +80,6 @@ function render(data) {
         btnDelete.innerHTML = "🗑️";
         divbtn.id = "btn";
 
-        console.log(data);
-        console.log(item.title);
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
 
@@ -113,11 +109,8 @@ async function deleteHistory(id) {
         });
 
         const data = await response.json();
-
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
     }
 }
-
