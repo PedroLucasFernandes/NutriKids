@@ -1,4 +1,4 @@
-export default function ModalQuizzes(arrayQuestions) {
+export default function ModalQuizzes(arrayQuestions, updateQuizzesDiv) {
     let correctAnswer;
     const modal = document.createElement('div');
     const modalContent= document.createElement('div');
@@ -88,6 +88,7 @@ export default function ModalQuizzes(arrayQuestions) {
 
         try {
             arrayQuestions.push(question);
+            updateQuizzesDiv();
         } catch (error) {
             console.error(`Erro em adicionar pergunta: ${error}`);
         }

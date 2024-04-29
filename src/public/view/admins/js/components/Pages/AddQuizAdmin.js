@@ -62,7 +62,7 @@ export default function AddQuizzes() {
     });
 
     buttonNewQuizzes.addEventListener("click", function(){
-        root.appendChild(ModalQuizzes(arrayQuestions));
+        root.appendChild(ModalQuizzes(arrayQuestions, updateQuizzesDiv));
     });
 
     h4Back.addEventListener("click", function () {
@@ -87,6 +87,32 @@ export default function AddQuizzes() {
             console.error(`Erro na requisição: ${error}`);
         }
     });
+
+    function updateQuizzesDiv() {
+        divQuizzes.innerHTML = "";
+        
+        arrayQuestions.forEach((question, index) => {
+            const questionElement = document.createElement('div');
+            const questionText = document.createElement('span');
+            const deleteButton = document.createElement('button');
+    
+            questionElement.classList.add('question-container');
+            questionText.textContent = `Pergunta ${index + 1}: ${question.question_text}`;
+            deleteButton.textContent = "🗑️";
+            deleteButton.classList.add('delete-button');
+            
+            deleteButton.addEventListener('click', function() {
+                arrayQuestions.splice(index, 1);
+                updateQuizzesDiv();
+            });
+    
+            questionElement.appendChild(questionText);
+            questionElement.appendChild(deleteButton);
+            divQuizzes.appendChild(questionElement);
+        });
+    
+        divQuizzes.appendChild(buttonNewQuizzes);
+    }    
 
     divContent.appendChild(Header());
     divContent.appendChild(main);

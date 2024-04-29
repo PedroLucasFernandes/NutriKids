@@ -107,8 +107,6 @@ async function deleteHistory(id) {
         const response = await fetch(`http://localhost:3000/api/history/${id}`, {
             method: 'DELETE'
         });
-
-        const data = await response.json();
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
