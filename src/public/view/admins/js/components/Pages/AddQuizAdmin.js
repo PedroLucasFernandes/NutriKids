@@ -50,8 +50,19 @@ export default function AddQuizzes() {
     main.appendChild(buttonAdd);
     main.appendChild(h4Back);
 
+    const arrayQuestions = [];
+    const arrayImg = [];
+
+    inputFile.addEventListener("change", function (e) {
+
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        arrayImg.push(file);
+    });
+
     buttonNewQuizzes.addEventListener("click", function(){
-        root.appendChild(ModalQuizzes());
+        root.appendChild(ModalQuizzes(arrayQuestions));
     });
 
     h4Back.addEventListener("click", function () {
@@ -60,9 +71,49 @@ export default function AddQuizzes() {
         window.dispatchEvent(event);
     });
 
+    buttonAdd.addEventListener("click", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", inputTitle.value);
+        formData.append("questions", JSON.stringify(arrayQuestions));
+        formData.append("created_by", 1);
+        formData.append("updated_by", 1);
+        arrayImg.forEach(img => formData.append("file", img));
+        
+        console.log(formData.entries());
+
+        try {
+            await addQuiz(formData);
+        } catch (error) {
+            console.error(`Erro na requisição: ${error}`);
+        }
+    });
+
     divContent.appendChild(Header());
     divContent.appendChild(main);
     root.appendChild(divContent);
 
     return root;
+}
+
+async function addQuiz(formData) {
+    console.log(formData);
+
+    try {
+        const response = await fetch('http://localhost:3000/api/quiz', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
+    }
 }

@@ -1,4 +1,5 @@
-export default function ModalQuizzes() {
+export default function ModalQuizzes(arrayQuestions) {
+    let correctAnswer;
     const modal = document.createElement('div');
     const modalContent= document.createElement('div');
     const h3 = document.createElement('h3'); 
@@ -32,6 +33,7 @@ export default function ModalQuizzes() {
         const gabarito = document.createElement('p');
 
         pResp.innerHTML = "Resposta:";
+        inputResp.id = `option${i}`;
         check.type = "checkbox";
         check.id = `resp${i}`;
         gabarito.innerHTML = "Gabarito";
@@ -40,6 +42,7 @@ export default function ModalQuizzes() {
             if (this.checked) {
                 for (let j = 1; j <= 4; j++) {
                     if (j !== i) {
+                        correctAnswer = i;
                         document.getElementById(`resp${j}`).checked = false;
                     }
                 }
@@ -65,7 +68,29 @@ export default function ModalQuizzes() {
         modal.style.display = "none";
     });
 
-    button.addEventListener('click', function() {
+    button.addEventListener("click", async function (e) {
+        e.preventDefault();
+
+        const option1 = document.getElementById("option1").value;
+        const option2 = document.getElementById("option2").value;
+        const option3 = document.getElementById("option3").value;
+        const option4 = document.getElementById("option4").value;
+
+        const question = {
+            question_text: inputQuestion.value,
+            option_1: option1,
+            option_2: option2,
+            option_3: option3,
+            option_4: option4,
+            answer: correctAnswer,
+            explanation: inputExplication.value
+        };
+
+        try {
+            arrayQuestions.push(question);
+        } catch (error) {
+            console.error(`Erro em adicionar pergunta: ${error}`);
+        }
         modal.innerHTML = "";
         modal.style.display = "none";
     });
