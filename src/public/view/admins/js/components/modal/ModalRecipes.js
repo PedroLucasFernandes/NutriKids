@@ -17,6 +17,7 @@ export default function ModalRecipes() {
 
     h3.innerHTML = "Criar nova Receita";
     close.innerHTML = "X";
+    close.id = "closeButton";
     button.innerHTML = "Criar nova receita";
     modal.id = "modal";
     modalContent.id = "modal-content";

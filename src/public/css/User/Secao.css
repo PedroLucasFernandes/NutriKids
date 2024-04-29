@@ -190,6 +190,10 @@ footer li:hover{
     gap: 20px;
 }
 
+#closeButton{
+    cursor: pointer;
+}
+
 .box {
     width: 200px;
     height: 240px;
