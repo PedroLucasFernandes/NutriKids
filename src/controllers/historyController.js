@@ -11,32 +11,6 @@ const historyController = {
         const created_by_number = parseInt(created_by);
         const updated_by_number = parseInt(updated_by);
 
-        //validação para title (varchar(255) e not null):
-        if (!title) {
-            return res.status(400).json({ error: 'título da história é obrigatório' });
-        } else if (title.length > 255) {
-            return res.status(400).json({ error: 'título da história deve ter no máximo 255 caracteres' });
-        }
-
-        //validação para story (text e not null):
-        if (!story) {
-            return res.status(400).json({ error: 'texto da história é obrigatório' });
-        }
-
-        //validação para created_by (int e not null):
-        if (!created_by) {
-            return res.status(400).json({ error: 'id do criador da história é obrigatório' });
-        } else if (typeof created_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do criador da história deve ser um número' });
-        }
-
-        //validação para updated_by (int e not null):
-        if (!updated_by) {
-            return res.status(400).json({ error: 'id do atualizador da história é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
-        }
-
        //file não pode ser null (?):
         if(!file) {
             return res.status(400).json({ error: 'imagens para a história são obrigatórias' });
@@ -84,13 +58,6 @@ const historyController = {
         const { id } = req.params;
         const id_number = parseInt(id);
 
-        //validação para id (int e not null):
-        if (!id) {
-            return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
-        }
-
         try {
             const foundHistory = await historyAndComicService.findHistoryWithComicsById(id_number);
             res.status(200).json(foundHistory);
@@ -108,32 +75,6 @@ const historyController = {
         const file = req.files;
         const id_number = parseInt(id);
         const updated_by_number = parseInt(updated_by);
-
-        //validação para id (int e not null):
-        if (!id) {
-            return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
-        }
-
-        //validação para title (varchar(255) e not null):
-        if (!title) {
-            return res.status(400).json({ error: 'título da história é obrigatório' });
-        } else if (title.length > 255) {
-            return res.status(400).json({ error: 'título da história deve ter no máximo 255 caracteres' });
-        }
-
-        //validação para story (text e not null):
-        if (!story) {
-            return res.status(400).json({ error: 'texto da história é obrigatório' });
-        }
-
-        //validação para updated_by (int e not null):
-        if (!updated_by) {
-            return res.status(400).json({ error: 'id do atualizador da história é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador da história deve ser um número' });
-        }
 
         //file pode, sim, ser null, caso o cliente não queira atualizar as imagens (banner e/ou comics)
 
@@ -170,13 +111,6 @@ const historyController = {
         const { id } = req.params;
         const id_number = parseInt(id);
 
-        //validação para id (int e not null):
-        if (!id) {
-            return res.status(400).json({ error: 'id da história é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id da história deve ser um número' });
-        }
-
         try {
             const history = await historyAndComicService.findHistoryWithComicsById(id_number);
             const deletedHistory = await historyAndComicService.deleteHistoryWithComics(id_number);
@@ -210,24 +144,24 @@ module.exports = historyController;
 
 //rotas que requerem cookie de sessão:
 //testar addNewHistory:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQyNzIyMCwiZXhwIjoxNzE0NDMwODIwfQ.Szn1pZqFK1xmnYfcngYNBjj2x2S02WHqVNCIipyrOsg" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=história teste CCCCC" \
+// -F "title=história teste" \
 // -F "story=o texto da história..." \
 // -F "created_by=1" \
 // -F "updated_by=1" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// -F "file=@/home/bytemeyu/Downloads/cachorroquente.webp" \
+// -F "file=@/home/bytemeyu/Downloads/cachorroquente.webp" \
 // http://localhost:3000/api/history
 
 //testar updateHistory:
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA5MTgzMSwiZXhwIjoxNzE0MDk1NDMxfQ.CPADVZYYC3feV6EGayoknZJaKUtuYZU1mUWd_KN3OIw" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQyNzIyMCwiZXhwIjoxNzE0NDMwODIwfQ.Szn1pZqFK1xmnYfcngYNBjj2x2S02WHqVNCIipyrOsg" \
 // -H "Content-Type: multipart/form-data" \
 // -F "title=HISTÓRIA DO PEDRO MUDOU DE TÍTULO, PORÉM NÃO DE COMICS NEM BANNER" \
 // -F "story=o texto da história..." \
 // -F "updated_by=1" \
-// http://localhost:3000/api/history/94
+// http://localhost:3000/api/history/95
 
 
 //testar deleteHistory:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/history/90
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQyNzIyMCwiZXhwIjoxNzE0NDMwODIwfQ.Szn1pZqFK1xmnYfcngYNBjj2x2S02WHqVNCIipyrOsg" http://localhost:3000/api/history/95
