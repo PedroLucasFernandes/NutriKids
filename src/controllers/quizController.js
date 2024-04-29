@@ -12,30 +12,10 @@ const quizController = {
             }
         }
         
-
         const { title, created_by, updated_by, questions} = req.body;
         const banner = req.file.filename;
         const created_by_number = parseInt(created_by);
         const updated_by_number = parseInt(updated_by);
-
-        if (!title) {
-            return res.status(400).json({ error: 'título do quiz é obrigatório' });
-        } else if (title.length > 100) {
-            return res.status(400).json({ error: 'título do quiz deve ter no máximo 100 caracteres' });
-        }
-
-        if (!created_by) {
-            return res.status(400).json({ error: 'id do criador do quiz é obrigatório' });
-        } else if (typeof created_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do criador do quiz deve ser um número' });
-        }
-
-        if (!updated_by) {
-            return res.status(400).json({ error: 'id do atualizador do quiz é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador do quiz deve ser um número' });
-        }
-
         
         //validação do array de perguntas:
         if(!Array.isArray(questions)) {
@@ -62,7 +42,7 @@ const quizController = {
         }
 
         try {
-            const newQuiz = await quizAndQuestionService.addNewQuiz(title, created_by, updated_by, banner, questions);
+            const newQuiz = await quizAndQuestionService.addNewQuiz(title, created_by_number, updated_by_number, banner, questions);
             res.status(201).json(newQuiz);
         } catch(error) {
             console.error(`${error.message}`);
@@ -87,14 +67,8 @@ const quizController = {
         const { id } = req.params;
         const id_number = parseInt(id);
 
-        if (!id) {
-            return res.status(400).json({ error: 'id do quiz é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id do quiz deve ser um número' });
-        }
-
         try {
-            const foundQuiz = await quizAndQuestionService.findQuizWithQuestionsById(id);
+            const foundQuiz = await quizAndQuestionService.findQuizWithQuestionsById(id_number);
             res.status(200).json(foundQuiz);
         } catch(error) {
             console.error(`${error.message}`);
@@ -117,25 +91,6 @@ const quizController = {
         const banner = req.file.filename;
         const id_number = parseInt(id);
         const updated_by_number = parseInt(updated_by);
-
-        if (!id) {
-            return res.status(400).json({ error: 'id do quiz é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id do quiz deve ser um número' });
-        }
-
-        if (!title) {
-            return res.status(400).json({ error: 'título do quiz é obrigatório' });
-        } else if (title.length > 100) {
-            return res.status(400).json({ error: 'título do quiz deve ter no máximo 100 caracteres' });
-        }
-
-        if (!updated_by) {
-            return res.status(400).json({ error: 'id do atualizador do quiz é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador do quiz deve ser um número' });
-        }
-
 
         //validação do array de perguntas:
         if(!Array.isArray(questions)) {
@@ -162,8 +117,8 @@ const quizController = {
         }
 
         try { 
-            const oldQuiz = await quizAndQuestionService.findQuizWithQuestionsById(id);
-            const updatedQuiz = await quizAndQuestionService.updateQuizWithQuestions(id, title, updated_by, banner, questions);
+            const oldQuiz = await quizAndQuestionService.findQuizWithQuestionsById(id_number);
+            const updatedQuiz = await quizAndQuestionService.updateQuizWithQuestions(id_number, title, updated_by_number, banner, questions);
             
             if (fs.existsSync(`src/public/uploads/${oldQuiz.image_path}`)) {
                 fs.unlinkSync(`src/public/uploads/${oldQuiz.image_path}`);
@@ -180,15 +135,9 @@ const quizController = {
         const { id } = req.params;
         const id_number = parseInt(id);
 
-        if (!id) {
-            return res.status(400).json({ error: 'id do quiz é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id do quiz deve ser um número' });
-        }
-
         try {
-            const quiz = await quizAndQuestionService.findQuizWithQuestionsById(id);
-            const deletedQuiz = await quizAndQuestionService.deleteQuizWithQuestions(id);
+            const quiz = await quizAndQuestionService.findQuizWithQuestionsById(id_number);
+            const deletedQuiz = await quizAndQuestionService.deleteQuizWithQuestions(id_number);
             
             if (fs.existsSync(`src/public/uploads/${quiz.image_path}`)) {
                 fs.unlinkSync(`src/public/uploads/${quiz.image_path}`);
@@ -211,23 +160,23 @@ module.exports = quizController;
 //curl -X GET http://localhost:3000/api/quiz/5
 
 //testar addNewQuiz:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzk2NzE3OSwiZXhwIjoxNzEzOTcwNzc5fQ.ib1FaXtC3jes8_hDb0k-x9vPPLLxMyXMmP2RXfqZvm0" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDI2Mzc4NSwiZXhwIjoxNzE0MjY3Mzg1fQ.DHVJJOLeSOcrw_Wx0ak5ZewAh4WOrj4YUag08Fr7x7E" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=quiz IIIII" \
+// -F "title=quiz 7 OU 8" \
 // -F "created_by=1" \
 // -F "updated_by=1" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// -F "file=@/home/bytemeyu/Downloads/cachorroquente.webp" \
 // -F "questions=[{\"question_text\":\"pergunta manga\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":1, \"explanation\": \"a manga blabla\"}, {\"question_text\":\"pergunta melancia\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":2, \"explanation\": \"a melancia blabla\"}]" \
 // http://localhost:3000/api/quiz
 
 //testar updateQuiz:
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDI2Mzc4NSwiZXhwIjoxNzE0MjY3Mzg1fQ.DHVJJOLeSOcrw_Wx0ak5ZewAh4WOrj4YUag08Fr7x7E" \
 // -H "Content-Type: multipart/form-data" \
 // -F "title=questão teste IIIII" \
 // -F "updated_by=1" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
-// -F "questions=[{\"question_text\":\"pergunta 1\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":1}, {\"question_text\":\"pergunta 2\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":2}]" \
-// http://localhost:3000/api/quiz/6
+// -F "file=@/home/bytemeyu/Downloads/cachorroquente.webp" \
+// -F "questions=[{\"question_text\":\"pergunta 1\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":1, \"explanation\": \"a melancia blabla\"}, {\"question_text\":\"pergunta 2\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":2, \"explanation\": \"a melancia blabla\"}]" \
+// http://localhost:3000/api/quiz/12
 
 //testar deleteQuiz:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/quiz/5
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDI2Mzc4NSwiZXhwIjoxNzE0MjY3Mzg1fQ.DHVJJOLeSOcrw_Wx0ak5ZewAh4WOrj4YUag08Fr7x7E" http://localhost:3000/api/quiz/12

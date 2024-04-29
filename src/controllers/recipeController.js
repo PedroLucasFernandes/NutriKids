@@ -8,39 +8,7 @@ const recipeController = {
         const created_by_number = parseInt(created_by);
         const updated_by_number = parseInt(updated_by);
 
-        if (!title) {
-            return res.status(400).json({ error: 'título da receita é obrigatório' });
-        } else if (title.length > 100) {
-            return res.status(400).json({ error: 'título da receita deve ter no máximo 255 caracteres' });
-        }
-
-        if (!yield) {
-            return res.status(400).json({ error: 'rendimento da receita é obrigatório' });
-        } else if (yield.length > 50) {
-            return res.status(400).json({ error: 'rendimento da receita deve ter no máximo 100 caracteres' });
-        }
-
-        if (!ingredients) {
-            return res.status(400).json({ error: 'ingredientes da receita são obrigatórios' });
-        }
-
-        if (!instructions) {
-            return res.status(400).json({ error: 'modo de preparo da receita é obrigatório' });
-        }
-
-        if (!created_by) {
-            return res.status(400).json({ error: 'id do criador da receita é obrigatório' });
-        } else if (typeof created_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do criador da receita deve ser um número' });
-        }
-
-        if (!updated_by) {
-            return res.status(400).json({ error: 'id do atualizador da receita é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador da receita deve ser um número' });
-        }
-
-        //file não pode ser null (?):
+        //essa validação para file ocorre aqui e não no middleware de validação pois o middleware de validação não tem acesso aos arquivos enviados pelo cliente. o middleware de validação só tem acesso ao corpo da requisição (req.body). por isso, a validação para file é feita aqui, no controller, onde temos acesso a req.files.
         if (!file) {
             return res.status(400).json({ error: 'imagem para capa da receita é obrigatória' });
         }
@@ -60,7 +28,7 @@ const recipeController = {
                     console.error('erro ao excluir o arquivo:', err);
                 }
             }
-            res.status(500).json({ error: 'erro ao tentar adicionar nova receita' });
+            res.status(500).json({ error: 'erro ao tentar adicionar nova receita e sua respectiva imagem' });
         }
     },
 
@@ -78,12 +46,6 @@ const recipeController = {
         const { id } = req.params;
         const id_number = parseInt(id);
 
-        if (!id) {
-            return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
-        }
-
         try {
             const recipe = await recipeService.getRecipeById(id_number);
             res.status(200).json(recipe);
@@ -100,38 +62,6 @@ const recipeController = {
         //file armazenará a imagem da receita, se houver. req.files é uma propriedade do objeto req que contém os arquivos enviados pelo cliente. req.files é um array, então file[0] é o primeiro elemento do array, que é o arquivo único de imagem, nesse caso das receitas, isso se o cliente quiser atualizar a imagem da receita.
         const id_number = parseInt(id);
         const updated_by_number = parseInt(updated_by);
-
-        if (!id) {
-            return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
-        }
-
-        if (!title) {
-            return res.status(400).json({ error: 'título da receita é obrigatório' });
-        } else if (title.length > 100) {
-            return res.status(400).json({ error: 'título da receita deve ter no máximo 255 caracteres' });
-        }
-
-        if (!yield) {
-            return res.status(400).json({ error: 'rendimento da receita é obrigatório' });
-        } else if (yield.length > 50) {
-            return res.status(400).json({ error: 'rendimento da receita deve ter no máximo 100 caracteres' });
-        }
-
-        if (!ingredients) {
-            return res.status(400).json({ error: 'ingredientes da receita são obrigatórios' });
-        }
-
-        if (!instructions) {
-            return res.status(400).json({ error: 'modo de preparo da receita é obrigatório' });
-        }
-
-        if (!updated_by) {
-            return res.status(400).json({ error: 'id do atualizador da receita é obrigatório' });
-        } else if (typeof updated_by_number !== 'number') {
-            return res.status(400).json({ error: 'id do atualizador da receita deve ser um número' });
-        }
 
         //para tornar opcional o upload de uma nova imagem para a receita, tiramos o if (!file)...
 
@@ -164,12 +94,6 @@ const recipeController = {
         const { id } = req.params;
         const id_number = parseInt(id);
 
-        if (!id) {
-            return res.status(400).json({ error: 'id da receita é obrigatório' });
-        } else if (typeof id_number !== 'number') {
-            return res.status(400).json({ error: 'id da receita deve ser um número' });
-        }
-
         try {
             const recipe = await recipeService.getRecipeById(id_number);
             const deletedRecipe = await recipeService.deleteRecipe(id_number);
@@ -198,29 +122,29 @@ module.exports = recipeController;
 // curl -X GET http://localhost:3000/api/recipe
 
 //getRecipeById:
-// curl -X GET http://localhost:3000/api/recipe/2
+// curl -X GET http://localhost:3000/api/recipe/5
 
 //createRecipe:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDE2NTE1NCwiZXhwIjoxNzE0MTY4NzU0fQ.rL_QBpTzi-NtGY01dspzSlrWG7ap_OVqeG_msGceZO0" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=receita teste" \
+// -F "title=cachorro quente da vovó" \
 // -F "yield=4 porções" \
 // -F "ingredients=ingredientes da receita..." \
 // -F "instructions=modo de preparo da receita..." \
 // -F "created_by=1" \
 // -F "updated_by=1" \
-// -F "file=@/home/bytemeyu/Downloads/bolo.webp" \
+// -F "file=@/home/bytemeyu/Downloads/cachorroquente.webp" \
 // http://localhost:3000/api/recipe
 
 //updateRecipe: 
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA5MTgzMSwiZXhwIjoxNzE0MDk1NDMxfQ.CPADVZYYC3feV6EGayoknZJaKUtuYZU1mUWd_KN3OIw" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDE2NTE1NCwiZXhwIjoxNzE0MTY4NzU0fQ.rL_QBpTzi-NtGY01dspzSlrWG7ap_OVqeG_msGceZO0" \
 // -H "Content-Type: multipart/form-data" \
-// -F "title=receita teste3" \
+// -F "title=cachorro quente do vovô" \
 // -F "yield=4 porções" \
-// -F "ingredients=ingredientes da receita mudaram DE NOVO, porém, imagem não..." \
+// -F "ingredients=ingredientes da receita" \
 // -F "instructions=modo de preparo da receita..." \
 // -F "updated_by=1" \
-// http://localhost:3000/api/recipe/3
+// http://localhost:3000/api/recipe/8
 
 //deleteRecipe:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxMzg3NjE3NywiZXhwIjoxNzEzODc5Nzc3fQ.FRWzngmDyh4HMQuirYo09408AEsAeklMfJ1ebT7Nd8k" http://localhost:3000/api/recipe/2
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDE2NTE1NCwiZXhwIjoxNzE0MTY4NzU0fQ.rL_QBpTzi-NtGY01dspzSlrWG7ap_OVqeG_msGceZO0" http://localhost:3000/api/recipe/8
