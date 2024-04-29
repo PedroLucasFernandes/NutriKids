@@ -360,7 +360,8 @@ footer li:hover{
 
 @media (min-width: 1700px) {
     main {
-        gap: 70px;
+        gap: 200px;
+        margin: 41px;
     }
 
     main img {

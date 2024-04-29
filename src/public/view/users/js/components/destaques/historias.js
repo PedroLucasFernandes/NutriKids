@@ -75,6 +75,7 @@ function render(data) {
     console.log(data);
     console.log(data.title);
     title.innerHTML = data.title;
+    title.style.fontSize = "15px";
     img.src = `./uploads/${data.image_path}`;
 
     div.addEventListener('click', function () {
