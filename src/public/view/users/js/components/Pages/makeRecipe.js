@@ -10,16 +10,14 @@ export default function makeRecipe(recipe) {
     const h4Back = document.createElement('h4');
     h4Back.id = "backButton";
     const divImage = document.createElement('div');
-    const h4rendimento = document.createElement('h4');
+    const h4Yield = document.createElement('h4');
     const h3Ingredients = document.createElement('h3');
-    const h4IngredientesDetails = document.createElement('h4');
     const divBox = document.createElement('div');
     const h3Instructions = document.createElement('h3');
-    const h3InstructionsDetails = document.createElement('h4');
     const divInstructions = document.createElement('div');
 
     h3Title.innerHTML = recipe.title;
-    h4rendimento.innerHTML = `Rendimentos: ${recipe.yield}`;
+    h4Yield.innerHTML = `Rendimentos: ${recipe.yield}`;
     h3Ingredients.innerHTML = "Ingredientes:";
     const ingredientes = recipe.ingredients.split("\n").map(ingrediente => {
         const p = document.createElement('p');
@@ -39,8 +37,6 @@ export default function makeRecipe(recipe) {
     h4Back.innerHTML = "Voltar";
     divImage.id = "img";
 
-    divBox.appendChild(h4rendimento);
-
     img.src = `./uploads/${recipe.image_path}`;
     div.appendChild(img);
 
@@ -54,8 +50,10 @@ export default function makeRecipe(recipe) {
     
     main.appendChild(h3Title);
     main.appendChild(divImage);
+    main.appendChild(h4Yield);
     main.appendChild(h3Ingredients);
     main.appendChild(divBox);
+    main.appendChild(h3Instructions);
     main.appendChild(divInstructions);
     main.appendChild(h4Back);
 
