@@ -302,7 +302,7 @@ footer li:hover{
         justify-content: center;
         flex-direction: row-reverse;
         justify-content: center;
-        gap: 50px;
+        gap: 170px;
     }
 
     main div {
@@ -329,7 +329,7 @@ footer li:hover{
     }
 
     main img {
-        width: 350px;
+        width: 400px;
     }
 
     #navegacao {
