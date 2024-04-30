@@ -26,9 +26,7 @@ class CrosswordGameFoods {
 
     getGameHtml() {
         return `
-        <link rel="stylesheet" href="../styles.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../../../../../css/Games/crossWord.css">
         <div id="puzzle-wrapper">
             <div id="puzzle-container"></div>
             <div id="clues"></div>
@@ -99,7 +97,6 @@ class CrosswordGameFoods {
         let col = Array.from(square.parentNode.children).indexOf(square) % 10;
         let row = Math.floor(Array.from(square.parentNode.children).indexOf(square) / 10);
 
-        // Left to right
         let currentSquare = square;
         while (currentSquare && currentSquare.dataset.letter) {
             word = currentSquare.dataset.letter + word;
@@ -149,7 +146,7 @@ class CrosswordGameFoods {
 
         const voltarHomeBtn = this.gameElement.querySelector("#voltarHomeBtn");
         voltarHomeBtn.addEventListener("click", () => {
-            window.location.href = "index.html";
+            //window.location.href = "index.html";
         });
 
         const jogarNovamenteBtn = this.gameElement.querySelector("#jogarNovamenteBtn");

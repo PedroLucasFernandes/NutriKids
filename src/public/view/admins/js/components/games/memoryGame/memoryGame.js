@@ -9,80 +9,80 @@ class MemoryGame {
 
     getGameHtml() {
         return `
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="../../../../../css/Games/crossWord.css">
         <audio id="somAcerto" src="./sounds/acerto.mp3"></audio>
         <audio id="somErro" src="./sounds/erro.mp3"></audio>
         <div class="jogo">
             <div class="linha">
                 <div class="card" data-card="abacate">
-                    <img class="frente" src="./images/abacate.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/abacate.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="abacaxi">
-                    <img class="frente" src="./images/abacaxi.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" ssrc="../../../../../images/games/abacaxi.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="banana">
-                    <img class="frente" src="./images/banana.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/banana.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="cereja">
-                    <img class="frente" src="./images/cereja.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/cereja.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
             </div>
             <div class="linha">
                 <div class="card" data-card="cereja">
-                    <img class="frente" src="./images/cereja.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/cereja.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="banana">
-                    <img class="frente" src="./images/banana.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/banana.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="kiwi">
-                    <img class="frente" src="./images/kiwi.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/kiwi.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="abacate">
-                    <img class="frente" src="./images/abacate.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/abacate.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
             </div>
             <div class="linha">
                 <div class="card" data-card="laranja">
-                    <img class="frente" src="./images/laranja.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/laranja.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="melancia">
-                    <img class="frente" src="./images/melancia.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/melancia.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="morango">
-                    <img class="frente" src="./images/morango.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/morango.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="morango">
-                    <img class="frente" src="./images/morango.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/morango.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
             </div>
             <div class="linha">
                 <div class="card" data-card="kiwi">
-                    <img class="frente" src="./images/kiwi.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/kiwi.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="abacaxi">
-                    <img class="frente" src="./images/abacaxi.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/abacaxi.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="melancia">
-                    <img class="frente" src="./images/melancia.png">
-                    <img class="verso" src="./images/verso1.png">
+                    <img class="frente" src="../../../../../images/games/melancia.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
                 <div class="card" data-card="laranja">
-                    <img class="frente" src="./images/laranja.png">
-                    <img class="verso" src="./images/verso2.png">
+                    <img class="frente" src="../../../../../images/games/laranja.png">
+                    <img class="verso" src="../../../../../images/games/verso.png">
                 </div>
             </div>
         </div>

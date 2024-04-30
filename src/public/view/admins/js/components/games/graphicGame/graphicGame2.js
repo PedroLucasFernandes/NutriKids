@@ -10,7 +10,7 @@ class GraphicGame2 {
 
     getGameHtml() {
         return `
-        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../../../../../css/Games/graphicGame2.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
         <div id="elementNames" class="element-names">
@@ -19,7 +19,7 @@ class GraphicGame2 {
             </div>
         </div>
         <div class="container">
-            <img src="../images/prato1.png" usemap="#imagemMapa" alt="Prato de Comida" id="imagemPrato">
+            <img src="../../../../../images/games/prato2.png" usemap="#imagemMapa" alt="Prato de Comida" id="imagemPrato">
             <map name="imagemMapa">
             <area shape="poly" coords="178,169,199,163,213,149,223,123,218,106,206,87,189,75,171,73,151,79,138,92,132,109,129,133,140,154,159,166" data-nome="Arroz">               
             <area shape="poly" coords="153,258,165,242,167,226,172,217,180,208,180,191,166,173,148,168,136,155,127,144,111,133,93,142,84,155,87,176,92,195,87,220,97,225,108,238,123,254,134,258" data-nome="Feijão">
