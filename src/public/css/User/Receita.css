@@ -73,17 +73,21 @@ main {
     align-items: center;
     font-family: var(--font1);
     padding: 50px;
+    gap: 20px;
+    color: var(--cor3);
+    font-size: 20px;
 }
 main div {
-    width: 800px;
+    width: 300px;
 }
 
 main img {
-    width: 250px;
+    width: 300px;
 }
 
 h3 {
     color: var(--cor3);
+    text-align: center;
 }
 
 #backButton{
@@ -221,17 +225,29 @@ footer h4 {
     header {
         font-size: 40px;
     }
-
     
     main {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 50px;
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 40px;
     }
     
     main img {
-        width: 250px;
+        width: 400px;
+    }
+
+    #img {
+        width: 400px;
+    }
+
+    main div {
+        width: 450px;
     }
     
     #box {
@@ -292,15 +308,20 @@ footer h4 {
         font-size: 25px;
         gap: 50px;
         color: var(--cor3);
+        width: 550px;
     }
 
     main h3 {
-        font-size: 40px;
+        font-size: 45px;
     }
 
     main h4 {
-        font-size: 35px;
+        font-size: 45px;
         color: var(--cor3);
+    }
+
+    main img {
+        width: 500px;
     }
 
     #box {
@@ -309,8 +330,8 @@ footer h4 {
     }
 
     #img {
-        width: 400px;
-        height: 300px;
+        width: 500px;
+        align-items: center;
     }
     
     #img div {
