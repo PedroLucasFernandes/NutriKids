@@ -29,10 +29,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: -webkit-sticky;
-    /* position: sticky; */
-    top: 0;
-    z-index: 1000;
     
 }
 
@@ -72,27 +68,31 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 10px;
     justify-content: center;
 }
 
 main h3 {
     font-size: 40px;
     font-family: var(--font2);
-    color: white;
-}
-
-#title{
-    color: var(--cor5);
+    color: var(--cor4);
 }
 
 main div {
-    margin: 20px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.divItens {
     background-color: var(--cor2);
     width: 1000px;
     height: 400px;
+    overflow: auto;
+    gap: 20px;
+    padding: 20px;
 }
 
 button {
@@ -105,20 +105,18 @@ button {
     font-size: 20px;
     color: white;
     cursor: pointer;
+    margin: auto;
+    display: block;
 }
 
 h4 {
     font-size: 25px;
     color: var(--cor5);
     font-family: var(--font2);
-    cursor: pointer;
 }
 
-#funciona {
-    display: flex;
-    flex-wrap: wrap;
-    height: 600px;
-    overflow:auto; 
+#backButton{
+    cursor: pointer;
 }
 
 #modal {
@@ -148,72 +146,42 @@ h4 {
     gap: 20px;
 }
 
-#modal-content h2 {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    left: 400px;
-    bottom: 20px;
-}
-
-#modal-content h3 {
-    position: relative;
-    bottom: 20px;
-    font-size: 30px;
-}
-
 #modal-content div {
-    position: relative;
-    right: 200px;
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
 }
 
-textarea {
-    width: 400px;
-    height: 70px;
+#modal-content h2 {
+    user-select: none;
+    cursor: pointer;
 }
 
-.box {
-    width: 200px;
-    height: 250px;
-    background-color: var(--cor5);
+#modal-content #inputExplication{
+    width: 100%;
+    height: 100%;
+}
+
+#modal-content #divAnswer{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    border-radius: 20px;
+    padding: 12px;
 }
 
-.box img {
-    width: 150px;
+#modal-content #divAnswer p, #modal-content #divAnswer input{
+    margin-right: 10px;
+}
+
+.question-container {
+    width: 900px;
     height: 100px;
     border: 1px solid black;
+    margin: 20px;
 }
 
-.box h3 {
-    font-size: 13px;
-}
-
-.box button {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-
-.box button:hover{
-    border: 1px solid black;
+main button {
+    margin: 10px;
 }
 
 #btn {
-    width: 80px;
-    height: 30px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    background-color: var(--cor5);
-}
-
-#btn button {
-    background-color: var(--cor8);
-    border-radius: 5px;
+    width: 200px;
 }

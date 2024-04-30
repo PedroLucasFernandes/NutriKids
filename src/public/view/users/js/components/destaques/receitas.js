@@ -6,8 +6,6 @@ export default function receita() {
     const h3 = document.createElement('h3');
     const div = document.createElement('div');
     const divDestaque = document.createElement('div');
-    const esquerdaH3 = document.createElement('h3');
-    const direitaH3 = document.createElement('h3');
     const btnVerMais = document.createElement('button');
 
     img.src = "./images/cerejaReceita1.png";
