@@ -65,7 +65,11 @@ export default function Login() {
 
 async function login(username, password) {
     try {
-        const response = await fetch('http://localhost:3000/api/admin', {
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+        
+        const response = await fetch(`${apiUrl}/api/admin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

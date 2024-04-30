@@ -48,7 +48,11 @@ export default function RecipesAdmin() {
 
 async function getRecipes() {
     try {
-        const response = await fetch("http://localhost:3000/api/recipe");
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/recipe`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
@@ -103,7 +107,11 @@ function render(data) {
 
 async function deleterecipe(id) {
     try {
-        const response = await fetch(`http://localhost:3000/api/recipe/${id}`, {
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/recipe/${id}`, {
             method: 'DELETE'
         });
     }
@@ -210,7 +218,11 @@ function editRecipe(data) {
 
 async function updatedRecipe(formdata, id) {
     try {
-        const response = await fetch(`http://localhost:3000/api/recipe/${id}`, {
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+        
+        const response = await fetch(`${apiUrl}/api/recipe/${id}`, {
             method: 'PUT',
             body: formdata
         });
