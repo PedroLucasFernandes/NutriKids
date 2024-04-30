@@ -29,12 +29,33 @@ Como é possível observar, cada um destes possuem suas peculiaridades com tipos
 
 Já usuários podem apenas ler estes recursos e jogar, administradores não tem o poder de editar jogos, já que estes são desenvolvidos no próprio código.
 
+Lendo uma história:
+![Ler História](./READMEImages/history.png)
+
+Lendo uma receita:
+![Ler Receita](./READMEImages/recipe.png)
+
+Jogando um quiz:
+![Jogar Quiz](./READMEImages/quiz.png)
+
+As telas da parte de usuários são responsivas e podem ser acessadas pelo celular sem prejudicar a experiência:
+![Tela inicial no Celular](./READMEImages/phone.png)
+
 ***
 
 ### Como utilizar a aplicação
 Baixe as pastas e utilize o comando ``npm i`` no terminal para instalar todas as bibliotecas que o projeto solicita, localizadas no arquivo ``package.json``. Após isso, crie um arquivo chamado ``.env`` para colocar algumas configurações sensíveis que não estão disponíveis publicamente: porta, configurações do banco de dados e a chave de acesso para o JWT.
 
-Por fim, abra o servidor express com o comando ``npm start``, lembre-se de criar um banco de dados que condiz com os dados fornecidos em sua configuração no ``.env``.
+Por fim, abra o servidor express com o comando ``npm start``.
+
+##### Banco de Dados
+Certifique-se de criar um banco de dados que possuem as tabelas e atributos necessários para a comunicação com a API. Ele deve ser estruturado desta maneira:
+![Modelo do Banco de Dados](./READMEImages/database.png)
+
+Este arquivo contém todos os comandos SQL necessários para criar as tabelas e atributos necessários. Você pode executar esses comandos em seu banco de dados para configurá-lo adequadamente.
+[Baixar arquivo SQL](./schema.sql)
+
+Lembre de configurar os seguintes dados: host, porta, database, user e password. Eles precisam ser condizentes com as configurações que foram inseridas no ``.env``.
 
 ***
 
