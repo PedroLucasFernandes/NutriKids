@@ -60,5 +60,5 @@ app.get('/RegisterAdmin', sendIndexFile);
 app.get('/AddQuizzes', sendIndexFile);
 
 app.listen(process.env.PORT, () => {
-    console.log(`servidor está rodando em http://localhost:${process.env.PORT}`);
+    console.log(`servidor está rodando`);
 });

@@ -46,7 +46,7 @@ export default function historias() {
 async function getComicsID(i) {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55:3000'
+               ? 'https://66.135.21.55'
                : 'http://localhost:3000';
         
         const response = await fetch(`${apiUrl}/api/history/`);
