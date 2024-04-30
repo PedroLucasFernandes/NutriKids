@@ -115,7 +115,11 @@ export default function EditHistory(id) {
 
 async function getHistory(item) {
     try {
-        const response = await fetch(`http://localhost:3000/api/history/${item}`);
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://66.135.21.55:3000'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/history/${item}`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
@@ -154,8 +158,12 @@ function renderEdit(data){
 async function updateHistory(formData, id) {
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
+        
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://66.135.21.55:3000'
+               : 'http://localhost:3000';
 
-        const response = await fetch(`http://localhost:3000/api/history/${id}`, {
+        const response = await fetch(`${apiUrl}/api/history/${id}`, {
             method: 'PUT',
             body: formData,
             // headers: {
