@@ -4,7 +4,7 @@ export default function playQuiz(quiz) {
     const main = document.getElementById('main');
     main.innerHTML = "";
     const test = document.getElementById('css');
-    test.href = "../../../../../css/User/Receita.css";
+    test.href = "../../../../../css/User/Quiz.css";
 
     console.log(quiz)
 
@@ -20,6 +20,7 @@ export default function playQuiz(quiz) {
     h3Title.innerHTML = quiz.title;
     h4Back.innerHTML = "Voltar";
     divImage.id = "img";
+    h3Title.id = "title"
 
     img.src = `./uploads/${quiz.image_path}`;
 
@@ -71,9 +72,11 @@ function opitionQuestion(item, question) {
     let answer = 0
 
     h3.innerHTML = item.question_text;
-    buttonConfirm.innerHTML = "Confirmar Resposta"
+    buttonConfirm.innerHTML = "Confirmar Resposta";
     div.id = "div";
-    h4Back.innerHTML = "Voltar"
+    h4Back.innerHTML = "Voltar";
+    h3.id = "question";
+    buttonConfirm.id = "button";
 
     for (let i = 0; i <= 3; i++) {
         const button = document.createElement('button');
@@ -107,6 +110,16 @@ function opitionQuestion(item, question) {
         console.log(item)
         root.appendChild(ModalQuiz(item, resposta, question, count));
     });
+
+    h4Back.addEventListener('click', function() {
+        const event = new CustomEvent("pageChange", {detail: "/Quizzes"});
+
+        index = 8
+        currentIndex = 0;
+        count = 0
+
+        window.dispatchEvent(event);
+    })
 
     main.appendChild(h3);
     main.appendChild(div);
