@@ -129,7 +129,7 @@ export default function AddQuizzes() {
 async function addQuiz(formData) {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
 
         const response = await fetch(`${apiUrl}/api/quiz`, {
