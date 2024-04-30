@@ -15,7 +15,7 @@ import Admins from "./admins/js/components/Pages/Admin.js";
 import AddQuizzes from "./admins/js/components/Pages/AddQuizAdmin.js";
 
 const router = {
-    "/": InitialUser,
+    // "/": InitialUser,
     "/Inicio": Home,
     "/Main": Home,
     "/menuHamburguer": menuHamburguer,

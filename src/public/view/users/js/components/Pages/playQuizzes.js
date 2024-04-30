@@ -53,6 +53,7 @@ export default function playQuiz(quiz) {
 
 let currentIndex = 0;
 let count = 0
+let countBtn = 1;
 
 function opitionQuestion(item, question) {
     const arrayBtn = [item.option_1, item.option_2, item.option_3, item.option_4];
@@ -85,9 +86,13 @@ function opitionQuestion(item, question) {
 
         button.id = i + 1
 
-        button.addEventListener('click', function () {
-            button.style.border = "2px solid black"
+        if (button.id === 1) {
+            button.classList.add("marcado");
+        }
 
+        button.addEventListener('click', function () {
+
+            marcar(button.id)
             answer = button.id;
             console.log(answer)
         })
@@ -111,10 +116,10 @@ function opitionQuestion(item, question) {
         root.appendChild(ModalQuiz(item, resposta, question, count));
     });
 
-    h4Back.addEventListener('click', function() {
-        const event = new CustomEvent("pageChange", {detail: "/Quizzes"});
+    h4Back.addEventListener('click', function () {
+        const event = new CustomEvent("pageChange", { detail: "/Quizzes" });
 
-        index = 8
+        index = 1
         currentIndex = 0;
         count = 0
 
@@ -128,7 +133,7 @@ function opitionQuestion(item, question) {
     main.appendChild(h4Back);
 }
 
-let index = 8
+let index = 1
 
 
 function ModalQuiz(item, resp, question, points) {
@@ -163,31 +168,34 @@ function ModalQuiz(item, resp, question, points) {
         main.innerHTML = ""
 
         const back = document.createElement('h4');
-        h3.innerHTML = `Você acertou ${points} questões!!!`
-        back.innerHTML = "Voltar"
-        index = 8
-        currentIndex = 0;
-        count = 0
+        const image = document.createElement('img');
+        h3.innerHTML = `Você acertou ${points} questões!!!`;
+        back.innerHTML = "Voltar";
+        image.src = "./images/Couve3.png"
 
         back.addEventListener("click", () => {
             const event = new CustomEvent("pageChange", { detail: "/Quizzes" });
 
+            index = 1
+            currentIndex = 0;
+            count = 0
+
             window.dispatchEvent(event);
         });
 
+        main.appendChild(image);
         main.appendChild(h3);
-        main.appendChild(back)
+        main.appendChild(back);
 
-        return
+        return;
     }
 
     close.addEventListener("click", function () {
         modal.innerHTML = "";
         modal.style.display = "none";
         main.innerHTML = ""
-        const div = document.getElementById('div')
-
-        opitionQuestion(question[index])
+        console.log(index);
+        opitionQuestion(question[index], question)
     });
 
     button.addEventListener('click', function () {
@@ -200,3 +208,11 @@ function ModalQuiz(item, resp, question, points) {
 
     return modal;
 }
+
+function marcar(escolha) {
+    document.getElementById(`${countBtn}`).classList.remove("marcado");
+    
+    document.getElementById(`${escolha}`).classList.add("marcado");
+
+    countBtn = escolha; 
+};

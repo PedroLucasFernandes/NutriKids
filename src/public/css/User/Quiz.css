@@ -93,6 +93,11 @@ h3 {
     padding: 10px;
 }
 
+main {
+    font-size: 30px;
+    text-align: center;
+}
+
 main h4 {
     color: var(--cor3);
     font-size: 20px;
@@ -204,6 +209,8 @@ footer h4 {
     position: relative;
     left: 100px;
     bottom: 20px;
+    font-family: var(--font2);
+    font-size: 30px;
 }
 
 #modal-content h3 {
@@ -290,6 +297,11 @@ footer h4 {
     border: none;
 }
 
+.marcado {
+    background-color: var(--cor5);
+    color: white;
+}
+
 @media (min-width: 760px) {
     #title {
         font-size: 40px;
@@ -319,7 +331,6 @@ footer h4 {
 
     main img {
         width: 400px;
-        height: 300px;
     }
 
     #question {
@@ -395,7 +406,7 @@ footer h4 {
     }
 
     main h4 {
-        font-size: 30px;
+        font-size: 40px;
     }
 
     #div {
@@ -406,7 +417,6 @@ footer h4 {
 
     #div button {
         width: 200px;
-        height: 60px;
     }
 
     #navegacao {
@@ -448,7 +458,7 @@ footer h4 {
     }
 
     main h4 {
-        font-size: 40px;
+        font-size: 50px;
     }
 
     #img {
