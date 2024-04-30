@@ -1,4 +1,7 @@
 export default function Main() {
+    // const token = req.cookie.session.id;
+    // jwt.verify(token, process.env.JWT_SECRET);
+
     const main = document.createElement('main');
     const h3 = document.createElement('h3');
     const container = document.createElement('div');

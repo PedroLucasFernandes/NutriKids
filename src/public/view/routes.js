@@ -5,7 +5,7 @@ import Quizzes from "./users/js/components/Pages/Quizzes.js";
 import History from "./users/js/components/Pages/History.js";
 import Recipes from "./users/js/components/Pages/Recipes.js";
 import menuHamburguer from "./users/js/components/header/menuHamburguer.js";
-import Inital from "./admins/js/components/Pages/Initial.js";
+import Initial from "./admins/js/components/Pages/Initial.js";
 import Login from "./admins/js/components/Pages/Login.js";
 import HistoryAdmin from "./admins/js/components/Pages/HistoryAdmin.js";
 import AddHistory from "./admins/js/components/Pages/AddHistoryAdmin.js";
@@ -24,7 +24,7 @@ const router = {
     "/Historias": History,
     "/Receitas": Recipes,
     "/Login": Login,
-    "/Admin": Inital,
+    "/Admin": Initial,
     "/Sair": Login,
     "/HistoryAdmin": HistoryAdmin,
     "/AddHistory": AddHistory,
@@ -66,13 +66,6 @@ function startRouter() {
     const event = new CustomEvent("pageChange", { detail: location.pathname })
 
     window.dispatchEvent(event)
-}
-
-function test() {
-    console.log(e.detail)
-    window.history.pushState(undefined, undefined, e.detail)
-
-    render(e.detail)
 }
 
 export { startRouter };

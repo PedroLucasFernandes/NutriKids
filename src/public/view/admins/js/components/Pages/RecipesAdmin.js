@@ -132,7 +132,8 @@ function editRecipe(data) {
     
     h3.innerHTML = "Editar Receita";
     close.innerHTML = "X";
-    button.innerHTML = "COnfirmar";
+    close.id = "closeButton";
+    button.innerHTML = "Confirmar";
     modal.id = "modal";
     modalContent.id = "modal-content";
     h4Ingredients.innerHTML = "Ingredientes:";
