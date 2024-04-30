@@ -48,7 +48,6 @@ router.get('/', historyController.findHistory);
 router.get('/:id', validateData(findHistoryByIdValidationRules), historyController.findHistoryById);
 
 router.use(authMiddleware.verifyToken);
-//aqui, o middleware de autenticação é aplicado a todas as rotas abaixo dele.
 
 router.post('/', upload.array("file"), validateData(addNewHistoryValidationRules), historyController.addNewHistory);
 router.put('/:id', upload.array("file"), validateData(updateHistoryValidationRules), historyController.updateHistory);

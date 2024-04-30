@@ -3,7 +3,6 @@ const fs = require("fs");
 
 const quizController = {
     async addNewQuiz(req, res) {
-        //adicionei o if abaixo para conseguir testar com curl na formatação que estava usando. ele só vai ser usado para isso, depois podemos tirar!
         if (typeof req.body.questions === 'string') {
             try {
                 req.body.questions = JSON.parse(req.body.questions);
@@ -17,7 +16,6 @@ const quizController = {
         const created_by_number = parseInt(created_by);
         const updated_by_number = parseInt(updated_by);
         
-        //validação do array de perguntas:
         if(!Array.isArray(questions)) {
             return res.status(400).json({ error: 'perguntas do quiz devem ser um array' });
         }
@@ -77,7 +75,6 @@ const quizController = {
     },
 
     async updateQuiz(req, res) {
-        //(idem acima)
         if (typeof req.body.questions === 'string') {
             try {
                 req.body.questions = JSON.parse(req.body.questions);
@@ -92,7 +89,6 @@ const quizController = {
         const id_number = parseInt(id);
         const updated_by_number = parseInt(updated_by);
 
-        //validação do array de perguntas:
         if(!Array.isArray(questions)) {
             return res.status(400).json({ error: 'perguntas do quiz devem ser um array' });
         }
@@ -157,10 +153,10 @@ module.exports = quizController;
 //curl -X GET http://localhost:3000/api/quiz
 
 //testar findQuizById:
-//curl -X GET http://localhost:3000/api/quiz/5
+//curl -X GET http://localhost:3000/api/quiz/18
 
 //testar addNewQuiz:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDI2Mzc4NSwiZXhwIjoxNzE0MjY3Mzg1fQ.DHVJJOLeSOcrw_Wx0ak5ZewAh4WOrj4YUag08Fr7x7E" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" \
 // -H "Content-Type: multipart/form-data" \
 // -F "title=quiz 7 OU 8" \
 // -F "created_by=1" \
@@ -170,13 +166,13 @@ module.exports = quizController;
 // http://localhost:3000/api/quiz
 
 //testar updateQuiz:
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDI2Mzc4NSwiZXhwIjoxNzE0MjY3Mzg1fQ.DHVJJOLeSOcrw_Wx0ak5ZewAh4WOrj4YUag08Fr7x7E" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" \
 // -H "Content-Type: multipart/form-data" \
 // -F "title=questão teste IIIII" \
 // -F "updated_by=1" \
 // -F "file=@/home/bytemeyu/Downloads/cachorroquente.webp" \
 // -F "questions=[{\"question_text\":\"pergunta 1\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":1, \"explanation\": \"a melancia blabla\"}, {\"question_text\":\"pergunta 2\",\"option_1\":\"opção 1\",\"option_2\":\"opção 2\",\"option_3\":\"opção 3\",\"option_4\":\"opção 4\",\"answer\":2, \"explanation\": \"a melancia blabla\"}]" \
-// http://localhost:3000/api/quiz/12
+// http://localhost:3000/api/quiz/18
 
 //testar deleteQuiz:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDI2Mzc4NSwiZXhwIjoxNzE0MjY3Mzg1fQ.DHVJJOLeSOcrw_Wx0ak5ZewAh4WOrj4YUag08Fr7x7E" http://localhost:3000/api/quiz/12
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" http://localhost:3000/api/quiz/18
