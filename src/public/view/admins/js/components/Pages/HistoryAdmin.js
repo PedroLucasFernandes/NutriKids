@@ -15,6 +15,7 @@ export default function HistoryAdmin() {
     const divContent = document.createElement('div');
 
     h3.innerHTML = "Histórias";
+    h3.id = "title";
     buttonAddHistory.innerHTML = "Criar nova História";
     h4.innerHTML = "Voltar";
     divContent.id = "admin";
@@ -56,8 +57,6 @@ async function getHistory() {
         }
 
         const data = await response.json();
-        console.log(data);
-
         return render(data);
     }
     catch (error) {
@@ -82,8 +81,6 @@ function render(data) {
         btnDelete.innerHTML = "🗑️";
         divbtn.id = "btn";
 
-        console.log(data);
-        console.log(item.title);
         title.innerHTML = item.title;
         img.src = `./uploads/${item.image_path}`;
 
@@ -111,13 +108,8 @@ async function deleteHistory(id) {
         const response = await fetch(`http://localhost:3000/api/history/${id}`, {
             method: 'DELETE'
         });
-
-        const data = await response.json();
-
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
     }
 }
-

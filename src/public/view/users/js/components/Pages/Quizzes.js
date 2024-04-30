@@ -1,5 +1,6 @@
 import header from "../header/header.js";
 import footer from "../footer/footer.js";
+import playQuiz from "./playQuizzes.js";
 
 export default function Quizzes() {
     const root = document.getElementById('root');
@@ -16,9 +17,11 @@ export default function Quizzes() {
     img.src = "./images/couve2.png";
     h3.innerHTML = "Quizzes:";
     divBox.id = "box";
+    main.id = "main"
 
     const menu = ["Inicio", "Jogos", "Historias", "Receitas"];
 
+    getQuiz();
     
     div.appendChild(h3);
     div.appendChild(divBox);
@@ -30,4 +33,49 @@ export default function Quizzes() {
     root.appendChild(footer());
 
     return root;
+}
+
+async function getQuiz() {
+    try {
+        const response = await fetch("http://localhost:3000/api/quiz");
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        return render(data);
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
+    }
+}
+
+function render(data) {
+    const sla = document.getElementById('box');
+
+    for (const item of data) {
+        const div = document.createElement("div");
+        div.classList.add("box")
+
+        const title = document.createElement("h3");
+        const img = document.createElement("img");
+
+        console.log(data);
+        console.log(item.title);
+        title.innerHTML = item.title;
+        img.src = `./uploads/${item.image_path}`;
+
+        div.addEventListener('click', function () {
+            console.log(item);
+            playQuiz(item);
+        });
+
+        div.appendChild(title);
+        div.appendChild(img);
+
+        sla.appendChild(div);
+    }
 }

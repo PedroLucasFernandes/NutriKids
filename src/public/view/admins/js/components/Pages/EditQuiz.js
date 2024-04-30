@@ -1,7 +1,7 @@
 import Header from "../header/header.js";
 import ModalQuizzes from "../modal/ModalQuizzes.js";
 
-export default function AddQuizzes() {
+export default function editQuiz(id) {
     const test = document.getElementById('css');
     test.href = "../../../../../css/Admin/AddQuiz.css";
     const root = document.getElementById('root');
@@ -12,41 +12,45 @@ export default function AddQuizzes() {
     const divQuizzes = document.createElement('div');
     const h4Image = document.createElement('h4');
     const h4Title = document.createElement('h4');
-    const h4Quizzes = document.createElement('h4');
+    const h4Questions = document.createElement('h4');
     const inputFile = document.createElement('input');
     const inputTitle = document.createElement('input');
     const buttonNewQuestions = document.createElement('button');
     const buttonAdd = document.createElement('button');
     const h4Back = document.createElement('h4');
-    h4Back.id = "backButton";
     const divContent = document.createElement('div');
     const divAddImage = document.createElement('div');
+    const form = document.createElement('form');
 
-    h3.innerHTML = "Crie um Quiz";
+    h3.innerHTML = "Edite um Quiz";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
-    h4Quizzes.innerHTML = "Perguntas atuais:";
+    h4Questions.innerHTML = "Perguntas atuais:";
     inputFile.type = "file";
+    inputFile.id = "file";
     buttonNewQuestions.innerHTML = "Nova Questão";
     divAddImage.id = "image";
     buttonNewQuestions.accept = "image/*";
     buttonNewQuestions.multiple = true;
     buttonAdd.innerHTML = "Adicionar à platarforma";
     h4Back.innerHTML = "Voltar";
+    h4Back.id = "backButton";
     divContent.id = "admin";
     divQuizzes.classList.add("divItens");
     divAddImage.id = "div-image";
-    buttonNewQuestions.id = "btn"
+    inputTitle.id = "title";
+    divQuizzes.id = "itens";
 
-    // divQuizzes.appendChild(divAddImage);
-    // divQuizzes.appendChild(buttonNewQuestions);
+    updateQuiz(id);
 
+    
+    
     main.appendChild(h3);
     main.appendChild(h4Image);
     main.appendChild(inputFile);
     main.appendChild(h4Title);
     main.appendChild(inputTitle);
-    main.appendChild(h4Quizzes);
+    main.appendChild(h4Questions);
     main.appendChild(divQuizzes);
     main.appendChild(buttonNewQuestions);
     main.appendChild(buttonAdd);
@@ -56,14 +60,14 @@ export default function AddQuizzes() {
     const arrayImg = [];
 
     inputFile.addEventListener("change", function (e) {
-
         const inputTarget = e.target;
         const file = inputTarget.files[0];
 
         arrayImg.push(file);
     });
 
-    buttonNewQuestions.addEventListener("click", function(){
+    buttonNewQuestions.addEventListener("click", function(e) {
+        e.preventDefault();
         root.appendChild(ModalQuizzes(arrayQuestions, updateQuizzesDiv));
     });
 
@@ -84,7 +88,7 @@ export default function AddQuizzes() {
         arrayImg.forEach(img => formData.append("file", img));
         
         try {
-            await addQuiz(formData);
+            await updateQuizData(id, formData);
         } catch (error) {
             console.error(`Erro na requisição: ${error}`);
         }
@@ -97,8 +101,6 @@ export default function AddQuizzes() {
             const questionElement = document.createElement('div');
             const questionText = document.createElement('span');
             const deleteButton = document.createElement('button');
-            const div = document.createElement('div');
-            div.id = "container"
     
             questionElement.classList.add('question-container');
             questionText.textContent = `Pergunta ${index + 1}: ${question.question_text}`;
@@ -112,8 +114,7 @@ export default function AddQuizzes() {
     
             questionElement.appendChild(questionText);
             questionElement.appendChild(deleteButton);
-            div.appendChild(questionElement);
-            divQuizzes.appendChild(div);
+            divQuizzes.appendChild(questionElement);
         });
     
         // divQuizzes.appendChild(buttonNewQuestions);
@@ -126,16 +127,40 @@ export default function AddQuizzes() {
     return root;
 }
 
-async function addQuiz(formData) {
+async function updateQuiz(item) {
     try {
-        const response = await fetch('http://localhost:3000/api/quiz', {
-            method: 'POST',
+        const response = await fetch(`http://localhost:3000/api/quiz/${item}`);
+
+        if (!response.status) {
+            throw new Error('Erro na requisição');
+        }
+
+        const data = await response.json();
+
+        return renderEdit(data);
+    }
+    catch (error) {
+        console.error(`Erro na requisição: ${error}`);
+    }
+}
+
+function renderEdit(data){
+    const inputTitle = document.getElementById("title");
+    inputTitle.value = data.title;
+}
+
+async function updateQuizData(id, formData) {
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/quiz/${id}`, {
+            method: 'PUT',
             body: formData,
         });
 
         if (!response.status) {
             throw new Error('Erro na requisição');
         }
+
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);

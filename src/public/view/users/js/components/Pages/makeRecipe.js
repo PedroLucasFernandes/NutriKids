@@ -10,29 +10,32 @@ export default function makeRecipe(recipe) {
     const h4Back = document.createElement('h4');
     h4Back.id = "backButton";
     const divImage = document.createElement('div');
-    const h4rendimento = document.createElement('h4');
-    const h3Ingredientes = document.createElement('h3');
-    const h4IngredientesDetails = document.createElement('h4');
+    const h4Yield = document.createElement('h4');
+    const h3Ingredients = document.createElement('h3');
     const divBox = document.createElement('div');
     const h3Instructions = document.createElement('h3');
-    const h3InstructionsDetails = document.createElement('h4');
     const divInstructions = document.createElement('div');
 
     h3Title.innerHTML = recipe.title;
-    h4rendimento.innerHTML = `Rendimentos: ${recipe.yield}`;
-    h3Ingredientes.innerHTML = "Ingredientes:";
-    h4IngredientesDetails.innerHTML = recipe.ingredients;
+    h4Yield.innerHTML = `Rendimentos: ${recipe.yield}`;
+    h3Ingredients.innerHTML = "Ingredientes:";
+    const ingredientes = recipe.ingredients.split("\n").map(ingrediente => {
+        const p = document.createElement('p');
+        p.textContent = ingrediente;
+        return p;
+    });
+    ingredientes.forEach(ingrediente => divBox.appendChild(ingrediente));
+
     h3Instructions.innerHTML = "Como fazer:";
-    h3InstructionsDetails.innerHTML = recipe.instructions;
+    const instrucoes = recipe.instructions.split("\n").map(instrucao => {
+        const p = document.createElement('p');
+        p.textContent = instrucao;
+        return p;
+    });
+    instrucoes.forEach(instrucao => divInstructions.appendChild(instrucao));
+
     h4Back.innerHTML = "Voltar";
     divImage.id = "img";
-
-    divBox.appendChild(h4rendimento);
-    divBox.appendChild(h3Ingredientes);
-    divBox.appendChild(h4IngredientesDetails);
-
-    divInstructions.appendChild(h3Instructions);
-    divInstructions.appendChild(h3InstructionsDetails);
 
     img.src = `./uploads/${recipe.image_path}`;
     div.appendChild(img);
@@ -47,7 +50,10 @@ export default function makeRecipe(recipe) {
     
     main.appendChild(h3Title);
     main.appendChild(divImage);
+    main.appendChild(h4Yield);
+    main.appendChild(h3Ingredients);
     main.appendChild(divBox);
+    main.appendChild(h3Instructions);
     main.appendChild(divInstructions);
     main.appendChild(h4Back);
 
