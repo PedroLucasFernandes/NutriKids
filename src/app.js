@@ -1,7 +1,5 @@
 const dotenv = require('dotenv');
-//importando o módulo dotenv
 dotenv.config();
-//configurando o dotenv já de início para que as variáveis de ambiente sejam carregadas.
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -13,7 +11,6 @@ const quizRoutes = require('./routes/quizRoutes.js');
 const gameRoutes = require('./routes/gameRoutes.js');
 
 const app = express();
-//criando uma instância do express, ou seja, um servidor.
 
 const cors = require('cors');
 
@@ -30,7 +27,6 @@ app.use(cors({
 app.use(express.json());
 
 app.use(cookieParser());
-//configurando o express para fazer o parse de cookies. o coloquei aqui para que o cookie seja parseado antes de ser usado nas rotas de admin.
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/history', historyRoutes);

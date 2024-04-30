@@ -4,8 +4,6 @@ const adminService = require('../services/adminService.js');
 
 const adminController = {
   async loginAdmin(req, res) {
-    //INTEGRAÇÃO API COM FRONT-END: o front-end deve enviar um objeto com as propriedades username e password no corpo da requisição HTTP POST ao realizar o fetch para a rota /api/admin. o objeto ficará assim: { "username": "admin1", "password": "senha123" }.
-
     const { username, password } = req.body;
 
     try {
@@ -52,7 +50,6 @@ const adminController = {
       }
 
       return res.status(200).json({ username: foundAdmin.login, name: foundAdmin.name });
-      //({ username: foundAdmin.username, name: foundAdmin.name }) é um objeto JSON com duas propriedades: username e name, que contêm, respectivamente, o username e o name do admin encontrado no banco de dados. foi utilizado para que o front-end possa capturar essas informações e exibi-las para o usuário em caso de sucesso.
     } catch (error) {
       console.error(`${error.message}`);
       res.status(401).json({ error: 'falha na autenticação' });
@@ -97,11 +94,9 @@ module.exports = adminController;
 //curl -i -X POST -H "Content-Type: application/json" -d '{"username": "admin1", "password": "senha123"}' http://localhost:3000/api/admin
 //curl -i -X POST -H "Content-Type: application/json" -d '{"username": "admin2", "password": "senha456"}' http://localhost:3000/api/admin
 
-
-
 //rotas que requerem cookie de sessão (adquirido por meio da autenticação (login)):
 //testar confirmLogin:
-//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDA2ODcwMCwiZXhwIjoxNzE0MDcyMzAwfQ.G1RL18GkjBY5cTUbBf_CMyii2vMHTHpYinwp6KzYPdI" http://localhost:3000/api/admin
+//curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" http://localhost:3000/api/admin
 //curl -X GET -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsImlhdCI6MTcxMzgxOTU5NiwiZXhwIjoxNzEzODIzMTk2fQ.UdfPlCIjhb8gFgMGBTKKwERQ-8iRNrx1O_5IkyGqtJI" http://localhost:3000/api/admin
 
 //testar getAllAdmins:
