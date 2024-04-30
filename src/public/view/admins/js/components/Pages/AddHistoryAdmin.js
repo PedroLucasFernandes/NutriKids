@@ -53,6 +53,7 @@ export default function AddHistory() {
     form.appendChild(divHistory);
     form.appendChild(buttonAdd);
 
+    main.appendChild(h3);
     main.appendChild(form);
     main.appendChild(h4Back);
 
