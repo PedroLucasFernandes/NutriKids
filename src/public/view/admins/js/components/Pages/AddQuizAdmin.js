@@ -27,7 +27,7 @@ export default function AddQuizzes() {
     h4Title.innerHTML = "Título:";
     h4Quizzes.innerHTML = "Perguntas atuais:";
     inputFile.type = "file";
-    buttonNewQuestions.innerHTML = "Nova pergunta";
+    buttonNewQuestions.innerHTML = "Nova Questão";
     divAddImage.id = "image";
     buttonNewQuestions.accept = "image/*";
     buttonNewQuestions.multiple = true;

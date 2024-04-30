@@ -15,6 +15,7 @@ export default function HistoryAdmin() {
     const divContent = document.createElement('div');
 
     h3.innerHTML = "Histórias";
+    h3.id = "title";
     buttonAddHistory.innerHTML = "Criar nova História";
     h4.innerHTML = "Voltar";
     divContent.id = "admin";

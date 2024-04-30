@@ -4,14 +4,11 @@ const fs = require("fs");
 
 const historyController = {
     async addNewHistory(req, res) {
-        //INTEGRAÇÃO API COM FRONT-END: []
-
         const { title, story, created_by, updated_by} = req.body;
         const file = req.files;
         const created_by_number = parseInt(created_by);
         const updated_by_number = parseInt(updated_by);
 
-       //file não pode ser null (?):
         if(!file) {
             return res.status(400).json({ error: 'imagens para a história são obrigatórias' });
         }
@@ -41,8 +38,6 @@ const historyController = {
     },
 
     async findHistory(req, res) {
-        //INTEGRAÇÃO API COM FRONT-END: não precisa enviar nenhum objeto no corpo da requisição HTTP GET ao realizar o fetch para a rota /api/history.
-
         try {
             const allHistory = await historyAndComicService.findAllHistoryWithComics();
             res.status(200).json(allHistory);
@@ -53,8 +48,6 @@ const historyController = {
     },
 
     async findHistoryById(req, res) {
-        //INTERRAÇÃO API COM FRONT-END: não precisa enviar nenhum objeto no corpo da requisição HTTP GET ao realizar o fetch para a rota /api/history/:id. só lembre-se de colocar o id da história na url.
-
         const { id } = req.params;
         const id_number = parseInt(id);
 
@@ -68,23 +61,17 @@ const historyController = {
     },
 
     async updateHistory(req, res) {
-        //INTEGRAÇÃO DA API COM FRONT-END: []
-
         const { id } = req.params;
         const { title, story, updated_by } = req.body;
         const file = req.files;
         const id_number = parseInt(id);
         const updated_by_number = parseInt(updated_by);
 
-        //file pode, sim, ser null, caso o cliente não queira atualizar as imagens (banner e/ou comics)
-
         try { 
             const oldHistory = await historyAndComicService.findHistoryWithComicsById(id_number);
 
             const banner = file?.[0]?.filename || oldHistory.image_path;
-            //aqui, se o cliente não enviar nenhuma imagem, o valor de file será undefined, e, portanto, file?.[0]?.filename será undefined, e, portanto, banner será oldHistory.image_path.
             const comics = file?.slice(1) || oldHistory.comics.map(comic => comic.image_path);
-            //aqui, se o cliente não enviar nenhuma imagem, o valor de file será undefined, e, portanto, file?.slice(1) será undefined, e, portanto o código após o || será executado, e, portanto, comics será um array de strings com os caminhos das imagens dos quadrinhos da história antiga.
 
             const updatedHistory = await historyAndComicService.updateHistoryWithComics(id_number, title, story, updated_by_number, banner, comics);
             
@@ -106,8 +93,6 @@ const historyController = {
     },
 
     async deleteHistory(req, res) {
-        //INTEGRAÇÃO API COM FRONT-END: não precisa enviar nenhum objeto no corpo da requisição HTTP DELETE ao realizar o fetch para a rota /api/history/:id. só lembre-se de colocar o id da história na url. e, também, lembre-se de enviar o token de sessão pelo cabeçalho da requisição.
-
         const { id } = req.params;
         const id_number = parseInt(id);
 
@@ -140,11 +125,11 @@ module.exports = historyController;
 //curl -X GET http://localhost:3000/api/history
 
 //testar FindHistoryById:
-//curl -X GET http://localhost:3000/api/history/82
+//curl -X GET http://localhost:3000/api/history/96
 
 //rotas que requerem cookie de sessão:
 //testar addNewHistory:
-// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQyNzIyMCwiZXhwIjoxNzE0NDMwODIwfQ.Szn1pZqFK1xmnYfcngYNBjj2x2S02WHqVNCIipyrOsg" \
+// curl -i -X POST -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" \
 // -H "Content-Type: multipart/form-data" \
 // -F "title=história teste" \
 // -F "story=o texto da história..." \
@@ -155,13 +140,13 @@ module.exports = historyController;
 // http://localhost:3000/api/history
 
 //testar updateHistory:
-// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQyNzIyMCwiZXhwIjoxNzE0NDMwODIwfQ.Szn1pZqFK1xmnYfcngYNBjj2x2S02WHqVNCIipyrOsg" \
+// curl -i -X PUT -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" \
 // -H "Content-Type: multipart/form-data" \
 // -F "title=HISTÓRIA DO PEDRO MUDOU DE TÍTULO, PORÉM NÃO DE COMICS NEM BANNER" \
 // -F "story=o texto da história..." \
 // -F "updated_by=1" \
-// http://localhost:3000/api/history/95
+// http://localhost:3000/api/history/97
 
 
 //testar deleteHistory:
-// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQyNzIyMCwiZXhwIjoxNzE0NDMwODIwfQ.Szn1pZqFK1xmnYfcngYNBjj2x2S02WHqVNCIipyrOsg" http://localhost:3000/api/history/95
+// curl -i -X DELETE -H "Cookie: session_id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTcxNDQ4NzMwNCwiZXhwIjoxNzE0NDkwOTA0fQ.ytdXbBibTlkZ21IHXxNtfdw_a7oP6-4aWu5VRGeLLrA" http://localhost:3000/api/history/97

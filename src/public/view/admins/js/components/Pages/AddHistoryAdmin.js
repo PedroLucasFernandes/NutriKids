@@ -26,13 +26,13 @@ export default function AddHistory() {
     const divAddImage = document.createElement('div');
     const form = document.createElement('form');
 
-    h3.innerHTML = "Crie/Edite umma História";
+    h3.innerHTML = "Crie uma História";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Comics.innerHTML = "Quadrinhos atuais:";
     h4History.innerHTML = "História:";
     inputFile.type = "file";
-    buttonNewComics.innerHTML = "novo quadrinho";
+    buttonNewComics.innerHTML = "Novo Quadrinho";
     divAddImage.id = "image";
     buttonNewComics.accept = "image/*";
     buttonNewComics.multiple = true;

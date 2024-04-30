@@ -15,6 +15,7 @@ export default function QuizzesAdmin() {
     const divContent = document.createElement('div');
 
     h3.innerHTML = "Quizzes";
+    h3.id = "title";
     buttonAddQuizzes.innerHTML = "Criar novo Quiz";
     h4.innerHTML = "Voltar";
     divContent.id = "admin";
