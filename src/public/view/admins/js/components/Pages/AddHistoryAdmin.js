@@ -111,7 +111,11 @@ async function addHistory(formData) {
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
-        const response = await fetch('http://localhost:3000/api/history', {
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/history`, {
             method: 'POST',
             body: formData,
             // headers: {

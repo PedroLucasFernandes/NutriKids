@@ -129,7 +129,11 @@ export default function editQuiz(id) {
 
 async function updateQuiz(item) {
     try {
-        const response = await fetch(`http://localhost:3000/api/quiz/${item}`);
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/quiz/${item}`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
@@ -152,7 +156,11 @@ function renderEdit(data){
 async function updateQuizData(id, formData) {
 
     try {
-        const response = await fetch(`http://localhost:3000/api/quiz/${id}`, {
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/quiz/${id}`, {
             method: 'PUT',
             body: formData,
         });

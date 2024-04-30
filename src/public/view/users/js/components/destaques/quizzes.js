@@ -50,7 +50,11 @@ export default function quizzes() {
 
 async function getQuiz(i) {
     try {
-        const response = await fetch(`http://localhost:3000/api/quiz/`);
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://alpha01.alphaedtech.org.br'
+               : 'http://localhost:3000';
+        
+        const response = await fetch(`${apiUrl}/api/quiz/`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
