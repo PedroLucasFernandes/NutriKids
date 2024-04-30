@@ -79,6 +79,10 @@ main {
 main h3 {
     font-size: 40px;
     font-family: var(--font2);
+    color: white;
+}
+
+#title{
     color: var(--cor5);
 }
 

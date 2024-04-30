@@ -15,6 +15,7 @@ export default function RecipesAdmin() {
     const divContent = document.createElement('div');
 
     h3.innerHTML = "Receitas";
+    h3.id = "title";
     buttonAddHistory.innerHTML = "Criar nova Receita";
     h4.innerHTML = "Voltar";
     divContent.id = "admin";

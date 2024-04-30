@@ -25,14 +25,14 @@ export default function EditHistory(id) {
     const divAddImage = document.createElement('div');
     const form = document.createElement('form');
 
-    h3.innerHTML = "Crie/Edite uma História";
+    h3.innerHTML = "Edite uma História";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Comics.innerHTML = "Quadrinhos atuais:";
     h4History.innerHTML = "Historia:";
     inputFile.type = "file";
     inputFile.id = "file";
-    buttonNewComics.innerHTML = "novo quadrinho";
+    buttonNewComics.innerHTML = "Novo Quadrinho";
     divAddImage.id = "image";
     buttonNewComics.accept = "image/*";
     buttonNewComics.multiple = true;
@@ -59,6 +59,7 @@ export default function EditHistory(id) {
     form.appendChild(divHistory);
     form.appendChild(buttonAdd);
 
+    main.appendChild(h3);
     main.appendChild(form);
     main.appendChild(h4Back);
 
