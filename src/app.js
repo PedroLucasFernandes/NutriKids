@@ -16,7 +16,8 @@ const cors = require('cors');
 
 app.use(cors({
     origin: function (origin, callback) {
-        if (!origin || origin === `http://localhost:${process.env.PORT}`) {
+        const allowedOrigins = [`http://localhost:${process.env.PORT}`, 'https://alpha01.alphaedtech.org.br'];
+        if (!origin || allowedOrigins.indexOf(origin) >= 0) {
             callback(null, true);
         } else {
             callback(new Error('Acesso bloqueado por política CORS'));
