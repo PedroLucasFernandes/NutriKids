@@ -182,6 +182,20 @@ h4 {
     cursor: pointer;
 }
 
+#modal-content #inputExplication{
+    width: 100%;
+    height: 100%;
+}
+
+#modal-content #divAnswer{
+    display: flex;
+    padding: 12px;
+}
+
+#modal-content #divAnswer p, #modal-content #divAnswer input{
+    margin-right: 10px;
+}
+
 #box-image {
     width: 80px;
     height: 80px;

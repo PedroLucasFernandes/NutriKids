@@ -246,9 +246,21 @@ footer li:hover{
         justify-content: center;
         gap: 50px;
     }
+
+    main div h4 {
+        font-size: 80px;
+    }
+
+    main h3 {
+        font-size: 60px;
+    }
+    
+    main h4 {
+        font-size: 30px;
+    }
     
     main img {
-        width: 250px;
+        width: 350px;
     }
     
     #box {
@@ -300,7 +312,7 @@ footer li:hover{
         justify-content: center;
         flex-direction: column;
         justify-content: center;
-        gap: 50px;
+        gap: 100px;
         margin: 50px;
     }
 
@@ -313,7 +325,15 @@ footer li:hover{
     }
 
     main div h4 {
-        font-size: 40px;
+        font-size: 80px;
+    }
+
+    main h3 {
+        font-size: 60px;
+    }
+
+    main h4 {
+        font-size: 30px;
     }
 
     #box {
@@ -353,7 +373,23 @@ footer li:hover{
 
 @media (min-width: 1700px) {
     main {
-        gap: 70px;
+        gap: 150px;
+    }
+
+    main h3 {
+        font-size: 60px;
+    }
+    main h4 {
+        font-size: 30px;
+    }
+
+    main div {
+        gap: 50px;
+        align-items: center;
+    }
+
+    main div h4 {
+        font-size: 100px;
     }
     
     main img {

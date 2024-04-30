@@ -26,13 +26,13 @@ export default function AddHistory() {
     const divAddImage = document.createElement('div');
     const form = document.createElement('form');
 
-    h3.innerHTML = "Crie/Edite umma História";
+    h3.innerHTML = "Crie uma História";
     h4Image.innerHTML = "Capa:";
     h4Title.innerHTML = "Título:";
     h4Comics.innerHTML = "Quadrinhos atuais:";
     h4History.innerHTML = "História:";
     inputFile.type = "file";
-    buttonNewComics.innerHTML = "novo quadrinho";
+    buttonNewComics.innerHTML = "Novo Quadrinho";
     divAddImage.id = "image";
     buttonNewComics.accept = "image/*";
     buttonNewComics.multiple = true;
@@ -53,6 +53,7 @@ export default function AddHistory() {
     form.appendChild(divHistory);
     form.appendChild(buttonAdd);
 
+    main.appendChild(h3);
     main.appendChild(form);
     main.appendChild(h4Back);
 
@@ -65,7 +66,6 @@ export default function AddHistory() {
         const file = inputTarget.files[0];
 
         arrayImg.push(file);
-        console.log(arrayImg);
 
         divHistory.appendChild(divAddImage);
         divHistory.appendChild(buttonNewComics);
@@ -87,20 +87,18 @@ export default function AddHistory() {
         // formData.append("file", arrayImg)
         arrayImg.forEach(img => formData.append("file", img));
         
-        console.log(formData.entries());
-
         try {
             await addHistory(formData);
         } catch (error) {
             console.error(`Erro na requisição: ${error}`);
         }
-    })
+    });
 
     h4Back.addEventListener("click", function () {
         const event = new CustomEvent("pageChange", { detail: "/HistoryAdmin" });
 
         window.dispatchEvent(event);
-    })
+    });
 
     divContent.appendChild(Header());
     divContent.appendChild(main);
@@ -110,8 +108,6 @@ export default function AddHistory() {
 }
 
 async function addHistory(formData) {
-    console.log(formData);
-
     try {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
 
@@ -126,9 +122,6 @@ async function addHistory(formData) {
         if (!response.status) {
             throw new Error('Erro na requisição');
         }
-
-        const data = await response.json();
-        console.log(data);
     }
     catch (error) {
         console.error(`Erro na requisição: ${error}`);
