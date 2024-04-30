@@ -15,15 +15,15 @@ O NutriKids permite que você tenha um acesso como administrador, via login e se
 Os administradores gerenciam histórias em quadrinhos, quizzes e receitas no site, eles são capazes de criar, editar e deletar estes recursos.
 
 Um quiz é formado por: capa, título e uma lista de perguntas. As perguntas solicitam texto da questão, quatro opções de resposta (sendo uma o gabarito) e uma explicação.
-![Adicionar novo Quiz](./READMEImages/newQuiz)
-![Adicionar nova Questão](./READMEImages/newQuestion)
+![Adicionar novo Quiz](./READMEImages/newQuiz.png)
+![Adicionar nova Questão](./READMEImages/newQuestion.png)
 
 Uma história é formada por: capa, título, descrição e uma lista de imagens/quadrinhos.
-![Adicionar nova História](./READMEImages/newHistory)
-![Adicionar novo Quadrinho](./READMEImages/newComic)
+![Adicionar nova História](./READMEImages/newHistory.png)
+![Adicionar novo Quadrinho](./READMEImages/newComic.png)
 
 Uma receita é formada por: capa, título, ingredientes, modo de preparo e rendimento.
-![Adicionar nova Receita](./READMEImages/newRecipe)
+![Adicionar nova Receita](./READMEImages/newRecipe.png)
 
 Como é possível observar, cada um destes possuem suas peculiaridades com tipos de dados diferentes, mas o sistema está preparado para receber e adicionar normalmente uma história, quiz ou receita na plataforma.
 
