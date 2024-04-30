@@ -1,3 +1,9 @@
+-- Criar Banco de Dados
+CREATE DATABASE <nomeDoBanco>;
+
+-- Acesse este Banco
+\c <nomeDoBanco>
+
 -- Inserindo a tabela de Administrador
 CREATE TABLE admin (
     id SERIAL PRIMARY KEY,
