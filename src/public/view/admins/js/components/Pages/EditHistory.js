@@ -116,7 +116,7 @@ export default function EditHistory(id) {
 async function getHistory(item) {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
 
         const response = await fetch(`${apiUrl}/api/history/${item}`);
@@ -160,7 +160,7 @@ async function updateHistory(formData, id) {
         // const contentType = 'multipart/form-data; boundary=' + formData.boundary;
         
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
 
         const response = await fetch(`${apiUrl}/api/history/${id}`, {

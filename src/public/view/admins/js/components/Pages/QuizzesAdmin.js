@@ -51,7 +51,7 @@ export default function QuizzesAdmin() {
 async function getQuiz() {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
 
         const response = await fetch(`${apiUrl}/api/quiz`);
@@ -110,7 +110,7 @@ function render(data) {
 async function deleteQuiz(id) {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
         
         const response = await fetch(`${apiUrl}/api/quiz/${id}`, {

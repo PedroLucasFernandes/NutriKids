@@ -49,7 +49,7 @@ export default function RecipesAdmin() {
 async function getRecipes() {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
 
         const response = await fetch(`${apiUrl}/api/recipe`);
@@ -108,7 +108,7 @@ function render(data) {
 async function deleterecipe(id) {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
 
         const response = await fetch(`${apiUrl}/api/recipe/${id}`, {
@@ -219,7 +219,7 @@ function editRecipe(data) {
 async function updatedRecipe(formdata, id) {
     try {
         const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
-               ? 'https://66.135.21.55'
+               ? 'https://alpha01.alphaedtech.org.br'
                : 'http://localhost:3000';
         
         const response = await fetch(`${apiUrl}/api/recipe/${id}`, {
