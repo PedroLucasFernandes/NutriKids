@@ -50,7 +50,11 @@ export default function HistoryAdmin() {
 
 async function getHistory() {
     try {
-        const response = await fetch("http://localhost:3000/api/history");
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://66.135.21.55:3000'
+               : 'http://localhost:3000';
+
+        const response = await fetch(`${apiUrl}/api/history`);
 
         if (!response.status) {
             throw new Error('Erro na requisição');
@@ -105,7 +109,11 @@ function render(data) {
 
 async function deleteHistory(id) {
     try {
-        const response = await fetch(`http://localhost:3000/api/history/${id}`, {
+        const apiUrl = window.location.hostname === 'alpha01.alphaedtech.org.br'
+               ? 'https://66.135.21.55:3000'
+               : 'http://localhost:3000';
+        
+        const response = await fetch(`${apiUrl}/api/history/${id}`, {
             method: 'DELETE'
         });
     }
