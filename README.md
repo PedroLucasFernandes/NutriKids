@@ -27,7 +27,7 @@ Uma receita é formada por: capa, título, ingredientes, modo de preparo e rendi
 
 Como é possível observar, cada um destes possuem suas peculiaridades com tipos de dados diferentes, mas o sistema está preparado para receber e adicionar normalmente uma história, quiz ou receita na plataforma.
 
-Já usuários podem apenas ler estes recursos e jogar, administradores não tem o poder de editar jogos, já que estes são desenvolvidos no próprio código.
+Usuários podem apenas ler estes recursos e jogar. Administradores não tem o poder de editar jogos, já que estes são desenvolvidos no próprio código.
 
 Lendo uma história:
 ![Ler História](./READMEImages/history.png)
@@ -46,13 +46,15 @@ As telas da parte de usuários são responsivas e podem ser acessadas pelo celul
 ### Como utilizar a aplicação
 Baixe as pastas e utilize o comando ``npm i`` no terminal para instalar todas as bibliotecas que o projeto solicita, localizadas no arquivo ``package.json``. Após isso, crie um arquivo chamado ``.env`` para colocar algumas configurações sensíveis que não estão disponíveis publicamente: porta, configurações do banco de dados e a chave de acesso para o JWT.
 
+Também crie uma pasta chamada "uploads" dentro do diretório ``public``, ela receberá as imagens enviadas ao servidor, quando um administrador for criar uma história, receita ou quiz.
+
 Por fim, abra o servidor express com o comando ``npm start``.
 
 ##### Banco de Dados
 Certifique-se de criar um banco de dados que possuem as tabelas e atributos necessários para a comunicação com a API. Ele deve ser estruturado desta maneira:
 ![Modelo do Banco de Dados](./READMEImages/database.png)
 
-Este arquivo contém todos os comandos SQL necessários para criar as tabelas e atributos necessários. Você pode executar esses comandos em seu banco de dados para configurá-lo adequadamente.
+Este arquivo contém todos os comandos SQL necessários para criar as tabelas e atributos. Você pode executar esses passos em seu banco de dados para configurá-lo adequadamente.
 [Baixar arquivo SQL](./schema.sql)
 
 Lembre de configurar os seguintes dados: host, porta, database, user e password. Eles precisam ser condizentes com as configurações que foram inseridas no ``.env``.

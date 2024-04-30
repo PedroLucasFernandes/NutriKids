@@ -1,3 +1,5 @@
+-- Certifique-se de inserir os comandos na ordem correta, para não alterar o resultado final
+
 -- Criar Banco de Dados
 CREATE DATABASE <nomeDoBanco>;
 
