@@ -15,7 +15,7 @@ import AddQuizzes from "./admins/js/components/Pages/AddQuizAdmin.js";
 
 const router = {
     "/": Home,
-    "/Main": Home,
+    "/Inicio": Home,
     "/menuHamburguer": menuHamburguer,
 //    "/Jogos": Games,
     "/Quizzes": Quizzes,
