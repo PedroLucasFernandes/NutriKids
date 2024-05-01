@@ -1,3 +1,5 @@
+import playQuiz from "../Pages/playQuizzes.js";
+
 export default function quizzes() {
     const divMain = document.createElement('div');
     const img = document.createElement('img');
@@ -87,7 +89,7 @@ function render(data) {
 
     div.addEventListener('click', function () {
         console.log(data);
-        makeRecipe(data);
+        playQuiz(data);
     });
 
     div.appendChild(title);
