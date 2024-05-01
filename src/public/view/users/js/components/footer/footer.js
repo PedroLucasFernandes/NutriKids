@@ -12,7 +12,7 @@ export default function footer (){
     nav.id = "navegacao";
     h4.innerHTML = "No NutriKids você vai se divertir ao mesmo tempo que aprende diversas curiosidades no mundo da culianária, estamos aqui para ensinar as crianças como é bom e saudavel comer e fazer seus proprios pratos!";
 
-    const menu = ["Jogos", "Quizzes", "Historias", "Receitas"];
+    const menu = ["Jogos", "Quizzes", "Historias", "Receitas", "Administrativo"];
 
     for (const item of menu){
         const li = document.createElement('li');
