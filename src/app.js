@@ -49,7 +49,7 @@ app.get('/menuHamburguer', sendIndexFile);
 app.get('/Jogos', sendIndexFile);
 app.get('/Quizzes', sendIndexFile);
 app.get('/Receitas', sendIndexFile);
-app.get('/Login', sendIndexFile);
+app.get('/Administrativo', sendIndexFile);
 app.get('/Admin', sendIndexFile);
 app.get('/Sair', sendIndexFile);
 app.get('/HistoryAdmin', sendIndexFile);

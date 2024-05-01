@@ -21,10 +21,10 @@ export default function Main() {
             name: "Recipes",
             img: "./images/iconRecipe.png"
         },
-        {
-            name: "Register",
-            img: "./images/iconAdmin.png"
-        }
+        // {
+        //     name: "Register",
+        //     img: "./images/iconAdmin.png"
+        // }
     ];
 
     for (const item of menu) {

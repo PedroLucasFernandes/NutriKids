@@ -44,7 +44,7 @@ export default function Login() {
 
     footer.addEventListener("click", function() {
         root.innerHTML = ""
-        const event = new CustomEvent("pageChange", {detail: "/"});
+        const event = new CustomEvent("pageChange", {detail: "/Inicio"});
 
             window.dispatchEvent(event);
     })

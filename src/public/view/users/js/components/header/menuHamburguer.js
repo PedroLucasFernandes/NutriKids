@@ -16,7 +16,7 @@ export default function menuHamburguer() {
 
     h2.innerHTML = "NutriKids";
 
-    const menu = ["Inicio" ,"Jogos", "Quizzes", "Historias", "Receitas"];
+    const menu = ["Inicio" ,"Jogos", "Quizzes", "Historias", "Receitas", "Administrativo"];
 
     for (const item of menu) {
         const h3 = document.createElement('h3');
