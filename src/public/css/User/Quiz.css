@@ -113,6 +113,7 @@ main button {
     font-size: 15px;
     border-radius: 30px;
     border: none;
+    cursor: pointer;
 }
 
 #backButton{
@@ -232,6 +233,7 @@ footer h4 {
     padding: 10px;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .box {
@@ -259,6 +261,7 @@ footer h4 {
 .box button {
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 
 #btn {
@@ -273,6 +276,7 @@ footer h4 {
 #btn button {
     background-color: var(--cor8);
     border-radius: 0px;
+    cursor: pointer;
 }
 
 #div {
@@ -295,6 +299,7 @@ footer h4 {
     font-size: 15px;
     border-radius: 30px;
     border: none;
+    cursor: pointer;
 }
 
 .marcado {
@@ -319,6 +324,7 @@ footer h4 {
     #div button {
         width: 250px;
         font-size: 30px;
+        cursor: pointer;
     }
 
     main {
@@ -340,6 +346,7 @@ footer h4 {
     #button {
         width: 250px;
         font-size: 30px;
+        cursor: pointer;
     }
 
     #modal-content {
@@ -403,6 +410,7 @@ footer h4 {
 
     main button {
         width: 250px;
+        cursor: pointer;
     }
 
     main h4 {
@@ -417,6 +425,7 @@ footer h4 {
 
     #div button {
         width: 200px;
+        cursor: pointer;
     }
 
     #navegacao {
@@ -454,6 +463,7 @@ footer h4 {
         width: 300px;
         font-size: 30px;
         padding: 20px;
+        cursor: pointer;
         margin: 30px;
     }
 
@@ -482,6 +492,7 @@ footer h4 {
     #div button {
         width: 300px;
         font-size: 40px;
+        cursor: pointer;
     }
 
     #navegacao {
