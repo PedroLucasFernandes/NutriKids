@@ -3,6 +3,7 @@ import Home from "./users/js/components/Pages/Home.js";
 import Quizzes from "./users/js/components/Pages/Quizzes.js";
 import History from "./users/js/components/Pages/History.js";
 import Recipes from "./users/js/components/Pages/Recipes.js";
+import About from "./users/js/components/Pages/About.js";
 import menuHamburguer from "./users/js/components/header/menuHamburguer.js";
 import Initial from "./admins/js/components/Pages/Initial.js";
 import Login from "./admins/js/components/Pages/Login.js";
@@ -21,6 +22,7 @@ const router = {
     "/Quizzes": Quizzes,
     "/Historias": History,
     "/Receitas": Recipes,
+    "/Sobre-nos": About,
     "/Administrativo": Login,
     "/Admin": Initial,
     "/Sair": Login,
