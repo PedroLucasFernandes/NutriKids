@@ -202,15 +202,17 @@ footer li:hover{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
     cursor: pointer;
     text-align: center;
+    border-radius: 10px;
 }
 
 .box img {
     width: 150px;
     height: 100px;
     border: 1px solid black;
+    margin: 10px;
 }
 
 .box h3 {
@@ -269,6 +271,7 @@ main div h3 {
 
     main div {
         width: 600px;
+        height: 100%;
     }
 
     main img {
@@ -280,7 +283,7 @@ main div h3 {
         align-items: center;
         gap: 20px;
         width: 600px;
-        height: 500px;
+        height: 100%;
         flex-direction: row;
         flex-wrap: wrap;
     }
@@ -303,10 +306,20 @@ main div h3 {
         width: 200px;
     }
 
+    main div h3 {
+        margin: 20px;
+    }
 
+    #linha {
+        height: 100px;
+    }
+
+    footer h4 {
+        font-size: 20px;
+    }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
     header {
         font-size: 50px;
     }

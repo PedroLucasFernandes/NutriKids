@@ -76,6 +76,7 @@ main {
     flex-direction: column;
     align-items: center;
     font-family: var(--font1);
+    margin: 30px;
 }
 
 main img {
@@ -260,14 +261,14 @@ footer h4 {
     }
 
     button {
-        width: 170px;
-        height: 50px;
+        width: 250px;
+        height: 60px;
         color: black;
         background-color: var(--cor6);
         border: none;
         border-radius: 20px;
         font-family: var(--font1);
-        font-size: 15px;
+        font-size: 20px;
     }
 
     #linha {

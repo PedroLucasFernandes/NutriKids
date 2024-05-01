@@ -33,7 +33,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 50px;
+    margin: 20px;
     font-size: 35px;
 }
 
@@ -54,3 +54,17 @@ main img {
     width: 200px;
 }
 
+@media (min-width: 760px) {
+    header {
+        position: relative;
+        width: 560px;
+    }
+    main {
+        font-size: 40px;
+        margin: 30px;
+    }
+
+    main img {
+        width: 400px;
+    }
+}
