@@ -43,7 +43,6 @@ function sendIndexFile(req, res) {
 
 app.get('/', sendIndexFile);
 app.get('/Historias', sendIndexFile);
-app.get('/Inicio', sendIndexFile);
 app.get('/Main', sendIndexFile);
 app.get('/menuHamburguer', sendIndexFile);
 // app.get('/Jogos', sendIndexFile);
