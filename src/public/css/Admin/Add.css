@@ -116,7 +116,9 @@ h4 {
 #div-image {
     width: 900px;
     height: 300px;
-    background-color: var(--cor4);
+    border: 3px solid var(--cor4);
+    background-color: var(--cor6);
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -132,6 +134,10 @@ h4 {
 #div-image img {
     width: 100px;
     height: 70px;
+}
+
+.divItens {
+    border-radius: 10px;
 }
 
 .divItens button {
@@ -204,4 +210,74 @@ h4 {
 #box-image img {
     width: 80px;
     height: 80px;
+}
+
+@media (min-width: 1000px) {
+    form {
+        width: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    form h4 {
+        font-size: 35px;
+    }
+
+    .divItens {
+        width: 800px;
+        font-size: 40px;
+        font-family: var(--font2);
+        color: var(--cor4);
+    }
+
+    textarea{
+        width: 500px;
+        height: 100px;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .divItens {
+        width: 900px;
+        height: 500px;
+    }
+
+    #div-image {
+        height: 350px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .divItens {
+        width: 1100px;
+        height: 500px;
+    }
+
+    input {
+        font-size: 20px;
+    }
+
+    textarea {
+        font-size: 20px;
+        width: 600px;
+    }
+}
+
+@media (min-width: 1700px) {
+    main h3 {
+        font-size: 50px;
+    }
+
+    .divItens {
+        width: 1200px;
+        height: 700px;
+    }
+
+    #div-image {
+        width: 1000px;
+        height: 450px;
+    }
 }
