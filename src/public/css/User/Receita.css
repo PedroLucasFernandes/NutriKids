@@ -149,6 +149,12 @@ footer h4 {
     color: white;
 }
 
+footer li:hover {
+    color: var(--cor3);
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
 #box {
     display: flex;
     flex-wrap: wrap;
