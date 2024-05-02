@@ -16,7 +16,7 @@ export default function menuHamburguer() {
 
     h2.innerHTML = "NutriKids";
 
-    const menu = ["Inicio" ,"Jogos", "Quizzes", "Historias", "Receitas", "Administrativo"];
+    const menu = ["Inicio" ,"Jogos", "Quizzes", "Historias", "Receitas"];
 
     for (const item of menu) {
         const h3 = document.createElement('h3');
@@ -31,6 +31,17 @@ export default function menuHamburguer() {
 
         div.appendChild(h3)
     }
+
+    const h3About = document.createElement('h3');
+    h3About.innerHTML = "Sobre Nós";
+
+    h3About.addEventListener("click", ()=> {
+        const event = new CustomEvent("pageChange", {detail: "/Sobre-nos"});
+
+        window.dispatchEvent(event);
+    })
+
+    div.appendChild(h3About)
 
     fechar.src = "./images/fechar.png"
     img.src = "./images/logo.png";

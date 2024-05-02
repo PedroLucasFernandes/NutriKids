@@ -246,7 +246,7 @@ footer li:hover {
     display: flex;
     align-items: center;
     height: 100%;
-    width: 900px;
+    width: 350px;
 }
 
 #div h3 {
@@ -257,6 +257,7 @@ p {
     text-align: center;
     color: var(--cor3);
     text-align: center;
+    width: 300px;
 }
 
 main div h3 {
@@ -284,7 +285,7 @@ main div h3 {
     }
 
     main img {
-        width: 600px;
+        width: 450px;
     }
 
     #box {
@@ -333,16 +334,71 @@ main div h3 {
         font-size: 30px;
     }
 
+
     p {
-        font-size: 35px;
-        width: 900px;
+        font-size: 28px;
+        width: 600px;
         height: 100%;
+    }
+
+    footer h4 {
+        font-size: 25px;
+        width: 400px;
+    }
+
+    main {
+        width: 750px;
+    }
+
+    #div {
+        width: 500px;
+    }
+}
+
+@media (min-width: 1000px) {
+    #div {
+        width: 600px;
+    }
+
+    main img {
+        width: 450px;
+    }
+
+    main {
+        width: 950px;
+    }
+
+    p {
+        font-size: 28px;
+        width: 700px;
+        height: 100%;
+    }
+}
+
+@media (min-width: 1200px){
+    main {
+        width: 1250px;
+    }
+
+    p {
+        font-size: 32px;
+        width: 800px;
+    }
+}
+
+@media (min-width: 1300px) {
+    main {
+        width: 1300px;
     }
 }
 
 @media (min-width: 1400px) {
     header {
         font-size: 50px;
+    }
+
+    main {
+        width: 1000px;
     }
 
     #menu {
@@ -373,6 +429,8 @@ main div h3 {
         flex-direction: row-reverse;
         justify-content: center;
         gap: 100px;
+        width: 100%;
+        padding: 20px;
     }
 
     main div {
@@ -449,7 +507,7 @@ main div h3 {
 @media (min-width: 1700px) {
     main {
         gap: 200px;
-        margin: 41px;
+        margin: 41px 0 41px 0;
     }
 
     main img {
