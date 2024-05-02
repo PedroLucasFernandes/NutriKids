@@ -16,12 +16,17 @@ export default function About() {
     const p5 = document.createElement('p');
     const h3 = document.createElement('h3');
     const img = document.createElement('img');
-
+    
     const menu = ["Inicio", "Jogos", "Quizzes", "Receitas"];
     div.id = "div"
-
+    
     h3.innerHTML = "Sobre nós:"
-
+    
+    p.id = "aboutUsP";
+    p2.id = "aboutUsP";
+    p3.id = "aboutUsP";
+    p4.id = "aboutUsP";
+    p5.id = "aboutUsP";
     p.innerHTML = "Somos um site de nutrição infantil e de classificação livre, com o objetivo de proporcionar uma experiência divertida e educativa para crianças entre 5 a 12 anos."
     p2.innerHTML = "Oferecemos uma variedade de receitas saudáveis e deliciosas, jogos interativos para aprender sobre alimentos de maneira divertida, quizzes para testar o conhecimento sobre o tema e histórias encantadoras que destacam a importância de uma alimentação equilibrada.";
     p3.innerHTML = "Estamos comprometidos em ajudar as crianças a desenvolverem hábitos alimentares saudáveis desde cedo, de forma envolvente e acessível. Promovemos um ambiente inclusivo e acolhedor, onde não há espaço para discriminação ou preconceito.";
