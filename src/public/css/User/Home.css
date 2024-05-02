@@ -116,10 +116,6 @@ main img {
     justify-content: center;
 }
 
-#test h3 {
-    font-size: 15px;
-}
-
 .box {
     padding: 10px;
     display: flex;
@@ -243,21 +239,26 @@ footer h4 {
         cursor: pointer;
     }
 
-    .quadrado:hover {
-        width: 120px;
-        height: 120px;
-        transition-duration: 0.2s;
-    }
 
     .box {
         background-color: var(--cor5);
         cursor: pointer;
+        width: 220px;
+        height: 240px;
+    }
+
+    .box h3 {
+        font-size: 23px;
     }
 
     .box:hover {
-        width: 170px;
-        height: 190px;
+        width: 240px;
+        height: 250px;
         transition-duration: 0.2s;
+    }
+
+    .box img {
+        width: 150px;
     }
 
     button {
@@ -288,6 +289,41 @@ footer h4 {
         color: var(--cor3);
         transition-duration: 0.2s;
         cursor: pointer;
+    }
+}
+
+@media (min-width: 1000px) {
+    main img {
+        width: 550px;
+    }
+
+    .conjunto h3 {
+        font-size: 60px;
+    }
+
+    .box {
+        width: 230px;
+        height: 250px;
+    }
+
+    .box h3 {
+        font-size: 25px;
+    }
+
+    .box img {
+        width: 160px;
+    }
+
+    .box:hover {
+        width: 240px;
+        height: 260px;
+        transition-duration: 0.2s;
+    }
+
+    .conjunto button {
+        width: 300px;
+        height: 80px;
+        font-size: 25px;
     }
 }
 
@@ -338,7 +374,7 @@ footer h4 {
     }
 
     .conjunto h3 {
-        font-size: 50px;
+        font-size: 30px;
     }
 
     .destaques {

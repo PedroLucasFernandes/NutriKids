@@ -56,7 +56,6 @@ main img {
 
 @media (min-width: 760px) {
     header {
-        position: relative;
         width: 560px;
     }
     main {
@@ -66,5 +65,28 @@ main img {
 
     main img {
         width: 400px;
+    }
+}
+
+@media (min-width: 760px) {
+    header {
+        width: 750px;
+    }
+
+    header h2 {
+        font-size: 80px;
+    }
+
+    main {
+        font-size: 50px;
+        margin: 40px;
+    }
+
+    div h3 {
+        margin: 30px;
+    }
+
+    main img {
+        width: 500px;
     }
 }
