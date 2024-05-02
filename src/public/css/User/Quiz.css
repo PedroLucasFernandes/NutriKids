@@ -39,6 +39,10 @@ header {
     border-bottom: 1px solid var(--cor0);
 }
 
+header img {
+    cursor: pointer;
+}
+
 header li{
     cursor: pointer;
 }
@@ -115,6 +119,11 @@ main button {
     border-radius: 30px;
     border: none;
     cursor: pointer;
+}
+
+#div button:hover, #button:hover{
+    color: var(--cor0);
+    background-color: var(--cor5);
 }
 
 #backButton{
