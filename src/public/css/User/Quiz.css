@@ -121,6 +121,11 @@ main button {
     cursor: pointer;
 }
 
+#div button:hover, #button:hover{
+    color: var(--cor0);
+    background-color: var(--cor5);
+}
+
 #backButton{
     cursor: pointer;
 }
