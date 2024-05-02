@@ -160,6 +160,7 @@ function ModalQuiz(item, resp, question, points) {
         main.innerHTML = ""
 
         const back = document.createElement('h4');
+        back.id = "backButton";
         const image = document.createElement('img');
         h3.innerHTML = `Você acertou ${points} questões!!!`;
         back.innerHTML = "Voltar";
