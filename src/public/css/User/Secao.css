@@ -266,6 +266,10 @@ main div h3 {
     font-size: 35px;  
 }
 
+#aboutUsP{
+    margin-bottom: 20px;
+}
+
 @media (min-width: 760px) {
     header {
         font-size: 50px;
@@ -502,6 +506,9 @@ main div h3 {
     }
 
 
+    #aboutUsP{
+        margin-bottom: 0px;
+    }
 }
 
 @media (min-width: 1700px) {
