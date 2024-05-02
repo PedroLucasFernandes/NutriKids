@@ -258,9 +258,7 @@ p {
 main div h3 {
     font-size: 40px;
     margin: 10px;
-    font-size: 35px;
-    width: 500px;
-    height: 100%;
+    font-size: 35px;  
 }
 
 @media (min-width: 760px) {
