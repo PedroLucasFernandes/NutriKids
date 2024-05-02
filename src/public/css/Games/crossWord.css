@@ -15,26 +15,28 @@ body {
 }
 
 #puzzle-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 20px;
 }
 
 #puzzle-container {
     display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-template-rows: repeat(9, 50px);
-    gap: 2px;
+    grid-template-columns: repeat(10, 60px);
+    grid-template-rows: repeat(auto-fill, 60px);
+    gap: 3px;
 }
 
 .square {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 24px;
     border: 1px solid black;
 }
 
@@ -49,39 +51,24 @@ body {
 
 .clue {
     margin-top: 5px;
-    font-size: 12px;
-    color: #666;
+    color: #ffffff;
     text-align: center;
 }
 
 .clues-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
+    max-width: 590px;
+    padding: 5px;
 }
 
 .clues-container div {
-    margin: 5px;
-    font-size: 16px;
-    color: #666;
-    text-align: center;
-}
-
-#puzzle-container {
-    display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-template-rows: repeat(9, 50px);
-    gap: 2px;
-}
-
-.square {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-}
-
-.clue {
-    margin-top: 5px;
+    margin: 3px;
+    font-size: 23px;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1.6;
 }
 
 .modal {
@@ -163,4 +150,53 @@ body {
     cursor: pointer;
     display: block;
     margin: 20px auto 0;
+}
+
+@media (max-width: 768px) {
+    #puzzle-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #puzzle-container {
+        grid-template-columns: repeat(10, 40px);
+        grid-template-rows: repeat(auto-fill, 40px);
+    }
+
+    .square {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .clues-container div {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #puzzle-container {
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(auto-fill, 30px);
+    }
+
+    .square {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    #puzzle-wrapper {
+        flex-direction: column;
+    }
+
+    .clues-container {
+        order: 2;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .clues-container div {
+        font-size: 12px;
+    }
 }

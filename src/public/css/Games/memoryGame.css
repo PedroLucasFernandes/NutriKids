@@ -1,8 +1,6 @@
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 .modal {
@@ -88,11 +86,13 @@ body {
 
 .jogo {
     height: 100%;
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .linha {
@@ -103,8 +103,8 @@ body {
 }
 
 .card {
-    height: 150px;
-    width: 150px;
+    height: 160px;
+    width: 160px;
     margin: 5px;
     position: relative;
     box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.3);
