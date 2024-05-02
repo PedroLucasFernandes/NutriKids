@@ -43,11 +43,15 @@ header {
     border-bottom: 1px solid var(--cor0);
 }
 
-header li{
+header img {
     cursor: pointer;
 }
 
-header li:hover{
+header li {
+    cursor: pointer;
+}
+
+header li:hover {
     color: var(--cor5);
     transition-duration: 0.2s;
 }
@@ -74,11 +78,12 @@ main {
     align-items: center;
     font-family: var(--font1);
     padding: 50px;
+    gap: 20px;
 }
 
 main div {
     width: 300px;
-    height: 700px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,12 +110,10 @@ h3 {
     align-items: center;
     gap: 20px;
     width: 300px;
-    height: 400px;
-    overflow: auto;
+    height: 100%;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-
 }
 
 /* #box div {
@@ -158,7 +161,7 @@ footer h4 {
     color: white;
 }
 
-footer li:hover{
+footer li:hover {
     color: var(--cor3);
     transition-duration: 0.2s;
     cursor: pointer;
@@ -191,7 +194,7 @@ footer li:hover{
     gap: 20px;
 }
 
-#closeButton{
+#closeButton {
     cursor: pointer;
 }
 
@@ -203,15 +206,17 @@ footer li:hover{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
     cursor: pointer;
     text-align: center;
+    border-radius: 10px;
 }
 
 .box img {
     width: 150px;
     height: 100px;
     border: 1px solid black;
+    margin: 10px;
 }
 
 .box h3 {
@@ -237,9 +242,32 @@ footer li:hover{
     border-radius: 0px;
 }
 
+#div {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 900px;
+}
+
+#div h3 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: var(--cor3);
+    text-align: center;
+}
+
+main div h3 {
+    font-size: 40px;
+    margin: 10px;
+    font-size: 35px;  
+}
+
 @media (min-width: 760px) {
     header {
-        font-size: 40px;
+        font-size: 50px;
     }
 
 
@@ -252,10 +280,11 @@ footer li:hover{
 
     main div {
         width: 600px;
+        height: 100%;
     }
 
     main img {
-        width: 500px;
+        width: 600px;
     }
 
     #box {
@@ -263,7 +292,7 @@ footer li:hover{
         align-items: center;
         gap: 20px;
         width: 600px;
-        height: 500px;
+        height: 100%;
         flex-direction: row;
         flex-wrap: wrap;
     }
@@ -286,10 +315,32 @@ footer li:hover{
         width: 200px;
     }
 
+    main div h3 {
+        margin: 30px;
+        font-size: 70px;
+    }
 
+    #linha {
+        height: 150px;
+    }
+
+    footer img {
+        width: 250px;
+    }
+
+    footer h4 {
+        width: 600px;
+        font-size: 30px;
+    }
+
+    p {
+        font-size: 35px;
+        width: 900px;
+        height: 100%;
+    }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
     header {
         font-size: 50px;
     }
@@ -341,6 +392,7 @@ footer li:hover{
         flex-direction: row;
         flex-wrap: wrap;
         width: 700px;
+        overflow: auto;
     }
 
     .box {
@@ -370,14 +422,28 @@ footer li:hover{
     }
 
     #linha {
-        height: 150px;
+        height: 200px;
         margin: 0 10px 0 20px;
+    }
+
+    footer img {
+        width: 300px;
     }
 
     footer h4 {
         width: 500px;
-        font-size: 20px;
+        font-size: 25px;
     }
+
+    footer ul {
+        gap: 10px;
+    }
+
+    footer ul li {
+        font-size: 30px;
+    }
+
+
 }
 
 @media (min-width: 1700px) {

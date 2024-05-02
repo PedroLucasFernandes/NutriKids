@@ -43,6 +43,10 @@ header {
     border-bottom: 1px solid var(--cor0);
 }
 
+header img {
+    cursor: pointer;
+}
+
 header li{
     cursor: pointer;
 }

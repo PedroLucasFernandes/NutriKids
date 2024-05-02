@@ -11,14 +11,11 @@ export default function playQuiz(quiz) {
     const h3Title = document.createElement('h3');
     const div = document.createElement('div');
     const img = document.createElement('img');
-    const h4Back = document.createElement('h4');
-    h4Back.id = "backButton";
     const divImage = document.createElement('div');
     const divBox = document.createElement('div');
     const h4Count = document.createElement('h4')
 
     h3Title.innerHTML = quiz.title;
-    h4Back.innerHTML = "Voltar";
     divImage.id = "img";
     h3Title.id = "title"
 
@@ -40,12 +37,6 @@ export default function playQuiz(quiz) {
 
     divImage.appendChild(div);
 
-    h4Back.addEventListener("click", () => {
-        const event = new CustomEvent("pageChange", { detail: "/Quizzes" });
-
-        window.dispatchEvent(event);
-    });
-
     main.appendChild(h4Count)
 
     return main;
@@ -64,6 +55,7 @@ function opitionQuestion(item, question) {
     const h3 = document.createElement('h3');
     const buttonConfirm = document.createElement('button');
     const h4Back = document.createElement('h4');
+    h4Back.id = "backButton"
     const h4Count = document.createElement('h4')
 
 
@@ -168,6 +160,7 @@ function ModalQuiz(item, resp, question, points) {
         main.innerHTML = ""
 
         const back = document.createElement('h4');
+        back.id = "backButton";
         const image = document.createElement('img');
         h3.innerHTML = `Você acertou ${points} questões!!!`;
         back.innerHTML = "Voltar";

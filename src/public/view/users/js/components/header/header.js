@@ -26,6 +26,23 @@ export default function header(menu) {
         ul.appendChild(li);
     }
 
+    img.addEventListener('click', ()=> {
+        const event = new CustomEvent("pageChange", {detail: "/Inicio"});
+
+        window.dispatchEvent(event);
+    })
+
+    const li = document.createElement('li');
+    li.innerHTML = "Sobre nós";
+
+    li.addEventListener("click", ()=> {
+        const event = new CustomEvent("pageChange", {detail: "/Sobre-nos"});
+
+        window.dispatchEvent(event);
+    });
+
+    ul.appendChild(li);
+
     nav.appendChild(ul);
     header.appendChild(menuImg);
     header.appendChild(img);
