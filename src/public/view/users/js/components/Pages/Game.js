@@ -40,19 +40,6 @@ export default function jogos() {
 
     const menu = ["Inicio", "Jogos", "Quizzes", "Receitas"];
 
-    //Quadrado das palavras cruzadas
-    // const quadrado1 = document.createElement('div');
-    // quadrado1.classList.add("quadrado");
-    // quadrado1.addEventListener('click', initializeRandomCrossword);
-    // div.appendChild(quadrado1);
-
-
-    // //Quadrado do jogo da memória
-    // const quadrado2 = document.createElement('div');
-    // quadrado2.classList.add("quadrado");
-    // quadrado2.addEventListener('click', initializeMemoryGame);
-    // div.appendChild(quadrado2);
-
     getGame()
 
     div.appendChild(h3);
@@ -71,8 +58,8 @@ const games = {
 }
 
 function renderGame(jogo) {
-    games[jogo]();
     changeCSS(jogo);
+    games[jogo]();
 }
 
 async function getGame() {
