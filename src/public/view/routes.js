@@ -1,5 +1,5 @@
 import Home from "./users/js/components/Pages/Home.js";
-//import Games from "./users/js/components/Pages/Game.js";
+import Games from "./users/js/components/Pages/Game.js";
 import Quizzes from "./users/js/components/Pages/Quizzes.js";
 import History from "./users/js/components/Pages/History.js";
 import Recipes from "./users/js/components/Pages/Recipes.js";
@@ -18,7 +18,7 @@ const router = {
     "/": Home,
     "/Inicio": Home,
     "/menuHamburguer": menuHamburguer,
-//    "/Jogos": Games,
+   "/Jogos": Games,
     "/Quizzes": Quizzes,
     "/Historias": History,
     "/Receitas": Recipes,

@@ -138,12 +138,6 @@ class MemoryGame {
         }
     }
 
-
-    playCorrectWordSound() {
-        const audio = document.getElementById('somAcerto');
-        audio.play();
-    }
-
     showCongratulationsModal() {
         let modal = document.getElementById("parabensModal");
         modal.style.display = "block";
