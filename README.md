@@ -34,6 +34,7 @@ Lendo uma história:
 
 Lendo uma receita:
 ![Ler Receita](./READMEImages/recipe.png)
+![Continuando a ler Receita](./READMEImages/recipe2.png)
 
 Jogando um quiz:
 ![Jogar Quiz](./READMEImages/quiz.png)
