@@ -2,6 +2,7 @@ class CrosswordGameVegetables {
     constructor() {
         this.gameElement = document.createElement('div');
         this.gameElement.innerHTML = this.getGameHtml();
+        this.correctSound = new Audio('../../sounds/acertoCruzada.mp4');
         this.puzzleGrid = [
             [' ', ' ', '1', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', 'a', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -35,6 +36,8 @@ class CrosswordGameVegetables {
     getGameHtml() {
         return `
         <link rel="stylesheet" href="../../../../../css/Games/crossWord.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <div id="tituloJogo">Palavra Cruzada</div>
         <div id="puzzle-wrapper">
             <div id="puzzle-container"></div>
             <div id="clues"></div>
@@ -90,10 +93,16 @@ class CrosswordGameVegetables {
 
     checkWord(event) {
         const square = event.target;
+
+        if (square.innerText.length > 1) {
+            square.innerText = square.innerText[0];
+        }
+
         const input = square.innerText.trim();
         const correctLetter = square.dataset.letter.trim();
         if (input.toLowerCase() === correctLetter.toLowerCase()) {
             square.style.backgroundColor = 'lightgreen';
+            this.correctSound.play();
             this.markCorrectWord(this.getWord(square));
         } else {
             square.style.backgroundColor = '#ff9688';
@@ -126,19 +135,19 @@ class CrosswordGameVegetables {
     markCorrectWord() {
         const squares = this.gameElement.querySelectorAll('.square');
         let allCorrect = true;
-
+    
         squares.forEach(square => {
             if (square.dataset.letter && square.textContent.trim().toLowerCase() !== square.dataset.letter.toLowerCase()) {
                 allCorrect = false;
                 return;
             }
         });
-
+    
         if (allCorrect) {
             this.exibirModalParabens();
         }
     }
-
+    
 
     countWords() {
         return Object.keys(this.clues).length;
@@ -155,12 +164,12 @@ class CrosswordGameVegetables {
             const modal = this.gameElement.querySelector("#parabensModal");
             modal.style.display = "none";
         });
-
+    
         const voltarHomeBtn = this.gameElement.querySelector("#voltarHomeBtn");
         voltarHomeBtn.addEventListener("click", () => {
-            //window.location.href = "index.html";
+            window.location.href = "/Inicio";
         });
-
+    
         const jogarNovamenteBtn = this.gameElement.querySelector("#jogarNovamenteBtn");
         jogarNovamenteBtn.addEventListener("click", () => {
             this.reiniciarJogo();
