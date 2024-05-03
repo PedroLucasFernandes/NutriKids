@@ -10,7 +10,7 @@ export default function historias() {
 
     img.src = "./images/beterraba1.png";
 
-    h3.innerHTML = "Historias em destaques:";
+    h3.innerHTML = "Historias em destaque:";
 
     divDestaque.classList.add("conjunto");
     div.classList.add("destaques");

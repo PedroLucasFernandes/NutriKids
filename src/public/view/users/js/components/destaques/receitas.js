@@ -10,7 +10,7 @@ export default function receita() {
 
     img.src = "./images/cerejaReceita1.png";
 
-    h3.innerHTML = "Receitas em destaques:";
+    h3.innerHTML = "Receitas em destaque:";
 
     divDestaque.classList.add("conjunto");
     div.classList.add("destaques");
@@ -18,10 +18,6 @@ export default function receita() {
     div.id = "cereja";
 
     for (let i = 0; i < 2; i++) {
-        // const quadrado = document.createElement('div');
-        // quadrado.classList.add("quadrado");
-        // div.appendChild(quadrado);
-
         getRecipe(i);
     }
 

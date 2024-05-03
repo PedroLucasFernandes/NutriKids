@@ -29,7 +29,7 @@ export default function jogos() {
 
     img.src = "./images/cereja1.png";
 
-    h3.innerHTML = "Jogos em destaques:";
+    h3.innerHTML = "Jogos em destaque:";
 
 
     div.classList.add("destaques");

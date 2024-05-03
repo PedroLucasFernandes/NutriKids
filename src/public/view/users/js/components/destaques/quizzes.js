@@ -10,7 +10,7 @@ export default function quizzes() {
 
     img.src = "./images/couve1.png";
 
-    h3.innerHTML = "Quizzes em destaques:";
+    h3.innerHTML = "Quizzes em destaque:";
 
     divDestaque.classList.add("conjunto");
     div.classList.add("destaques");
@@ -18,10 +18,6 @@ export default function quizzes() {
     div.id = "couve";
 
     for (let i = 0; i < 2; i++) {
-        // const quadrado = document.createElement('div');
-        // quadrado.classList.add("quadrado");
-        // div.appendChild(quadrado);
-
         getQuiz(i)
     }
 
