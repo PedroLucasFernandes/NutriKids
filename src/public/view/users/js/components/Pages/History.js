@@ -15,7 +15,7 @@ export default function History() {
     const divBox = document.createElement('div');
 
     img.src = "./images/beterraba2.png";
-    h3.innerHTML = "Historias:";
+    h3.innerHTML = "Histórias:";
     divBox.id = "box";
     main.id = "main";
     div.id = "container";

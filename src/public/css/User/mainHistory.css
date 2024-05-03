@@ -96,6 +96,10 @@ main div h4 {
     font-size: 50px;
 }
 
+#nextButton, #prevButton {
+    user-select: none;
+}
+
 main img {
     width: 270px;
 }
