@@ -2,6 +2,7 @@ class MemoryGame {
     constructor() {
         this.gameElement = document.createElement('div');
         this.gameElement.innerHTML = this.getGameHtml();
+        this.correctSound = new Audio('../../sounds/acertoMemoria.mp4');
         this.cartasViradas = [];
         this.cartasEncontradas = 0;
         this.init();
@@ -10,8 +11,7 @@ class MemoryGame {
     getGameHtml() {
         return `
         <link rel="stylesheet" href="../../../../../css/Games/memoryGame.css">
-        <audio id="somAcerto" src="./sounds/acerto.mp3"></audio>
-        <audio id="somErro" src="./sounds/erro.mp3"></audio>
+        <div id="tituloJogo">Jogo da Memória</div>
         <div class="jogo">
             <div class="linha">
                 <div class="card" data-card="abacate">
@@ -19,7 +19,7 @@ class MemoryGame {
                     <img class="verso" src="../../../../../images/games/verso2.png">
                 </div>
                 <div class="card" data-card="abacaxi">
-                    <img class="frente" ssrc="../../../../../images/games/abacaxi.png">
+                    <img class="frente" src="../../../../../images/games/abacaxi.png">
                     <img class="verso" src="../../../../../images/games/verso2.png">
                 </div>
                 <div class="card" data-card="banana">
@@ -90,7 +90,7 @@ class MemoryGame {
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Parabéns! Você acertou todas as cartas!</p>
-                <button id="voltarHomeBtn">Voltar à Home</button>
+                <button id="voltarHomeBtn">Voltar ao Início</button>
                 <button id="jogarNovamenteBtn">Jogar Novamente</button>
             </div>
         </div>
@@ -125,12 +125,9 @@ class MemoryGame {
                 this.cartasViradas.forEach(carta => carta.classList.add("encontrada"));
                 this.cartasEncontradas += 2;
                 this.cartasViradas = [];
-                this.playCorrectWordSound();
+                this.correctSound.play();
                 if (this.cartasEncontradas === this.gameElement.querySelectorAll('.card').length) {
-                    setTimeout(() => {
-                        this.showCongratulationsModal();
-                        this.resetGame();
-                    }, 500);
+                    this.showCongratulationsModal();
                 }
             } else {
                 setTimeout(() => {
@@ -139,11 +136,6 @@ class MemoryGame {
                 }, 1000);
             }
         }
-    }
-
-    playCorrectWordSound() {
-        const audio = document.getElementById('somAcerto');
-        audio.play();
     }
 
     showCongratulationsModal() {
@@ -155,7 +147,7 @@ class MemoryGame {
             modal.style.display = "none";
             document.body.classList.remove("modal-open");
         };
-        document.getElementById("voltarHomeBtn").onclick = () => window.location.href = "/home";
+        document.getElementById("voltarHomeBtn").onclick = () => window.location.href = "/Inicio";
         document.getElementById("jogarNovamenteBtn").onclick = () => {
             this.resetGame();
             modal.style.display = "none";
