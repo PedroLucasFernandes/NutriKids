@@ -8,7 +8,7 @@ const adminRoutes = require('./routes/adminRoutes.js');
 const historyRoutes = require('./routes/historyRoutes.js');
 const recipeRoutes = require('./routes/recipeRoutes.js');
 const quizRoutes = require('./routes/quizRoutes.js');
-//const gameRoutes = require('./routes/gameRoutes.js');
+const gameRoutes = require('./routes/gameRoutes.js');
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/history', historyRoutes);
 app.use('/api/recipe', recipeRoutes);
 app.use('/api/quiz', quizRoutes);
-//app.use('/api/game', gameRoutes);
+app.use('/api/game', gameRoutes);
 
 app.use(express.static('src/public'));
 
@@ -45,7 +45,7 @@ app.get('/', sendIndexFile);
 app.get('/Historias', sendIndexFile);
 app.get('/Inicio', sendIndexFile);
 app.get('/menuHamburguer', sendIndexFile);
-// app.get('/Jogos', sendIndexFile);
+app.get('/Jogos', sendIndexFile);
 app.get('/Quizzes', sendIndexFile);
 app.get('/Receitas', sendIndexFile);
 app.get('/Sobre-nos', sendIndexFile);

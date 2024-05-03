@@ -3,6 +3,76 @@ html, body {
     padding: 0;
 }
 
+/* add */
+header {
+    background-color: var(--cor1);
+    text-align: center;
+    font-family: var(--font1);
+    font-size: 30px;
+    color: var(--cor3);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 20px;
+    border-bottom: 1px solid var(--cor0);
+}
+
+header img {
+    cursor: pointer;
+}
+
+header li {
+    cursor: pointer;
+}
+
+header li:hover {
+    color: var(--cor5);
+    transition-duration: 0.2s;
+}
+
+footer {
+    background-color: var(--cor5);
+
+}
+
+footer div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#linha {
+    width: 1px;
+    height: 50px;
+    background-color: white;
+    margin-right: 10px;
+}
+
+footer img {
+    width: 100px;
+}
+
+footer h4 {
+    width: 350px;
+    font-size: 12px;
+    font-family: var(--font1);
+    text-align: center;
+    color: white;
+}
+
+footer li:hover {
+    color: var(--cor3);
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+/* add */
+
 .modal {
     display: none;
     position: fixed;
