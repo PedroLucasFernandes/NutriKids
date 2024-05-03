@@ -44,8 +44,11 @@ Atualmente temos dois jogos disponíveis: Jogo da Memória e Palavras Cruzadas (
 ![Jogar Palavras Cruzadas](./READMEImages/crossWord.png)
 
 As telas da parte de usuários são responsivas e podem ser acessadas pelo celular sem prejudicar a experiência, inclusive os jogos:
+
 ![Tela inicial no Celular](./READMEImages/phone.png)
+
 ![Jogar Jogo da Memória no Celular](./READMEImages/phoneMemoryGame.png)
+
 ![Jogar Palavras Cruzadas no Celular](./READMEImages/phoneCrossWord.png)
 
 ***
