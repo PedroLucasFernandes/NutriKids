@@ -6,25 +6,24 @@ export default function Main() {
     const h3 = document.createElement('h3');
     const container = document.createElement('div');
 
-    h3.innerHTML = "Olá admin, bem vindo(a)!";
+    h3.innerHTML = "Olá Administrador, bem vindo(a)!";
 
     const menu = [
         {
-            name: "History",
+            name: "Histórias",
+            route: "History",
             img: "./images/iconHistory.png"
         },
         {
             name: "Quizzes",
+            route: "Quizzes",
             img: "./images/iconQuizzes.png"
         },
         {
-            name: "Recipes",
+            name: "Receitas",
+            route: "Recipes",
             img: "./images/iconRecipe.png"
         },
-        // {
-        //     name: "Register",
-        //     img: "./images/iconAdmin.png"
-        // }
     ];
 
     for (const item of menu) {
@@ -40,7 +39,7 @@ export default function Main() {
         next.classList.add('next');
 
         div.addEventListener("click", () => {
-            const event = new CustomEvent("pageChange", {detail: `/${item.name}Admin`});
+            const event = new CustomEvent("pageChange", {detail: `/${item.route}Admin`});
     
             window.dispatchEvent(event);
         })
