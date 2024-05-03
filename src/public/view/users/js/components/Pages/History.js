@@ -75,6 +75,7 @@ function render(data) {
 
         div.addEventListener('click', function () {
             console.log(item);
+            comicsMain(item);
         });
 
         div.appendChild(title);

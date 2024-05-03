@@ -132,7 +132,7 @@ footer li:hover {
     }
 
     main {
-        width: 750px;
+        width: 90%;
     }
 }
 
@@ -143,7 +143,7 @@ footer li:hover {
     }
 
     main {
-        width: 950px;
+        width: 90%;
     }
 
     p {
@@ -155,23 +155,19 @@ footer li:hover {
 
 @media (min-width: 1200px){
     main {
-        width: 1250px;
+        width: 90%;
     }
 }
 
 @media (min-width: 1300px) {
     main {
-        width: 1300px;
+        width: 90%;
     }
 }
 
 @media (min-width: 1400px) {
     header {
         font-size: 50px;
-    }
-
-    main {
-        width: 1000px;
     }
 
     #menu {
@@ -217,7 +213,7 @@ footer li:hover {
         flex-direction: row-reverse;
         justify-content: center;
         gap: 100px;
-        width: 100%;
+        width: 90%;
         padding: 20px;
     }
 
@@ -242,6 +238,9 @@ footer li:hover {
 @media (min-width: 1700px) {
     #navegacao {
         font-size: 30px;
+    }
+    main{
+        width: 90%;
     }
 }
 /* add */
